@@ -17,6 +17,7 @@ Mỗi ghi chú trả lời ba câu hỏi:
 | [`video/`](video/) | Sản xuất video bằng agent, model tạo video, AI hiểu video |
 | [`voice/`](voice/) | TTS, clone giọng, lồng tiếng |
 | [`security/`](security/) | Pentest, dịch ngược |
+| [`game/`](game/) | Làm game bằng agent |
 
 ## Danh mục
 
@@ -57,6 +58,11 @@ Mỗi ghi chú trả lời ba câu hỏi:
 |---|---|---|
 | [PentAGI](security/pentagi.md) | Nền tảng multi-agent tự động hóa pentest | ✅ Đáng thử; cập nhật lên bản ≥ 2.2.0 (đã vá CVE-2026-14784) |
 | [REA](security/rea-reverse-engineer-anything.md) | MCP dịch ngược app cho agent, kèm phân tích vụ "hack TradingView" | ⚠️ Công cụ có thật; vụ TradingView chưa có bằng chứng và là vi phạm |
+
+### Game
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [Claude Code Game Studios](game/claude-code-game-studios.md) | Template biến Claude Code thành studio game: 49 agent, 74 skill, hỗ trợ Godot/Unity/Unreal | ✅ Đáng thử, nên bắt đầu ở mức `minimal` (chính README cho thấy nhiều tài liệu hơn không làm game hay hơn) |
 
 ## Quy ước
 
