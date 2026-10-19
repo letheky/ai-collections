@@ -1,0 +1,66 @@
+# AI Collections
+
+Ghi chú nghiên cứu về các công cụ, repo và tin tức AI lan truyền trên mạng xã hội (Facebook Reels, X…).
+
+Mỗi ghi chú trả lời ba câu hỏi:
+- **Nó là gì?**
+- **Bài đăng nói có đúng không?** (bảng kiểm chứng ✅ / ⚠️ / ❌)
+- **Có nên dùng không, và cần lưu ý gì?** (giấy phép, phần cứng, chi phí, rủi ro)
+
+## Cấu trúc
+
+| Thư mục | Chủ đề |
+|---|---|
+| [`design/`](design/) | Thiết kế UI, Figma ↔ code |
+| [`web/`](web/) | Frontend, browser agent |
+| [`animation/`](animation/) | Hoạt hình và motion graphics bằng code, hoạt hình 3D |
+| [`video/`](video/) | Sản xuất video bằng agent, model tạo video, AI hiểu video |
+| [`voice/`](voice/) | TTS, clone giọng, lồng tiếng |
+| [`security/`](security/) | Pentest, dịch ngược |
+
+## Danh mục
+
+### Design
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [Figwright](design/figwright.md) | MCP hai chiều Figma ↔ coding agent, dùng được với tài khoản Figma miễn phí | ✅ Đáng thử. Bản chính thức của Figma ở gói free chỉ có 6 lượt/tháng, không phải 20 như bài đăng nói |
+
+### Web
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [Pretext](web/pretext.md) | Thư viện đo và dàn trang chữ không cần DOM (Cheng Lou) | ⚠️ Không phải thư viện animation, chỉ là mảnh ghép cho hiệu ứng chữ |
+| [Jev Ultrafast](web/jev-ultrafast.md) | Browser agent đọc DOM thay vì chụp màn hình (browser-use) | ⚠️ Bản MVP, phải dùng API trả phí, con số "7 giây" chỉ đến từ một lần chạy |
+
+### Animation
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [15 repo Claude Motion Studio](animation/claude-motion-studio-15-repos.md) | Danh sách đầy đủ owner/repo của 15 skill và framework motion (HyperFrames, Remotion, GSAP…) | Nền tảng nên bắt đầu: HyperFrames + gsap-skills + motion-design-skill |
+| [anidoodle](animation/anidoodle.md) | Tranh vẽ tay và phim quá trình vẽ từng nét, viết bằng code, 32 phong cách | ⚠️ Không cập nhật "tức thì" như bài đăng nói |
+| [huashu-art-motion](animation/huashu-art-motion.md) | Skill vẽ 35–36 phong cách nghệ thuật thành hoạt hình | ❌ Không "biến ảnh tĩnh thành hoạt hình"; bài đăng dịch sai nhiều chỗ |
+| [Mesh2Motion](animation/mesh2motion.md) | Bản thay thế Mixamo chạy trên web: gắn xương và animation cho model 3D | ✅ Animation theo CC0, nhưng chỉ nhận GLB/GLTF |
+
+### Video
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [lemo-opuscar](video/lemo-opuscar.md) | Phim ngắn làm hoàn toàn bằng code, 51 phong cách, phim OPUSCAR 98 | ✅ Đúng, chỉ có số liệu sao/phong cách trong bài đã cũ |
+| [OpenMontage](video/openmontage.md) | Xưởng phim AI điều khiển bằng agent (Remotion/HyperFrames + các provider AI) | ⚠️ "Video từ $0.02" không có trong README |
+| [T3-Video](video/t3-video.md) | Tạo video 4K gốc từ Wan2.1-1.3B bằng attention cửa sổ | ❌ Không phải mới ra, không thấy demo; cần khoảng 60 GB VRAM |
+| [Gemini Agentic Video](video/gemini-agentic-video.md) | Gemini tự chọn đoạn video cần xem, giảm tới 88% token | ✅ Đúng phần lớn; ý "bắt lỗi trong bản ghi màn hình" không có trong tài liệu chính thức |
+
+### Voice
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [VoiceStudio](voice/voicestudio.md) | App TTS, clone giọng, lồng tiếng chạy offline, hỗ trợ tiếng Việt | ⚠️ Dùng cá nhân được. Model mặc định là CC-BY-NC nên **không dùng thương mại được** |
+
+### Security
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [PentAGI](security/pentagi.md) | Nền tảng multi-agent tự động hóa pentest | ✅ Đáng thử; cập nhật lên bản ≥ 2.2.0 (đã vá CVE-2026-14784) |
+| [REA](security/rea-reverse-engineer-anything.md) | MCP dịch ngược app cho agent, kèm phân tích vụ "hack TradingView" | ⚠️ Công cụ có thật; vụ TradingView chưa có bằng chứng và là vi phạm |
+
+## Quy ước
+
+- **Vị trí file:** mỗi công cụ một file `.md`, đặt trong thư mục chủ đề phù hợp nhất.
+- **Phần đầu mỗi ghi chú:** nguồn bài đăng, link repo, ngày nghiên cứu.
+- **Số liệu thay đổi nhanh** (sao, phiên bản) được ghi kèm ngày lấy số.
+- **Nguồn không truy cập được trực tiếp** thì ghi rõ trong ghi chú.

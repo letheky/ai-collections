@@ -43,7 +43,7 @@ Yêu cầu: Python, Node.js, FFmpeg. Thêm API key nào thì mở khóa thêm pr
 - **Đường không mất tiền:** dùng ảnh tĩnh + Remotion, hoặc ghép footage có sẵn. Chất lượng kém hơn nhiều so với phim mẫu dùng Veo hay Kling.
 - **Bản quyền:** footage tải từ archive hoặc stock vẫn có giấy phép riêng, cần kiểm tra trước khi dùng thương mại.
   Tính năng "làm giống video bạn thích" dễ đi tới chỗ sao chép ý tưởng của người khác; nên dùng để học nhịp và cấu trúc.
-- **Liên quan:** cùng nhóm với lemo-opuscar, HyperFrames, Remotion đã nghiên cứu trong các ghi chú khác.
+- **Liên quan:** cùng nhóm với [lemo-opuscar](lemo-opuscar.md) và các repo HyperFrames/Remotion trong [animation/claude-motion-studio-15-repos.md](../animation/claude-motion-studio-15-repos.md).
   Điểm khác của OpenMontage: đây là "xưởng" điều phối nhiều provider AI, chứ không phải dựng thuần bằng code.
 
 ## Nguồn

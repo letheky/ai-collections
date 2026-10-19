@@ -38,6 +38,6 @@ Khẩu hiệu dịch ra là: "để coding agent viết các phong cách nghệ 
 
 ## Lưu ý
 
-- Cách làm giống anidoodle và lemo-opuscar (xem các ghi chú khác trong thư mục này): vẽ bằng code, chụp từng khung hình bằng trình duyệt headless, ghép bằng ffmpeg.
+- Cách làm giống [anidoodle](anidoodle.md) và [lemo-opuscar](../video/lemo-opuscar.md): vẽ bằng code, chụp từng khung hình bằng trình duyệt headless, ghép bằng ffmpeg.
 - Nhân vật cần có model sinh ảnh bên ngoài.
 - Chỉ dùng phần MIT nếu làm thương mại. Không dùng nhân vật của tác giả hay Clawd.

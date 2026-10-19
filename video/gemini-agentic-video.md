@@ -51,7 +51,7 @@ Model chỉ lấy những đoạn cần thiết thông qua một công cụ nộ
 ## Ghi chú về chính video này
 
 Phần ghi chú của video nói nhạc nền "tự tổng hợp bằng ffmpeg trong video-lab" và footage lấy từ Pexels / Mixkit (giấy phép miễn phí).
-Đây là cách làm video giống các repo dựng phim bằng code đã nghiên cứu ở các ghi chú khác (lemo-opuscar, hyperframes…).
+Đây là cách làm video giống các repo dựng phim bằng code đã nghiên cứu ở [lemo-opuscar](lemo-opuscar.md) và [15 repo motion](../animation/claude-motion-studio-15-repos.md).
 
 ## Nguồn
 
