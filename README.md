@@ -29,6 +29,7 @@ Mỗi ghi chú gồm: **Là gì**, **Đã test** (từng bước kèm số đo),
 | [`learning/`](learning/) | Tài liệu học Claude Code |
 | [`dev-env/`](dev-env/) | Môi trường làm việc cho dev |
 | [`llm/`](llm/) | Chạy và suy luận LLM |
+| [`prompts/`](prompts/) | Bộ prompt dùng với Claude |
 
 Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần lưu ý · ❌ lỗi · ⛔ không test được trong môi trường này.
 
@@ -103,6 +104,11 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
 | [AirLLM](llm/airllm.md) | 39.4k | Chạy từng layer trên model nhỏ cho logit khớp 100% với model đầy đủ; 44/45 test đạt | ✅ Cơ chế đúng; ⚠️ chậm vì phụ thuộc SSD, không hợp để chat |
+
+### Prompts
+| Ghi chú | ⭐ | Đã đánh giá | Kết luận nhanh |
+|---|--:|---|---|
+| [7 prompt Claude xây kênh YouTube](prompts/claude-youtube-7-prompts.md) | — | Đọc từng prompt, đối chiếu ngưỡng kiếm tiền YouTube | ⚠️ Khung brainstorm tốt; prompt 2 và 6 dễ sai nếu không có dữ liệu thật |
 
 ## Quy ước
 
