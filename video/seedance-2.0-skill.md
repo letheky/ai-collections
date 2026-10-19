@@ -1,49 +1,37 @@
-# Seedance 2.0 Skill OS: agent viết prompt "đạo diễn" cho Seedance 2.0
+# Seedance 2.0 Skill OS
 
-> Nguồn: ảnh chụp do người dùng cung cấp ("Emily2040 / seedance-2.0").
-> Repo: https://github.com/Emily2040/seedance-2.0. Ngày nghiên cứu: 2026-10-19. Phiên bản lúc nghiên cứu: v6.7.0.
+> Repo: https://github.com/Emily2040/seedance-2.0 · MIT · Phiên bản v6.7.0
 >
-> ⭐ GitHub `Emily2040/seedance-2.0`: **7.771 sao**, 1.133 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
+> ⭐ **7.771 sao**, 1.133 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
 
-## Tóm tắt
+## Là gì
 
-Đây là một **agent skill để lên kế hoạch và viết prompt** cho model video Seedance 2.0 (của ByteDance).
-Bản thân skill **không tạo video**: bạn tự dùng nhà cung cấp video của mình để tạo, và tự trả chi phí ở đó.
+Agent skill giúp **lên shot và viết prompt** cho model video Seedance 2.0. Skill không tự tạo video: bạn dùng nhà cung cấp Seedance riêng và tự trả phí.
 
-- **Tác giả:** Emily (Iamemily2050).
-- **Giấy phép:** MIT.
-- **Ngôn ngữ tài liệu:** tiếng Anh, Trung, Nhật, Hàn, Tây Ban Nha, Nga. **Không có tiếng Việt.**
+Repo có **28 skill**:
+- Kỹ thuật quay: prompt, camera, lighting, motion, characters, continuation, sequence, vfx, audio.
+- An toàn nội dung: filter, copyright, antislop.
+- Từ vựng 6 ngôn ngữ: en, zh, ja, ko, es, ru. **Không có tiếng Việt.**
 
-## Skill làm gì
+Còn có các script Python để lint prompt, kiểm tra shot table và sàng lọc từ ngữ dễ bị kiểm duyệt chặn.
 
-- **Biến ý tưởng thành prompt theo từng shot**, dựa trên một "shot table" có thể kiểm tra bố cục trên giấy trước khi trả tiền render.
-- **Nguyên tắc viết prompt cho model:**
-  - Mỗi shot chỉ có một hành động chính; các nhân vật còn lại vẫn "sống".
-  - Phản ứng được tả bằng một cảm xúc cộng một chi tiết cơ thể.
-  - Cuối mỗi shot có một câu "khóa" nhắc lại ánh sáng, nhân vật và vị trí, vì model không nhớ gì qua cú cắt nếu prompt không lặp lại.
-- **Sàng lọc kiểm duyệt trước:** bộ lọc của model chặn theo từ ngữ chứ không theo ý định, nên prompt được kiểm tra trước để khỏi bị từ chối.
-- **Gắn tham chiếu và nối tiếp:** gắn ảnh/video tham chiếu, nối tiếp từ một clip đã ưng để làm video dài hơn một lần tạo.
-- **Gallery mẫu:** 7 clip 15 giây kiểu phim ngắn có cú lật (short drama), mỗi clip kèm prompt và shot table.
-  README cho thấy rõ khác biệt giữa prompt người ta hay gõ và prompt skill viết ra.
+## Đã test
+
+| Bước | Kết quả |
+|---|---|
+| `pip install --require-hashes -r requirements-validation.lock` + `python scripts/validate_repo.py --release` | ✅ **PASS 19/19** bước kiểm tra (unittest OK, bỏ qua 57), mất **9 phút 20 giây**. Chỉ kiểm tra cấu trúc, không đánh giá chất lượng video |
+| `moderation_prescreen.py` trên một prompt mẫu có "knife", "gun", "blood" | ✅ Báo **2 cảnh báo mức high** (nhóm weapon: gun, knife; nhóm injury: blood). Lưu ý: script chỉ quét prompt nằm trong khối code hoặc blockquote |
+| Tạo video thật | ⛔ Không test (cần tài khoản Seedance) |
+
+## Kết luận nhanh
+
+✅ Kiểm tra chất lượng repo nghiêm túc. Công cụ sàng lọc kiểm duyệt hữu ích để tránh bị từ chối và mất tiền render.
+Chưa có số liệu nào chứng minh video đẹp hơn.
 
 ## Cài đặt
 
 ```bash
 git clone https://github.com/Emily2040/seedance-2.0.git && cd seedance-2.0
 python scripts/install_codex_skill.py --client codex --scope user
-# Với Claude Code: dùng --dest để cài vào ~/.claude/skills/seedance-20/ hoặc .claude/skills/seedance-20/
+# Với Claude Code: dùng --dest ~/.claude/skills/seedance-20/
 ```
-
-Hỗ trợ Claude Code, Codex, Antigravity, OpenClaw, Hermes, Gemini CLI, Copilot, Cursor, Windsurf.
-
-## Nhận xét
-
-- **Tác giả khá trung thực về bằng chứng.** Mục "Evidence status" nói rõ:
-  - Các bài kiểm tra trong repo chỉ kiểm cấu trúc, **không** chứng minh chất lượng video.
-  - Điểm số trên model thật và pilot render 48 lần vẫn **đang chờ**.
-  - Một số clip trong gallery chưa được render.
-- **Hợp với ai:** người làm short drama, quảng cáo, video có kịch bản trên Seedance.
-  Tiết kiệm được tiền bằng cách sửa bố cục trên giấy trước khi render. Kỹ thuật viết prompt cũng áp dụng được cho Veo hay Kling.
-- **Cần tài khoản Seedance riêng** (BytePlus/Volcengine hoặc bên trung gian) để tạo video.
-- **Liên quan:** [Scenario skills](../game/scenario-skills.md) có `scenario-seedance` để gọi Seedance qua MCP của Scenario;
-  [OpenMontage](openmontage.md) điều phối cả quy trình sản xuất.

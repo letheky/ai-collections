@@ -1,51 +1,40 @@
-# OpenWorker: AI coworker chạy trên máy của Andrew Ng
+# OpenWorker
 
-> Nguồn: ảnh chụp do người dùng cung cấp ("openworker"). Repo: https://github.com/andrewyng/openworker
-> Trang chủ: https://openworker.com. Ngày nghiên cứu: 2026-10-19.
+> Repo: https://github.com/andrewyng/openworker · MIT · Đang beta · Trang: https://openworker.com
 >
-> ⭐ GitHub `andrewyng/openworker`: **18.563 sao**, 2.625 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
+> ⭐ **18.563 sao**, 2.625 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
 
-## Tóm tắt
+## Là gì
 
-OpenWorker là **app desktop** (macOS Apple Silicon, Windows 10/11) do nhóm Andrew Ng làm.
-Định vị: một "đồng nghiệp AI" giao **việc đã làm xong**, không chỉ trò chuyện.
+App "AI coworker" chạy trên máy của nhóm Andrew Ng, có bản desktop cho macOS Apple Silicon và Windows.
+Engine xây trên thư viện aisuite. Server agent viết bằng FastAPI, giao diện bằng React/Tauri.
+Có phân quyền theo mức rủi ro, ghi log audit, và tùy chọn chạy lệnh trong sandbox (NVIDIA OpenShell, sandbox macOS, hoặc tài khoản ẩn trên Windows).
 
-- **Giấy phép:** MIT. Đang ở **open beta** và tự cập nhật.
-- **Mức độ phổ biến:** 18.563 sao, 2.625 fork.
-- **Engine:** xây trên [aisuite](https://github.com/andrewyng/aisuite), thư viện Python cung cấp API thống nhất cho nhiều nhà cung cấp LLM, kèm lớp agent (tool, MCP).
-  Server agent chạy cục bộ bằng FastAPI. Giao diện viết bằng React/Tauri.
+## Đã test (chạy từ source trên Linux)
 
-## Tính năng chính
+| Bước | Kết quả |
+|---|---|
+| `bash packaging/setup_dev_env.sh` | ✅ Tạo `.venv` trong 58 giây |
+| Khởi động server agent `--port 8765` | ✅ FastAPI chạy ở `127.0.0.1:8765` |
+| Bảo mật API | ✅ Gọi không kèm token thì bị **401**. Token đổi mỗi lần khởi động, lưu ở `~/.config/coworker/sidecar-8765.token`, gửi qua header `X-OpenWorker-Token` |
+| `GET /v1/agents` | **5 agent**: cowork, cloud-posture, dep-audit, reviewer, security |
+| `GET /v1/providers` | **23 nhà cung cấp model**: openai, anthropic, gemini, bedrock, vertex, deepseek, kimi, qwen, xai, mistral, together, fireworks, openrouter, ollama, llamacpp, vllm… |
+| `GET /v1/connectors` | **40 connector**: slack, gmail, github, jira, notion, linear, stripe, salesforce, figma, hubspot… |
+| `GET /v1/settings/sandbox/readiness` | Docker ✅, OpenShell chưa cài |
+| Chạy một tác vụ | ⛔ Không test (không có API key cho model) |
+| GUI desktop | ⛔ Không test |
 
-- **Không khóa vào model nào:**
-  - Tự mang API key: OpenAI, Anthropic, Gemini, DeepSeek, Kimi, Qwen, GLM, MiniMax, Mistral, Grok…
-  - Model open-weight qua Together hoặc Fireworks.
-  - Chạy **hoàn toàn local** bằng Ollama.
-- **Hơn 25 tích hợp:** GitHub, Slack, Jira, Notion, Linear, HubSpot, Outlook, Gmail, Google Calendar… cùng terminal, file local và bất kỳ MCP nào.
-- **Ví dụ use case:** review bảo mật codebase. Kết quả lấy từ công cụ quét tất định (semgrep) cộng với suy luận của model,
-  và bản sửa được quét lại trước khi đưa người dùng duyệt.
-- **Quản trị nằm trong kiến trúc:**
-  - Mọi hành động được phân loại rủi ro (đọc, ghi file local, chạy lệnh, gọi ra ngoài) và được ghi log.
-  - Agent không tự cấp thêm quyền cho mình được.
-  - Lệnh có thể chạy trong sandbox: **NVIDIA OpenShell** (mỗi agent một container Linux, không chứa key, mạng theo danh sách cho phép),
-    sandbox có sẵn của macOS, hoặc một tài khoản ẩn trên Windows.
+## Kết luận nhanh
+
+✅ Server dựng nhanh, bảo vệ API bằng token, lựa chọn model và connector rất rộng.
+Đáng thử nếu muốn một "đồng nghiệp AI" mã nguồn mở. Vẫn đang beta và chưa có bản cài sẵn cho Linux.
 
 ## Cài đặt
 
-- **Dùng ngay:** tải bản cài từ openworker.com (bản Mac đã ký và notarize). Mở app, thêm API key hoặc trỏ tới Ollama.
-- **Từ source:**
-  1. Chạy script bootstrap trong `packaging/` để tạo venv Python.
-  2. Chạy server `coworker.server.run`.
-  3. Chạy giao diện trong `surfaces/gui/` bằng `npm install` rồi khởi động dev.
+Tải bản cài từ openworker.com, hoặc chạy từ source:
 
-## Nhận xét
-
-- **Khác Claude Code / Codex:** đối tượng là **người dùng văn phòng nói chung**, có GUI và connector cho công cụ doanh nghiệp, chứ không chỉ cho dev.
-  Gần với Claude Cowork hay các "AI coworker" thương mại, nhưng mã nguồn mở và chọn được model.
-- **Điểm mạnh:** thiết kế bảo mật nghiêm túc (sandbox, phân quyền, log). Rất đáng chú ý khi agent có quyền vào Gmail, Slack…
-- **Lưu ý:**
-  - Vẫn đang beta.
-  - Chưa có bản Linux và Mac Intel (ngoài cách tự build từ source).
-  - Chi phí phụ thuộc model bạn chọn.
-  - Model ngoài danh sách đã kiểm chứng có thể gọi tool kém.
-- **Đừng nhầm với** `langchain-ai/openwork`, một app desktop khác dành cho deepagentsjs.
+```bash
+bash packaging/setup_dev_env.sh
+.venv/bin/python -m coworker.server.run --cwd ~/project --port 8765
+cd surfaces/gui && npm install && npm run dev
+```

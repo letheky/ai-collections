@@ -1,68 +1,37 @@
-# Claude Code Game Studios: biến Claude Code thành studio làm game
+# Claude Code Game Studios
 
-> Nguồn: người dùng yêu cầu ("claude-studio-game", đã xác nhận là repo này).
-> Repo: https://github.com/Donchitos/Claude-Code-Game-Studios
-> Ngày nghiên cứu: 2026-10-19.
+> Repo: https://github.com/Donchitos/Claude-Code-Game-Studios · MIT · Bản 1.1.3
 >
-> ⭐ GitHub `Donchitos/Claude-Code-Game-Studios`: **26.827 sao**, 3.958 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
+> ⭐ **26.827 sao**, 3.958 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
 
-## Tóm tắt
+## Là gì
 
-Đây là **template project** cho Claude Code, không phải engine game. Bạn clone repo về làm thư mục gốc cho game của mình.
-Template mô phỏng cơ cấu của một studio làm game thật, gồm các agent sau:
+Template project biến Claude Code thành một "studio làm game": các agent được chia cấp director → lead → chuyên viên, kèm lệnh slash, hook và rule.
+Hỗ trợ Godot 4 (mặc định), Unity và Unreal 5. Có hai mức độ kỹ lưỡng là `minimal` và `standard` (đặt trong `modes.rigor`).
 
-- **Directors:** giữ tầm nhìn chung của game.
-- **Leads:** phụ trách từng mảng.
-- **Specialists:** trực tiếp làm việc: gameplay, engine, AI, UI, âm thanh, cốt truyện, QA, devops…
+## Đã test
 
-| Thành phần | Số lượng |
+| Bước | Kết quả |
 |---|---|
-| Agents (subagent có vai trò và đường báo cáo riêng) | 49 |
-| Skills (lệnh slash như `/start`, `/brainstorm`, `/create-stories`, `/dev-story`) | 74 |
-| Hooks (bash) | 12 |
-| Rules: chuẩn code theo từng đường dẫn (gameplay, engine, UI, network…) | 13 |
+| Đếm cấu trúc `.claude/` | ✅ **49 agent, 74 skill, 14 hook script, 13 rule** |
+| `settings.json` | Gắn hook vào **9 sự kiện** (SessionStart, PreToolUse, PostToolUse, Notification, PreCompact, PostCompact, Stop, SubagentStart, SubagentStop); có **131 rule chặn** (deny) |
+| `bash -n` trên 14 hook | ✅ Cả 14 file đều không lỗi cú pháp |
+| Chạy thử hook SessionStart | ✅ In ra bối cảnh phiên: nhánh, commit gần nhất, chế độ review "solo" |
+| Làm một game hoàn chỉnh | ⛔ Không test (cần phiên Claude Code tương tác và engine Godot/Unity/Unreal) |
 
-- **Giấy phép:** MIT.
-- **Mức độ phổ biến:** 26.827 sao, 3.958 fork.
-- **Engine hỗ trợ:** có agent chuyên cho **Godot 4** (GDScript, shader), **Unity** (DOTS/ECS, Addressables) và **Unreal 5** (GAS, Blueprints).
-  Mặc định là Godot.
+## Kết luận nhanh
 
-## Điểm đáng chú ý
-
-- **Chọn mức độ kỹ lưỡng** bằng `modes.rigor`:
-  - `minimal` (mặc định): kiểu game jam, chỉ cần một trang brief.
-    Quy trình: `/start` → `/setup-engine` → `/brainstorm` → `/create-stories` → `/dev-story`.
-  - `standard`: bắt buộc viết GDD (tài liệu thiết kế game), QA và review kỹ hơn.
-- **README tự đánh giá khá thẳng thắn:**
-  - Họ làm 4 game từ cùng một brief, ở các mức rigor khác nhau.
-  - Bản `standard` viết 30 tài liệu trước khi code, mất 58 phút.
-  - Nhưng khi người chơi thử và người review đánh giá mù, bản này bị xếp **cuối**.
-  - Kết luận của chính tác giả: tài liệu nhiều hơn giúp truy vết tốt hơn, chứ không làm ra game hay hơn. Nên bắt đầu ở mức `minimal`.
-- **QA bằng cách nhìn thật:** mỗi story có thay đổi về hình ảnh chỉ được đóng khi game đã thực sự chạy, được quan sát,
-  và có ảnh chụp màn hình lưu trong `production/qa/evidence/`.
+✅ Template chặt chẽ, hook chạy được và có nhiều rule bảo vệ.
+Nên bắt đầu ở mức `minimal`: chính README ghi lại thí nghiệm của tác giả cho thấy viết nhiều tài liệu hơn không làm ra game hay hơn.
+Nhiều agent và nhiều vòng review sẽ tốn token.
 
 ## Cài đặt
 
 ```bash
 git clone https://github.com/Donchitos/Claude-Code-Game-Studios.git my-game
-cd my-game && claude        # phải mở Claude Code ở thư mục gốc, nếu không thì hooks không chạy
+cd my-game && claude        # phải mở ở thư mục gốc thì hook mới chạy
 /start                      # hoặc /setup-engine godot 4.6
 ```
 
-Yêu cầu: Claude Code, Python 3 (để đọc `project.yaml`), Bash (Windows thì dùng Git Bash). Nên có thêm `jq`.
-
-## Lưu ý
-
-- **Tốn token:** 49 agent kèm vòng review của các director rất tốn token. Ở mức `standard`, chi phí tăng đáng kể.
-- **Nó điều phối, không làm hộ mọi thứ:** đồ họa, âm thanh và việc build vẫn phải có công cụ thật (Godot/Unity/Unreal, asset).
-  Có thể ghép với [Mesh2Motion](../animation/mesh2motion.md) để có animation 3D theo CC0, hoặc [VoiceStudio](../voice/voicestudio.md) để lồng tiếng
-  (lưu ý giấy phép NC của VoiceStudio).
-- **Dùng Unity:** có biến thể riêng [IdoCohen560/claude-unity-game-studio](https://github.com/IdoCohen560/claude-unity-game-studio)
-  với 49 agent và hơn 120 skill. Lưu ý biến thể này còn rất nhỏ (22 sao).
-
-## Nguồn
-
-- https://github.com/Donchitos/Claude-Code-Game-Studios
-- https://github.com/Donchitos/Claude-Code-Game-Studios/releases
-- https://github.com/IdoCohen560/claude-unity-game-studio
-- https://skillsllm.com/skill/claude-code-game-studios
+Cần Python 3 và Bash (Windows thì dùng Git Bash); nên có `jq`.
+Có biến thể cho Unity là `IdoCohen560/claude-unity-game-studio`, nhưng repo này mới có 22 sao.

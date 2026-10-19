@@ -1,58 +1,43 @@
-# Taste Skill: cho coding agent "gu" thiết kế web
+# Taste Skill
 
-> Nguồn: người dùng yêu cầu. Repo: https://github.com/Leonxlnx/taste-skill. Trang chủ: https://tasteskill.dev
-> Ngày nghiên cứu: 2026-10-19.
+> Repo: https://github.com/Leonxlnx/taste-skill · MIT · Trang: https://tasteskill.dev
 >
-> ⭐ GitHub `Leonxlnx/taste-skill`: **98.897 sao**, 6.723 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
+> ⭐ **98.897 sao**, 6.723 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
 
-## Tóm tắt
+## Là gì
 
-Taste Skill là bộ Agent Skills giúp agent **thiết kế** website, thay vì lắp ráp ra một landing page "trung bình".
-Tác giả là Leonxlnx, giấy phép **MIT**. Repo có 98.897 sao, 6.723 fork.
+Bộ Agent Skills giúp agent có hướng nghệ thuật khi làm website, thay vì lắp ráp ra một landing page na ná nhau.
+Skill chính là `design-taste-frontend` (v2), đi kèm các script Node:
 
-## Cách bản v2 hoạt động
+| Script | Làm gì |
+|---|---|
+| `draw.mjs` | Bốc ngẫu nhiên một hướng thiết kế |
+| `inspect.mjs` | Chấm điểm trang trong trình duyệt thật |
+| `assets.mjs` | Tìm ảnh có giấy phép mở |
 
-Skill mặc định là `design-taste-frontend`, được xây từ việc nghiên cứu **247 website chọn lọc**. Mỗi lần build có 6 bước:
+## Đã test
 
-1. Đọc brief, liệt kê những gì chỉ riêng khách hàng này có.
-2. Một script **rút ngẫu nhiên 3 trong 20 hướng thiết kế** đã nghiên cứu, agent chọn một.
-3. Tìm "ý tưởng": một câu nối chất liệu riêng của khách hàng với hướng đã chọn.
-4. Xây trang bằng **ảnh và footage thật** lấy từ kho mở (Wikimedia Commons, Openverse, the Met).
-   Chỉ dùng tài nguyên public domain, CC0, CC BY, CC BY-SA, và ghi credit ngay trên trang.
-5. Kiểm tra trang trong **trình duyệt thật ở 3 độ rộng màn hình**; trang bị đánh trượt nếu "slop".
-6. Agent tự xem ảnh chụp màn hình và sửa 3 lỗi lớn nhất, tối đa 3 vòng.
+| Bước | Kết quả |
+|---|---|
+| `npx skills add Leonxlnx/taste-skill` | ✅ Cài **12 skill** trong khoảng 1 giây |
+| `node draw.mjs --sector finance` | ✅ Ra "direction sheet" từ seed ngẫu nhiên: hướng thiết kế, kiểu hero, font (Archivo), bảng màu (Forest and lime), thứ tự 7 section, kiểu chuyển động, bộ ảnh. Có quy tắc ưu tiên khi các phần mâu thuẫn |
+| `node inspect.mjs slop.html` | ✅ Chụp trang ở **3 độ rộng** (1440 / 768 / 390), ghi `report.json`. Kết quả: **8 FAIL, 4 WARN** (độ tương phản, ít ảnh, không có tiêu điểm, lệch tâm, trang tĩnh, không có nút ở màn đầu, sai font, khoảng trống lớn ở hero…) |
+| Chạy với quyền root | ⚠️ Chrome từ chối chạy nếu thiếu `--no-sandbox`; phải trỏ `CHROME_PATH` tới một script bọc |
+| `node assets.mjs "rice field"` | ⛔ Không test được: mạng bị chặn tới Wikimedia, Openverse, Met, AIC |
+| Build trọn một trang bằng agent | ⛔ Không test. README ước tính 30–45 phút và vài trăm nghìn token |
 
-**Chi phí:** khoảng **30–45 phút và vài trăm nghìn token** cho mỗi lần build.
+## Kết luận nhanh
 
-Từ v2.1 có thêm luồng riêng cho dashboard và màn hình app: panel tiết chế, số liệu căn thẳng hàng, màu chỉ dùng cho dữ liệu, điều hướng tự gập trên điện thoại.
-
-## Các skill khác
-
-- **Classic skills (7):** chỉ chạy khi bạn gọi tên.
-  - `high-end-visual-design` (mềm, nhiều khoảng trắng)
-  - `minimalist-ui`
-  - `industrial-brutalist-ui`
-  - `gpt-taste` (biến thể cho GPT/Codex)
-  - `stitch-design-taste` (cho Google Stitch)
-  - các bản cũ v1 và v2-experimental, có 3 thanh chỉnh DESIGN_VARIANCE / MOTION_INTENSITY / VISUAL_DENSITY
-- **Skill sinh ảnh** (`imagegen-frontend-web/mobile`, `brandkit`, `image-to-code`) đã chuyển sang repo riêng: https://github.com/Leonxlnx/imagegen-skills
+✅ `draw` và `inspect` hoạt động tốt, không cần API key. Bộ kiểm tra khắt khe hơn Impeccable vì đòi có ảnh thật, chuyển động và tiêu điểm.
+Hợp với landing page mới. Nếu chỉ cần review nhanh UI có sẵn thì dùng [Impeccable](impeccable.md).
 
 ## Cài đặt
 
 ```bash
 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend"
-# hoặc trong Claude Code
+# hoặc trong Claude Code:
 /plugin marketplace add Leonxlnx/taste-skill
 /plugin install taste-skill@taste-skill
 ```
 
-- Cần **Node 22+** và **Chrome, Edge hoặc Chromium** đã cài sẵn.
-- Không cần API key. Cần mạng để tìm ảnh.
-
-## Nhận xét
-
-- **Hợp với:** landing page, portfolio, trang sản phẩm muốn có cá tính riêng.
-  Việc rút ngẫu nhiên hướng thiết kế giúp mỗi lần build ra kết quả khác nhau, tránh trang nào cũng giống nhau.
-- **Chi phí:** khá tốn token. Không hợp với các sửa đổi nhỏ; khi đó dùng [Impeccable](impeccable.md) (`polish`, `layout`…) sẽ tiết kiệm hơn.
-- **Ảnh:** ảnh từ kho mở có giấy phép CC BY / CC BY-SA, nên **phải giữ credit**. Khi có ảnh riêng thì nên thay vào.
-- **Quảng cáo:** README có nhiều sponsor kèm link affiliate (Sidrune AI, Kimi…). Bỏ qua phần đó nếu không cần.
+Cần Node 22+ và Chrome/Chromium. Ảnh tìm được có giấy phép CC BY / BY-SA nên phải giữ phần credit.

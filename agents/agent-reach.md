@@ -1,55 +1,35 @@
-# Agent Reach: cho AI agent "khả năng lên mạng" bằng một lệnh
+# Agent Reach
 
-> Nguồn: ảnh chụp do người dùng cung cấp ("Panniantong / Agent-Reach").
-> Repo: https://github.com/Panniantong/Agent-Reach (README chính bằng tiếng Trung, có bản tiếng Anh).
-> Ngày nghiên cứu: 2026-10-19.
+> Repo: https://github.com/Panniantong/Agent-Reach · MIT · Python 3.10+
 >
-> ⭐ GitHub `Panniantong/Agent-Reach`: **99.108 sao**, 8.730 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
+> ⭐ **99.108 sao**, 8.730 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
 
-## Tóm tắt
+## Là gì
 
-Agent Reach là bộ cài (Python 3.10+, giấy phép **MIT**) giúp agent đọc và tìm kiếm trên nhiều nền tảng.
-Nó **tự chọn, cài và kiểm tra sức khỏe** cách kết nối đang ổn định nhất cho từng nền tảng.
+Bộ cài và chẩn đoán giúp agent đọc và tìm kiếm trên web cùng nhiều nền tảng: YouTube, RSS, GitHub, X, Reddit, Facebook, Instagram, LinkedIn, Bilibili, Xiaohongshu, V2EX, Xueqiu…
+Mỗi nền tảng có một backend chính và các backend dự phòng. Nhiều nền tảng cần cookie hoặc phiên đăng nhập trình duyệt của bạn.
 
-Mỗi nền tảng có một danh sách backend theo thứ tự: chính, rồi dự phòng.
-Khi một cách bị chặn thì tự chuyển sang cách khác. Ví dụ: tháng 6/2026 Bilibili chặn yt-dlp, dự án chuyển sang bili-cli.
+## Đã test
 
-## Nền tảng hỗ trợ
-
-| Dùng được ngay | Cần cấu hình thêm |
+| Bước | Kết quả |
 |---|---|
-| Web bất kỳ, YouTube (phụ đề + tìm kiếm), RSS, V2EX, đọc repo GitHub công khai, đọc một tweet | Tìm kiếm toàn web (MCP miễn phí), GitHub (repo private, mở issue/PR), Twitter/X (tìm kiếm, timeline), Bilibili, Reddit, Facebook, Instagram, Xiaohongshu, LinkedIn, Boss Zhipin, Xueqiu (chứng khoán), podcast Xiaoyuzhou (chuyển giọng nói thành chữ bằng Whisper) |
+| `pip install` từ repo | ✅ Agent Reach v1.5.0 |
+| `agent-reach install --env=auto --dry-run` | ✅ **Không thay đổi gì trên máy.** Chỉ liệt kê những gì sẽ làm: cài mcporter và cấu hình Exa search |
+| `agent-reach doctor` | ✅ Kiểm tra **16 kênh**. Trong môi trường test có **2 kênh dùng được**: RSS và "đọc mọi trang web" |
+| Kênh "đọc mọi trang web" | ⚠️ Chạy qua **Jina Reader** (`r.jina.ai`), tức là trang bạn đọc đi qua máy chủ bên thứ ba |
+| Các kênh khác | YouTube cần cài thêm yt-dlp. V2EX bị proxy của môi trường test chặn. 10 kênh còn lại cần đăng nhập hoặc cookie |
+| Gợi ý của công cụ | ⚠️ Tự gợi ý mua proxy trả phí cho IP máy chủ |
 
-Phần lớn nền tảng "cần cấu hình" dùng **cookie hoặc phiên đăng nhập trình duyệt của bạn**,
-qua OpenCLI (dùng lại phiên Chrome) hoặc cookie xuất bằng Cookie-Editor.
+## Kết luận nhanh
+
+⚠️ Bộ cài an toàn (mặc định chỉ kiểm tra, có `--dry-run`), nhưng phần lớn giá trị nằm ở các kênh dùng cookie đăng nhập.
+Các kênh này có thể khiến tài khoản bị khóa và dễ vi phạm điều khoản của nền tảng. README cũng khuyên **chỉ dùng tài khoản phụ**.
 
 ## Cài đặt
 
-Cách được khuyên: bảo agent "cài Agent Reach theo https://raw.githubusercontent.com/Panniantong/agent-reach/main/docs/install.md".
-Sau đó dùng các lệnh:
-
 ```bash
-agent-reach install --env=auto            # mặc định chỉ kiểm tra, không sửa hệ thống
-agent-reach install --env=auto --dry-run  # chỉ xem trước sẽ làm gì
-agent-reach install --env=auto --system   # chỉ khi bạn đồng ý cho cài gói hệ thống
-agent-reach doctor                        # kiểm tra cấu hình
-agent-reach uninstall                     # xóa sạch ~/.agent-reach (kèm cookie/token)
+pip install agent-reach      # hoặc cài từ repo
+agent-reach install --env=auto --dry-run
+agent-reach doctor
+agent-reach uninstall        # xóa ~/.agent-reach, kèm cookie và token
 ```
-
-## ⚠️ Rủi ro
-
-- **Có thể bị khóa tài khoản.** README tự cảnh báo: gọi API bằng cookie (Twitter, Xiaohongshu…) có thể bị nền tảng phát hiện và khóa.
-  **Chỉ dùng tài khoản phụ**, không dùng tài khoản chính.
-- **Cookie tương đương toàn quyền đăng nhập.** Cookie được lưu ở `~/.agent-reach/config.yaml` với quyền file 600,
-  nhưng agent nào chạy trên máy cũng có thể đọc được nếu có quyền shell.
-- **Vi phạm điều khoản dịch vụ:** việc scrape Facebook, Instagram, LinkedIn, Reddit bằng phiên đăng nhập thường vi phạm ToS của các nền tảng đó.
-  Hãy cân nhắc mục đích sử dụng và luật dữ liệu cá nhân.
-- **Cách cài:** cài bằng cách bảo agent "đọc file install.md rồi làm theo" nghĩa là tin nội dung một URL bên ngoài.
-  Hãy đọc file đó trước, hoặc chạy `--dry-run`.
-- **Quảng cáo:** README có nhiều sponsor là dịch vụ scraping, proxy, cloud.
-
-## Hợp với ai
-
-Người cần agent nghiên cứu nhanh trên mạng xã hội, đặc biệt là hệ sinh thái Trung Quốc (Bilibili, Xiaohongshu, Xueqiu, V2EX),
-và chấp nhận rủi ro tài khoản.
-Nếu chỉ cần web công khai và YouTube, phần "dùng được ngay" đã đủ mà không cần cookie.
