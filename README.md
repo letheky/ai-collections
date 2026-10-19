@@ -18,7 +18,9 @@ Mỗi ghi chú trả lời ba câu hỏi:
 | [`voice/`](voice/) | TTS, clone giọng, lồng tiếng |
 | [`security/`](security/) | Pentest, dịch ngược |
 | [`game/`](game/) | Làm game bằng agent, art game |
-| [`agents/`](agents/) | Agent đa năng, AI coworker |
+| [`agents/`](agents/) | Agent đa năng, AI coworker, bộ agent và công cụ cho agent |
+| [`learning/`](learning/) | Tài liệu học Claude Code / agent |
+| [`dev-env/`](dev-env/) | Môi trường làm việc, hệ điều hành cho dev |
 
 ## Danh mục
 
@@ -72,7 +74,19 @@ Mỗi ghi chú trả lời ba câu hỏi:
 ### Agents
 | Ghi chú | Tóm tắt | Kết luận nhanh |
 |---|---|---|
+| [The Agency](agents/agency-agents.md) | Hơn 230 persona agent chuyên môn chia theo phòng ban (engineering, marketing, sales…) | ✅ Hữu ích; chỉ cài phòng ban cần dùng |
+| [Agent Reach](agents/agent-reach.md) | Cho agent đọc và tìm kiếm web, YouTube, X, Reddit, Bilibili, Xiaohongshu… | ⚠️ Dùng cookie nên có nguy cơ bị khóa tài khoản; chỉ dùng tài khoản phụ |
 | [OpenWorker](agents/openworker.md) | App "AI coworker" chạy trên máy của Andrew Ng: chọn được model hoặc dùng Ollama, hơn 25 connector, có sandbox | ✅ Đáng thử, thiết kế bảo mật tốt; vẫn đang beta |
+
+### Learning
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [Claude How-To](learning/claude-howto.md) | Lộ trình 10 module học Claude Code, có bản tiếng Việt | ✅ Rất hợp để onboarding; "90% sức mạnh chưa dùng" là câu marketing |
+
+### Dev environment
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [Omarchy](dev-env/omarchy.md) | Bản Linux của DHH, có sẵn lệnh khởi chạy cho khoảng 14 coding agent | ⚠️ Rất "opinionated", phải cài lại cả hệ điều hành; nên thử trên máy ảo hoặc dual boot trước |
 
 ## Quy ước
 
