@@ -17,7 +17,8 @@ Mỗi ghi chú trả lời ba câu hỏi:
 | [`video/`](video/) | Sản xuất video bằng agent, model tạo video, AI hiểu video |
 | [`voice/`](voice/) | TTS, clone giọng, lồng tiếng |
 | [`security/`](security/) | Pentest, dịch ngược |
-| [`game/`](game/) | Làm game bằng agent |
+| [`game/`](game/) | Làm game bằng agent, art game |
+| [`agents/`](agents/) | Agent đa năng, AI coworker |
 
 ## Danh mục
 
@@ -48,6 +49,7 @@ Mỗi ghi chú trả lời ba câu hỏi:
 | [lemo-opuscar](video/lemo-opuscar.md) | Phim ngắn làm hoàn toàn bằng code, 51 phong cách, phim OPUSCAR 98 | ✅ Đúng, chỉ có số liệu sao/phong cách trong bài đã cũ |
 | [OpenMontage](video/openmontage.md) | Xưởng phim AI điều khiển bằng agent (Remotion/HyperFrames + các provider AI) | ⚠️ "Video từ $0.02" không có trong README |
 | [T3-Video](video/t3-video.md) | Tạo video 4K gốc từ Wan2.1-1.3B bằng attention cửa sổ | ❌ Không phải mới ra, không thấy demo; cần khoảng 60 GB VRAM |
+| [Seedance 2.0 Skill OS](video/seedance-2.0-skill.md) | Skill lên shot và viết prompt kiểu "đạo diễn" cho Seedance 2.0 | ✅ Hữu ích cho short drama; tác giả nói rõ chưa có số liệu chất lượng |
 | [Gemini Agentic Video](video/gemini-agentic-video.md) | Gemini tự chọn đoạn video cần xem, giảm tới 88% token | ✅ Đúng phần lớn; ý "bắt lỗi trong bản ghi màn hình" không có trong tài liệu chính thức |
 
 ### Voice
@@ -64,7 +66,13 @@ Mỗi ghi chú trả lời ba câu hỏi:
 ### Game
 | Ghi chú | Tóm tắt | Kết luận nhanh |
 |---|---|---|
+| [Scenario Agent Skills](game/scenario-skills.md) | Khoảng 75 skill tạo asset game (sprite, 3D, texture, skybox, video, audio) qua Scenario MCP, cùng expert tools cho Blender/Unity/Godot | ⚠️ Skill MIT nhưng việc tạo asset tính phí trên Scenario |
 | [Claude Code Game Studios](game/claude-code-game-studios.md) | Template biến Claude Code thành studio game: 49 agent, 74 skill, hỗ trợ Godot/Unity/Unreal | ✅ Đáng thử, nên bắt đầu ở mức `minimal` (chính README cho thấy nhiều tài liệu hơn không làm game hay hơn) |
+
+### Agents
+| Ghi chú | Tóm tắt | Kết luận nhanh |
+|---|---|---|
+| [OpenWorker](agents/openworker.md) | App "AI coworker" chạy trên máy của Andrew Ng: chọn được model hoặc dùng Ollama, hơn 25 connector, có sandbox | ✅ Đáng thử, thiết kế bảo mật tốt; vẫn đang beta |
 
 ## Quy ước
 
