@@ -2,6 +2,8 @@
 
 > Nguồn: bài giới thiệu do người dùng cung cấp. Repo chính thức: https://github.com/lemomo-ai/lemo-opuscar
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `lemomo-ai/lemo-opuscar`: **3.060 sao**, 339 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -10,7 +12,7 @@ Mỗi phong cách phim gồm hai phần: một file `STYLE.md` (prompt phong cá
 Bạn chọn phong cách, đưa câu chuyện của mình vào, và coding agent "làm đạo diễn".
 
 - Giấy phép: code và tài liệu theo MIT. Phim mẫu và ảnh theo CC BY 4.0 (phải ghi công LemoLab). Phim bạn tự làm là của bạn.
-- Tại thời điểm nghiên cứu: khoảng 3.0k sao, 338 fork, 45 commit, **51 phong cách** (gần đây có thêm nhóm 8 phong cách "Evidence Films", ngày 2026-10-16).
+- Tại thời điểm nghiên cứu: 3.060 sao, 339 fork, 45 commit, **51 phong cách** (gần đây có thêm nhóm 8 phong cách "Evidence Films", ngày 2026-10-16).
 - Có nhiều bản fork mang mô tả cũ (39 hoặc 43 phong cách), ví dụ `jacwu`, `youwangd`, `Smith-106`. Nên cài từ repo gốc `lemomo-ai`.
 
 ## Kiểm chứng các nhận định trong bài
@@ -18,7 +20,7 @@ Bạn chọn phong cách, đưa câu chuyện của mình vào, và coding agent
 | Nhận định | Kết quả | Ghi chú |
 |---|---|---|
 | Phim 6 phút 31 giây, không giây nào dùng model tạo video | ✅ Đúng | README ghi "No video generation, no stock footage". |
-| 1.426 sao, 166 fork | ⚠️ Đã cũ | Hiện tại khoảng 3.0k sao, 338 fork. Bài viết được đăng lúc repo mới lên. |
+| 1.426 sao, 166 fork | ⚠️ Đã cũ | Hiện tại 3.060 sao, 339 fork. Bài viết được đăng lúc repo mới lên. |
 | 43 phong cách, mỗi phong cách có phim mẫu | ⚠️ Đã cũ | Hiện có 51 phong cách. Các fork cũ ghi 39 hoặc 43. |
 | Trình duyệt vẽ từng khung hình | ✅ Đúng | Mỗi phim là một `index.html` có hàm `window.render(t)`. Chrome headless chụp từng frame. Dùng Canvas 2D cho 2D, three.js r170 / WebGL2 cho 3D, shader WebGL2 cho hậu kỳ. ffmpeg thêm grain và ghép tiếng (loudnorm -14 LUFS). Mặc định 1080p, 24 fps. |
 | Nhạc gốc lấy từ thư viện sample miễn phí | ✅ Đúng | Agent tự soạn nhạc. Sample lấy từ VSCO 2 CE, VCSL, FreePats, Karoryfer, Salamander Grand Piano. Có thêm tổng hợp âm bằng numpy và Karplus–Strong. |

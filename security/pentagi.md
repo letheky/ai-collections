@@ -2,12 +2,14 @@
 
 > Nguồn: bài giới thiệu do người dùng cung cấp. Repo: https://github.com/vxcontrol/pentagi
 > Ngày nghiên cứu: 2026-10-19. Phiên bản mới nhất lúc nghiên cứu: v2.2.0 (05/10).
+>
+> ⭐ GitHub `vxcontrol/pentagi`: **31.149 sao**, 4.888 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
 - **Tác giả:** VXControl, công ty bảo mật đặt trụ sở ở Dubai.
 - **Giấy phép:** MIT.
-- **Mức độ phổ biến:** khoảng 31.1k sao, 4.9k fork, 952 commit.
+- **Mức độ phổ biến:** 31.149 sao, 4.888 fork, 952 commit.
 - **Công nghệ:** backend Go, frontend React/TypeScript. Dữ liệu lưu trong PostgreSQL + pgvector. Có hàng đợi tác vụ bất đồng bộ.
 - **Các agent:**
   - Nhóm chính: Orchestrator, Researcher, Developer, Executor.

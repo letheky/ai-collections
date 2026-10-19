@@ -2,12 +2,14 @@
 
 > Nguồn: người dùng yêu cầu. Repo: https://github.com/pbakaus/impeccable. Trang chủ: https://impeccable.style
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `pbakaus/impeccable`: **82.742 sao**, 4.999 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
 Impeccable là **một skill thiết kế duy nhất**, mở rộng từ skill `frontend-design` gốc của Anthropic.
 Tác giả là Paul Bakaus (cựu kỹ sư Google, người làm Khroma). Giấy phép **Apache 2.0**.
-Repo khoảng 37k sao (theo SourcePulse, chưa kiểm chứng trực tiếp).
+Repo có 82.742 sao, 4.999 fork.
 
 Gồm ba phần:
 

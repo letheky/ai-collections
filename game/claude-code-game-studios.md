@@ -3,6 +3,8 @@
 > Nguồn: người dùng yêu cầu ("claude-studio-game", đã xác nhận là repo này).
 > Repo: https://github.com/Donchitos/Claude-Code-Game-Studios
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `Donchitos/Claude-Code-Game-Studios`: **26.827 sao**, 3.958 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -21,7 +23,7 @@ Template mô phỏng cơ cấu của một studio làm game thật, gồm các a
 | Rules: chuẩn code theo từng đường dẫn (gameplay, engine, UI, network…) | 13 |
 
 - **Giấy phép:** MIT.
-- **Mức độ phổ biến:** khoảng 26.7k sao (theo một trang tổng hợp, chưa kiểm chứng trực tiếp).
+- **Mức độ phổ biến:** 26.827 sao, 3.958 fork.
 - **Engine hỗ trợ:** có agent chuyên cho **Godot 4** (GDScript, shader), **Unity** (DOTS/ECS, Addressables) và **Unreal 5** (GAS, Blueprints).
   Mặc định là Godot.
 
@@ -56,7 +58,7 @@ Yêu cầu: Claude Code, Python 3 (để đọc `project.yaml`), Bash (Windows t
   Có thể ghép với [Mesh2Motion](../animation/mesh2motion.md) để có animation 3D theo CC0, hoặc [VoiceStudio](../voice/voicestudio.md) để lồng tiếng
   (lưu ý giấy phép NC của VoiceStudio).
 - **Dùng Unity:** có biến thể riêng [IdoCohen560/claude-unity-game-studio](https://github.com/IdoCohen560/claude-unity-game-studio)
-  với 49 agent và hơn 120 skill.
+  với 49 agent và hơn 120 skill. Lưu ý biến thể này còn rất nhỏ (22 sao).
 
 ## Nguồn
 

@@ -1,7 +1,9 @@
 # Omarchy: bản Linux "agentic" của DHH
 
 > Nguồn: ảnh chụp do người dùng cung cấp ("basecamp / omarchy").
-> Repo: https://github.com/basecamp/omarchy. Trang chủ: https://omarchy.org. Ngày nghiên cứu: 2026-10-19.
+> Repo: https://github.com/omacom/omarchy (trước đây là `basecamp/omarchy`; link cũ tự chuyển hướng). Trang chủ: https://omarchy.org. Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `omacom/omarchy`: **45.123 sao**, 5.563 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 

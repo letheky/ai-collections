@@ -2,6 +2,8 @@
 
 > Nguồn: ảnh chụp do người dùng cung cấp ("Emily2040 / seedance-2.0").
 > Repo: https://github.com/Emily2040/seedance-2.0. Ngày nghiên cứu: 2026-10-19. Phiên bản lúc nghiên cứu: v6.7.0.
+>
+> ⭐ GitHub `Emily2040/seedance-2.0`: **7.771 sao**, 1.133 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 

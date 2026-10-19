@@ -2,6 +2,8 @@
 
 > Nguồn: bài giới thiệu do người dùng cung cấp (link rút gọn `osp.fyi/mesh2motion-app`).
 > Repo: https://github.com/Mesh2Motion/mesh2motion-app. Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `Mesh2Motion/mesh2motion-app`: **3.528 sao**, 357 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -10,7 +12,7 @@ Mục tiêu của tác giả là linh hoạt hơn Mixamo, hỗ trợ được c�
 Dự án do một người làm vào buổi tối và cuối tuần (tài khoản `scottpetrovic`).
 
 - **Giấy phép:** code theo MIT. **Tài sản đồ họa (model, rig, animation) theo CC0**, nên dùng thương mại thoải mái.
-- **Mức độ phổ biến:** khoảng 3.5k sao, 357 fork, 900 commit.
+- **Mức độ phổ biến:** 3.528 sao, 357 fork, 900 commit.
 - **Công nghệ:** TypeScript + Vite, chạy hoàn toàn trên web. Tài liệu có nhắc tới three.js.
 - **Dùng thử:** có bản online tại app.mesh2motion.org.
 

@@ -2,6 +2,8 @@
 
 > Nguồn: bài "Làm Full Hoạt Ảnh Nhanh Hơn Với Các Dự Án Mã Nguồn Mở Miễn Phí" do người dùng cung cấp.
 > Repo: https://github.com/chenglou/pretext. Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `chenglou/pretext`: **50.831 sao**, 2.761 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 

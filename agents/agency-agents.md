@@ -2,13 +2,15 @@
 
 > Nguồn: ảnh chụp do người dùng cung cấp ("msitarzewski/agency-agents, 134.7k sao, 22k fork, MIT").
 > Repo: https://github.com/msitarzewski/agency-agents. Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `msitarzewski/agency-agents`: **161.227 sao**, 26.088 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
 Đây là bộ sưu tập **hơn 230 định nghĩa agent chuyên môn**. Mỗi agent là một file Markdown mô tả vai trò, tính cách, quy trình làm việc và sản phẩm cần giao.
 Dự án bắt nguồn từ một thread Reddit. Giấy phép **MIT**.
 
-- **Mức độ phổ biến:** ảnh chụp ghi 134.7k sao, 22k fork. Chưa kiểm chứng trực tiếp.
+- **Mức độ phổ biến:** 161.227 sao, 26.088 fork (GitHub API, 2026-10-19). Ảnh chụp ghi 134.7k / 22k là số cũ.
 - **Có các "division" (phòng ban):**
   - Kỹ thuật: Engineering, Design, Testing, Security, Spatial Computing, Game Development.
   - Kinh doanh: Paid Media, Sales, Marketing, Product, Project Management, Support, Finance.
@@ -34,7 +36,7 @@ Dự án bắt nguồn từ một thread Reddit. Giấy phép **MIT**.
 |---|---|
 | "Đội ngũ AI agency hoàn chỉnh trong tầm tay" | ✅ Đúng với mô tả trong README. |
 | MIT | ✅ Đúng. |
-| 134.7k sao / 22k fork | ❓ Chưa kiểm chứng trực tiếp. |
+| 134.7k sao / 22k fork | ✅ Đúng ở thời điểm chụp; nay đã là 161.227 sao, 26.088 fork. |
 
 ## Nhận xét
 

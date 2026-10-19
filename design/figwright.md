@@ -2,10 +2,12 @@
 
 > Nguồn gốc: reel Facebook https://www.facebook.com/reel/1386569361206220 (caption do người dùng cung cấp).
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `awdr74100/figwright`: **1.092 sao**, 63 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
-[Figwright](https://github.com/awdr74100/figwright) là một MCP server mã nguồn mở (MIT, khoảng 1.1k sao, tác giả `awdr74100`).
+[Figwright](https://github.com/awdr74100/figwright) là một MCP server mã nguồn mở (MIT, 1.092 sao, tác giả `awdr74100`).
 Nó nối coding agent (Claude Code, Cursor, Codex, hoặc bất kỳ MCP client nào) với Figma qua một plugin chạy cục bộ.
 Nó **không** liên quan chính thức tới Figma và chỉ dùng Plugin API công khai.
 

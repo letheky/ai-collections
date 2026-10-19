@@ -3,6 +3,8 @@
 > Nguồn: hai bài đăng do người dùng cung cấp. Một bài dẫn tweet https://x.com/RohOnChain/status/2109347169316839434,
 > một bài giới thiệu REA. Repo chính thức: https://github.com/morluto/rea
 > Ngày nghiên cứu: 2026-10-19. Không truy cập được x.com từ môi trường nghiên cứu.
+>
+> ⭐ GitHub `morluto/rea`: **323.504 sao**, 81.957 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## REA là gì
 
@@ -26,7 +28,7 @@ Một MCP server kèm CLI, nối coding agent với các công cụ dịch ngư�
 | MCP nối agent với Hopper, Ghidra, IDA, Electron/JS, web, APK, firmware | ✅ Đúng. |
 | MIT, chạy trên máy, kết quả kèm bằng chứng | ✅ Đúng. |
 | Cài bằng một dòng `npx rea-agents setup` | ✅ Đúng. |
-| **"Hơn 212 nghìn sao GitHub"** | ❓ Không kiểm chứng được và rất đáng ngờ. OSSInsight ghi khoảng 7.3k fork. Con số 212k sẽ đưa repo vào top vài chục repo lớn nhất GitHub, nên nhiều khả năng là nhầm lẫn hoặc thổi phồng. |
+| **"Hơn 212 nghìn sao GitHub"** | ✅ Đúng (đã cũ): GitHub API ngày 2026-10-19 ghi **323.504 sao**, 81.957 fork. Trước đây tôi đánh giá con số này "rất đáng ngờ"; đánh giá đó **sai** và đã được sửa. |
 | Cảnh báo chỉ dùng hợp pháp, cần license Hopper/IDA | ✅ Đúng tinh thần của README và DISCLAIMER.md. |
 
 ## Vụ "dùng indicator premium của TradingView miễn phí"

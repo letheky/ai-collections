@@ -3,6 +3,8 @@
 > Nguồn: ảnh chụp do người dùng cung cấp ("Panniantong / Agent-Reach").
 > Repo: https://github.com/Panniantong/Agent-Reach (README chính bằng tiếng Trung, có bản tiếng Anh).
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `Panniantong/Agent-Reach`: **99.108 sao**, 8.730 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 

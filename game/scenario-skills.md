@@ -2,6 +2,8 @@
 
 > Nguồn: ảnh chụp video do người dùng cung cấp ("scenario-labs/skills, 7.2k sao, An entire game art department as agent skills").
 > Repo: https://github.com/scenario-labs/skills. Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `scenario-labs/skills`: **1.052 sao**, 129 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -11,7 +13,7 @@ Skill dạy coding agent (Claude Code, Cursor, Codex, Copilot và hơn 70 agent 
 
 - **Giấy phép:** code của skill theo **MIT**. Nhưng việc tạo asset chạy trên dịch vụ trả phí của Scenario (tính bằng "Creative Units").
 - **Số lượng:** khoảng **75 skill Scenario**, cộng thêm các bộ "expert tools" cho phần mềm dựng hình và engine game.
-- **Mức độ phổ biến:** 7.2k sao theo ảnh chụp. Chưa kiểm chứng trực tiếp.
+- **Mức độ phổ biến:** **1.052 sao**, 129 fork theo GitHub API. Con số 7.2k trong ảnh chụp **không khớp**: có thể video đã dàn dựng giao diện, hoặc chụp một trang khác.
 
 ## Các nhóm skill chính
 

@@ -2,11 +2,13 @@
 
 > Nguồn: người dùng yêu cầu. Repo: https://github.com/Leonxlnx/taste-skill. Trang chủ: https://tasteskill.dev
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `Leonxlnx/taste-skill`: **98.897 sao**, 6.723 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
 Taste Skill là bộ Agent Skills giúp agent **thiết kế** website, thay vì lắp ráp ra một landing page "trung bình".
-Tác giả là Leonxlnx, giấy phép **MIT**. Các nguồn ghi số sao từ 15k đến 92k tùy thời điểm, chưa kiểm chứng trực tiếp.
+Tác giả là Leonxlnx, giấy phép **MIT**. Repo có 98.897 sao, 6.723 fork.
 
 ## Cách bản v2 hoạt động
 

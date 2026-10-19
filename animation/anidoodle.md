@@ -2,6 +2,8 @@
 
 > Nguồn: bài giới thiệu do người dùng cung cấp. Repo: https://github.com/alexgreensh/anidoodle
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `alexgreensh/anidoodle`: **993 sao**, 81 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -9,7 +11,7 @@ anidoodle (khẩu hiệu: "Art and animation, written as code") là một bộ s
 Nó tạo ra tranh minh họa phong cách vẽ tay, kèm phim quay lại quá trình vẽ từng nét.
 
 - Tác giả: Alex Greenshpun (`alexgreensh`).
-- Giấy phép Apache-2.0. Khoảng 990 sao, 81 fork, 280 commit.
+- Giấy phép Apache-2.0. 993 sao, 81 fork, 280 commit.
 - Chạy bằng JavaScript (ES modules) trên Node 20+. Render qua Chromium headless (playwright-core). Cần ffmpeg cho các bản hoạt hình.
 - Mỗi bức tranh là một hàm thuần với random có seed, nên cùng một source luôn ra cùng một kết quả.
 - Đối tượng chính là AI agent: có plugin cho Claude Code, Codex và Grok, cùng một thư mục skill chuẩn (`skills/anidoodle/SKILL.md`). Người dùng mô tả bằng lời, agent viết code vẽ. Không có MCP server.

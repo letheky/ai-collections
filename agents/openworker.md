@@ -2,6 +2,8 @@
 
 > Nguồn: ảnh chụp do người dùng cung cấp ("openworker"). Repo: https://github.com/andrewyng/openworker
 > Trang chủ: https://openworker.com. Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `andrewyng/openworker`: **18.563 sao**, 2.625 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -9,7 +11,7 @@ OpenWorker là **app desktop** (macOS Apple Silicon, Windows 10/11) do nhóm And
 Định vị: một "đồng nghiệp AI" giao **việc đã làm xong**, không chỉ trò chuyện.
 
 - **Giấy phép:** MIT. Đang ở **open beta** và tự cập nhật.
-- **Mức độ phổ biến:** khoảng 18.6k sao (theo kết quả tìm kiếm).
+- **Mức độ phổ biến:** 18.563 sao, 2.625 fork.
 - **Engine:** xây trên [aisuite](https://github.com/andrewyng/aisuite), thư viện Python cung cấp API thống nhất cho nhiều nhà cung cấp LLM, kèm lớp agent (tool, MCP).
   Server agent chạy cục bộ bằng FastAPI. Giao diện viết bằng React/Tauri.
 

@@ -10,25 +10,25 @@
 | # | Repo | Làm gì | ⭐ | Giấy phép | Công nghệ |
 |---|---|---|---|---|---|
 | **1. Video ra mắt sản phẩm** |||||
-| 01 | [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion) | Video launch kiểu cao cấp: con trỏ chuột "diễn", hiệu ứng âm thanh khớp nhịp, motion blur 60 fps | ~315 | MIT | HTML + Playwright + ffmpeg (v2); bản v1 dùng GSAP + HyperFrames |
-| 02 | [charlie947/motion-graphics-skills](https://github.com/charlie947/motion-graphics-skills) | Khoảng 13–15 skill motion graphics cho video launch, "mọi khung hình là code" | ~334 | MIT | HyperFrames + ffmpeg/Python |
-| 03 | [howseen-ai/claude-motion-design](https://github.com/howseen-ai/claude-motion-design) | Video motion design khớp nhạc, không cần After Effects hay giấy phép Remotion | ~577 | MIT | HTML + Playwright + ffmpeg (Python) |
+| 01 | [AbubakrChan/product-launch-motion](https://github.com/AbubakrChan/product-launch-motion) | Video launch kiểu cao cấp: con trỏ chuột "diễn", hiệu ứng âm thanh khớp nhịp, motion blur 60 fps | 316 | MIT | HTML + Playwright + ffmpeg (v2); bản v1 dùng GSAP + HyperFrames |
+| 02 | [charlie947/motion-graphics-skills](https://github.com/charlie947/motion-graphics-skills) | Khoảng 13–15 skill motion graphics cho video launch, "mọi khung hình là code" | 334 | MIT | HyperFrames + ffmpeg/Python |
+| 03 | [howseen-ai/claude-motion-design](https://github.com/howseen-ai/claude-motion-design) | Video motion design khớp nhạc, không cần After Effects hay giấy phép Remotion | 577 | MIT | HTML + Playwright + ffmpeg (Python) |
 | **2. Dựng từ video có sẵn** |||||
-| 04 | [nateherkai/herk-edit-kit](https://github.com/nateherkai/herk-edit-kit) (tên cũ: `hyperframes-student-kit`) | Biên tập reel/Shorts: cắt theo transcript, 15 skill, 406 thẻ motion graphics | ~1.8k | Giấy phép riêng (xem file LICENSE) | HyperFrames + ffmpeg, transcribe bằng ElevenLabs (API trả phí) |
-| 05 | [Barty-Bart/motion-graphics](https://github.com/Barty-Bart/motion-graphics) | Mỗi skill làm một việc: overlay chữ theo lời nói, tách nền… Dùng được cho Claude Code và Codex | ~738 | README ghi MIT | HTML |
+| 04 | [nateherkai/herk-edit-kit](https://github.com/nateherkai/herk-edit-kit) (tên cũ: `hyperframes-student-kit`) | Biên tập reel/Shorts: cắt theo transcript, 15 skill, 406 thẻ motion graphics | 1.812 | Giấy phép riêng (xem file LICENSE) | HyperFrames + ffmpeg, transcribe bằng ElevenLabs (API trả phí) |
+| 05 | [Barty-Bart/motion-graphics](https://github.com/Barty-Bart/motion-graphics) | Mỗi skill làm một việc: overlay chữ theo lời nói, tách nền… Dùng được cho Claude Code và Codex | 738 | README ghi MIT | HTML |
 | **3. Hoạt hình ngắn và video giải thích** |||||
-| 06 | [cth9191/animate](https://github.com/cth9191/animate) | Hoạt hình canvas một file, 7 phong cách, có bước duyệt storyboard với người dùng | ~815 | MIT | Canvas + Playwright + ffmpeg (tùy chọn faster-whisper / ElevenLabs) |
-| 07 | [whaleyxbt/claude-motion](https://github.com/whaleyxbt/claude-motion) | Bộ công cụ motion: quy tắc thẩm mỹ, agent tự review từng khung hình, engine âm thanh bằng Python | ~477 | MIT | Remotion + three.js + Playwright + ffmpeg |
-| 08 | [haidrrrry/claude-remotion-skill](https://github.com/haidrrrry/claude-remotion-skill) | Tạo và sửa video motion graphics bằng Remotion, khắc phục chuyển động "cứng" thường thấy khi AI làm | ~523 | MIT | Remotion (React/TS) + ffmpeg |
+| 06 | [cth9191/animate](https://github.com/cth9191/animate) | Hoạt hình canvas một file, 7 phong cách, có bước duyệt storyboard với người dùng | 816 | MIT | Canvas + Playwright + ffmpeg (tùy chọn faster-whisper / ElevenLabs) |
+| 07 | [whaleyxbt/claude-motion](https://github.com/whaleyxbt/claude-motion) | Bộ công cụ motion: quy tắc thẩm mỹ, agent tự review từng khung hình, engine âm thanh bằng Python | 477 | MIT | Remotion + three.js + Playwright + ffmpeg |
+| 08 | [haidrrrry/claude-remotion-skill](https://github.com/haidrrrry/claude-remotion-skill) | Tạo và sửa video motion graphics bằng Remotion, khắc phục chuyển động "cứng" thường thấy khi AI làm | 524 | MIT | Remotion (React/TS) + ffmpeg |
 | **4. Chuyển động cho web và app** |||||
-| 09 | [motiondivision/motion](https://github.com/motiondivision/motion) | Thư viện animation cho React/JS (trước đây là Framer Motion). Đây là thư viện, không phải skill | ~34.3k | MIT | Motion.dev |
-| 10 | [199-biotechnologies/motion-dev-animations-skill](https://github.com/199-biotechnologies/motion-dev-animations-skill) | Skill giúp Claude viết animation bằng Motion.dev: spring, cuộn trang, cử chỉ | ~193 | MIT | Motion.dev |
+| 09 | [motiondivision/motion](https://github.com/motiondivision/motion) | Thư viện animation cho React/JS (trước đây là Framer Motion). Đây là thư viện, không phải skill | 34.327 | MIT | Motion.dev |
+| 10 | [199-biotechnologies/motion-dev-animations-skill](https://github.com/199-biotechnologies/motion-dev-animations-skill) | Skill giúp Claude viết animation bằng Motion.dev: spring, cuộn trang, cử chỉ | 193 | MIT | Motion.dev |
 | **5. Công cụ và skill nền tảng** |||||
-| 11 | [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | Viết video bằng HTML rồi render ra MP4, làm cho agent dùng; có 21 skill | ~66.8k | Apache-2.0 | HTML + GSAP + Puppeteer + ffmpeg |
-| 12 | [remotion-dev/remotion](https://github.com/remotion-dev/remotion) | Làm video bằng React | ~65.0k | **Remotion License**: miễn phí cho cá nhân và công ty ≤3 người, công ty lớn hơn phải trả phí | React |
-| 13 | [remotion-dev/skills](https://github.com/remotion-dev/skills) | Skill chính thức của Remotion cho agent | ~5.3k | Không thấy file LICENSE | Remotion |
-| 14 | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | Skill chính thức của GSAP: timeline, ScrollTrigger, plugin | ~16.6k | MIT | GSAP |
-| 15 | [LottieFiles/motion-design-skill](https://github.com/LottieFiles/motion-design-skill) | Nguyên tắc chuyển động (timing, easing, choreography), không phụ thuộc công cụ nào | ~2.3k | MIT | Dùng với CSS, GSAP, Lottie… |
+| 11 | [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | Viết video bằng HTML rồi render ra MP4, làm cho agent dùng; có 21 skill | 66.806 | Apache-2.0 | HTML + GSAP + Puppeteer + ffmpeg |
+| 12 | [remotion-dev/remotion](https://github.com/remotion-dev/remotion) | Làm video bằng React | 65.037 | **Remotion License**: miễn phí cho cá nhân và công ty ≤3 người, công ty lớn hơn phải trả phí | React |
+| 13 | [remotion-dev/skills](https://github.com/remotion-dev/skills) | Skill chính thức của Remotion cho agent | 5.331 | Không thấy file LICENSE | Remotion |
+| 14 | [greensock/gsap-skills](https://github.com/greensock/gsap-skills) | Skill chính thức của GSAP: timeline, ScrollTrigger, plugin | 16.609 | MIT | GSAP |
+| 15 | [LottieFiles/motion-design-skill](https://github.com/LottieFiles/motion-design-skill) | Nguyên tắc chuyển động (timing, easing, choreography), không phụ thuộc công cụ nào | 2.308 | MIT | Dùng với CSS, GSAP, Lottie… |
 
 ## Cài đặt nhanh
 

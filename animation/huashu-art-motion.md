@@ -2,6 +2,8 @@
 
 > Nguồn: bài giới thiệu do người dùng cung cấp. Repo: https://github.com/alchaincyf/huashu-art-motion
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `alchaincyf/huashu-art-motion`: **4.378 sao**, 475 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -12,7 +14,7 @@ Khẩu hiệu dịch ra là: "để coding agent viết các phong cách nghệ 
   - Nét chữ Hán dùng giấy phép Arphic, font dùng SIL OFL.
   - Nhân vật hoạt hình của tác giả chỉ dùng để demo.
   - Demo nhân vật Clawd (linh vật của Anthropic) là fan-made, không thuộc MIT.
-- **Mức độ phổ biến:** khoảng 4.4k sao, 472 fork, 22 commit.
+- **Mức độ phổ biến:** 4.378 sao, 475 fork, 22 commit.
 - **Ngôn ngữ:** README chính bằng tiếng Trung, có thêm `README.en.md` tiếng Anh.
 - **Cài đặt:** `npx skills add alchaincyf/huashu-art-motion`
 

@@ -2,6 +2,8 @@
 
 > Nguồn: bài giới thiệu do người dùng cung cấp. Repo: https://github.com/browser-use/jev-ultrafast
 > Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `browser-use/jev-ultrafast`: **23.230 sao**, 1.728 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -9,7 +11,7 @@ Jev Ultrafast là thư viện Python kèm giao diện kiểm tra chạy cục b�
 Repo thuộc tổ chức browser-use và kết nối với Chrome qua Browser Harness. Khẩu hiệu: "Fastest and cheapest web agent".
 
 - **Giấy phép:** MIT.
-- **Mức độ phổ biến:** khoảng 23.2k sao, 1.7k fork. Nhưng nhánh main chỉ có **3 commit**: đây là bản MVP.
+- **Mức độ phổ biến:** 23.230 sao, 1.728 fork. Nhưng nhánh main chỉ có **3 commit**: đây là bản MVP.
 - **Model quyết định:** "Jev" của TypeSafe, là **API trả phí được host sẵn**, không chạy trên máy. Cần `TYPESAFE_API_KEY`.
 - **Model viết chữ:** một LLM riêng, chỉ dùng khi cần gõ text. Ví dụ cấu hình dùng OpenRouter với `inception/mercury-2.5`; có thể thay bằng Gemini, GLM, DeepSeek. Cần `TEXT_MODEL_API_KEY`.
 

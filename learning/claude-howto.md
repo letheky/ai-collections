@@ -2,6 +2,8 @@
 
 > Nguồn: reel của "Beeknoee AI" ("Claude How-To, cẩm nang 40.000 sao của một kỹ sư người Việt, 90% sức mạnh chưa dùng").
 > Repo: https://github.com/luongnv89/claude-howto. Ngày nghiên cứu: 2026-10-19.
+>
+> ⭐ GitHub `luongnv89/claude-howto`: **41.947 sao**, 5.155 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -33,7 +35,7 @@ Có ví dụ workflow trọn vẹn: review code, sinh tài liệu API, deploy De
 | Nhận định | Kết quả |
 |---|---|
 | Của kỹ sư người Việt | ✅ Tác giả luongnv89; có bản tiếng Việt. |
-| 40.000 sao | ❓ Chưa kiểm chứng trực tiếp được số sao. Repo có badge "#1 Trending". |
+| 40.000 sao | ✅ Đúng (thậm chí hơi thấp): GitHub API ghi 41.947 sao, 5.155 fork. |
 | "90% sức mạnh chưa dùng" | ⚠️ Đây là câu marketing lấy từ README ("You're leaving 90% of Claude Code's power on the table"), không phải số đo. |
 
 ## Nhận xét

@@ -2,6 +2,8 @@
 
 > Repo: https://github.com/debpalash/VoiceStudio
 > Ngày nghiên cứu: 2026-10-19. Phiên bản mới nhất lúc nghiên cứu: v0.5.6 (2026-09-23).
+>
+> ⭐ GitHub `debpalash/VoiceStudio`: **75.581 sao**, 8.280 fork (kiểm chứng qua GitHub API ngày 2026-10-19).
 
 ## Tóm tắt
 
@@ -9,7 +11,7 @@ VoiceStudio là app desktop (Electron) kèm một dịch vụ giọng nói chạ
 "the open-source, fully-local ElevenLabs alternative".
 
 - Giấy phép: AGPL-3.0 cho code của app. Trọng số (weights) của từng model có giấy phép riêng.
-- Khoảng 75.5k sao, 8.3k fork, 4.3k commit, 109 issue đang mở.
+- 75.581 sao, 8.280 fork, 4.3k commit, 109 issue đang mở.
 - Bản chất là một **bộ định tuyến engine**: TTS mặc định là OmniVoice (k2-fsa). Ngoài ra có VoxCPM2, CosyVoice 3,
   IndexTTS 2.5, MOSS-TTS (8B), dots.tts, GPT-SoVITS, Kyutai PocketTTS, MLX-Audio (Kokoro/CSM/Dia)…
 
@@ -86,9 +88,9 @@ Reel quảng bá ghi: "29.2k sao, 5 tháng tuổi, AGPL-3.0", "Ba giây tiếng 
 
 | Nhận định | Kết quả |
 |---|---|
-| 29.2k sao | ⚠️ Số liệu cũ. Đến 2026-10-19 đã khoảng 75.5k sao. |
+| 29.2k sao | ⚠️ Số liệu cũ. Đến 2026-10-19 đã là 75.581 sao. |
 | AGPL-3.0 | ✅ Đúng, nhưng chỉ áp dụng cho code app. Trọng số model mặc định là CC-BY-NC. |
 | Clone giọng ngay trên máy, không cần API key | ✅ Đúng. |
 | "Ba giây tiếng nói là đủ" | ⚠️ Nói quá. Tài liệu khuyên dùng **5–15 giây** audio sạch kèm transcript. Ba giây có thể chạy được nhưng chất lượng sẽ kém. |
-| 19k sao trong 2 tuần | Không kiểm chứng được. Tốc độ tăng sao rất nhanh là có thật (29k lên 75k). |
+| 19k sao trong 2 tuần | Không kiểm chứng được. Tốc độ tăng sao rất nhanh là có thật (29k lên 75.6k). |
 | Lồng tiếng, sách nói, offline | ✅ Đúng. |
