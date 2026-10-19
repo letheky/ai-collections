@@ -79,3 +79,16 @@ Lưu ý khác:
 - https://raw.githubusercontent.com/debpalash/VoiceStudio/main/docs/engines/omnivoice.md
 - https://raw.githubusercontent.com/debpalash/VoiceStudio/main/docs/licensing/model-inventory.md
 - https://raw.githubusercontent.com/debpalash/VoiceStudio/main/docs/benchmarks.md
+
+## Cập nhật: kiểm chứng reel "Beeknoee AI"
+
+Reel quảng bá ghi: "29.2k sao, 5 tháng tuổi, AGPL-3.0", "Ba giây tiếng nói là đủ", "không cần API key", "ăn 19 nghìn sao trong 2 tuần".
+
+| Nhận định | Kết quả |
+|---|---|
+| 29.2k sao | ⚠️ Số liệu cũ. Đến 2026-10-19 đã khoảng 75.5k sao. |
+| AGPL-3.0 | ✅ Đúng, nhưng chỉ áp dụng cho code app. Trọng số model mặc định là CC-BY-NC. |
+| Clone giọng ngay trên máy, không cần API key | ✅ Đúng. |
+| "Ba giây tiếng nói là đủ" | ⚠️ Nói quá. Tài liệu khuyên dùng **5–15 giây** audio sạch kèm transcript. Ba giây có thể chạy được nhưng chất lượng sẽ kém. |
+| 19k sao trong 2 tuần | Không kiểm chứng được. Tốc độ tăng sao rất nhanh là có thật (29k lên 75k). |
+| Lồng tiếng, sách nói, offline | ✅ Đúng. |
