@@ -28,6 +28,7 @@ Mỗi ghi chú gồm: **Là gì**, **Đã test** (từng bước kèm số đo),
 | [`agents/`](agents/) | Agent đa năng, bộ agent, công cụ cho agent |
 | [`learning/`](learning/) | Tài liệu học Claude Code |
 | [`dev-env/`](dev-env/) | Môi trường làm việc cho dev |
+| [`llm/`](llm/) | Chạy và suy luận LLM |
 
 Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần lưu ý · ❌ lỗi · ⛔ không test được trong môi trường này.
 
@@ -57,6 +58,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Recordly](video/recordly.md) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
 | [OpenMontage](video/openmontage.md) | 69.5k | Setup 53 giây; demo 23 giây 1080p render trong 2 phút 6 giây | ✅ Demo không cần key chạy ngay |
 | [lemo-opuscar](video/lemo-opuscar.md) | 3.1k | Pipeline lõi render được; demo có sẵn thiếu font | ⚠️ Không render lại được demo từ bản clone mới |
 | [Seedance 2.0 Skill OS](video/seedance-2.0-skill.md) | 7.8k | Kiểm tra repo đạt 19/19; bộ sàng lọc kiểm duyệt bắt đúng từ khóa | ✅ Công cụ viết prompt nghiêm túc |
@@ -96,6 +98,11 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã kiểm tra | Kết luận nhanh |
 |---|--:|---|---|
 | [Omarchy](dev-env/omarchy.md) | 45.1k | Phân tích tĩnh: 14 lệnh agent, 51 trang manual | ⚠️ Phải cài lại hệ điều hành; nên thử trên máy ảo |
+
+### LLM
+| Ghi chú | ⭐ | Đã test | Kết luận nhanh |
+|---|--:|---|---|
+| [AirLLM](llm/airllm.md) | 39.4k | Chạy từng layer trên model nhỏ cho logit khớp 100% với model đầy đủ; 44/45 test đạt | ✅ Cơ chế đúng; ⚠️ chậm vì phụ thuộc SSD, không hợp để chat |
 
 ## Quy ước
 
