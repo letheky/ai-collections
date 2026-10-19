@@ -24,6 +24,8 @@ Mỗi ghi chú trả lời ba câu hỏi:
 ### Design
 | Ghi chú | Tóm tắt | Kết luận nhanh |
 |---|---|---|
+| [Impeccable](design/impeccable.md) | Skill thiết kế: 24 lệnh (`polish`, `audit`, `critique`…) và 61 luật bắt "UI kiểu AI" chạy không cần LLM | ✅ Rất hợp để review và mài giũa UI có sẵn |
+| [Taste Skill](design/taste-skill.md) | Cho agent "gu" thiết kế: rút ngẫu nhiên hướng thiết kế, dùng ảnh thật, tự kiểm tra trên trình duyệt | ✅ Hợp với landing page mới; mỗi lần build tốn 30–45 phút và vài trăm nghìn token |
 | [Figwright](design/figwright.md) | MCP hai chiều Figma ↔ coding agent, dùng được với tài khoản Figma miễn phí | ✅ Đáng thử. Bản chính thức của Figma ở gói free chỉ có 6 lượt/tháng, không phải 20 như bài đăng nói |
 
 ### Web

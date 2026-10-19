@@ -1,7 +1,7 @@
 # Claude Code Game Studios: biến Claude Code thành studio làm game
 
-> Nguồn: người dùng yêu cầu thêm repo "claude-studio-game". Không có repo nào tên đúng như vậy.
-> Repo khớp nhất là https://github.com/Donchitos/Claude-Code-Game-Studios.
+> Nguồn: người dùng yêu cầu ("claude-studio-game", đã xác nhận là repo này).
+> Repo: https://github.com/Donchitos/Claude-Code-Game-Studios
 > Ngày nghiên cứu: 2026-10-19.
 
 ## Tóm tắt
