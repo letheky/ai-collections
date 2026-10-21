@@ -3,6 +3,8 @@
 > Repo: https://github.com/alexgreensh/anidoodle · Apache-2.0
 >
 > ⭐ **993 sao**, 81 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/WaETkwggYuzWMWC8yk9EHp (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

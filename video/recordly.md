@@ -3,6 +3,8 @@
 > Repo: https://github.com/webadderallorg/Recordly · AGPL-3.0 kèm điều khoản bổ sung (GitHub API ghi `NOASSERTION`) · Trang: https://recordly.dev
 >
 > ⭐ **34.464 sao**, 2.784 fork (GitHub API, 2026-10-19) · Repo tạo 2026-03-12 · Đã test: 2026-10-19 (bản 1.4.0)
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

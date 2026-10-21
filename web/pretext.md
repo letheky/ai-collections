@@ -3,6 +3,8 @@
 > Repo: https://github.com/chenglou/pretext · MIT · npm `@chenglou/pretext`
 >
 > ⭐ **50.831 sao**, 2.761 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/HGYKd3syxPbvYFCJnG9qXz (trang tương tác: kéo độ rộng, so chiều cao Pretext với DOM, tự đo tốc độ)
 
 ## Là gì
 

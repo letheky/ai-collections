@@ -3,6 +3,8 @@
 > Repo: https://github.com/Mesh2Motion/mesh2motion-app · Code MIT, asset CC0 · Bản online: app.mesh2motion.org
 >
 > ⭐ **3.528 sao**, 357 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/53Sh3dNsvRNkWpSyWkq76F (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

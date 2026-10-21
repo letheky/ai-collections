@@ -3,6 +3,8 @@
 > Repo: https://github.com/alchaincyf/huashu-art-motion · MIT (có ngoại lệ, xem bên dưới)
 >
 > ⭐ **4.378 sao**, 475 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/1Xq7MWxqVgm4hX9owAUKCo (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

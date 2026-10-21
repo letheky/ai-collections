@@ -3,6 +3,8 @@
 > Repo: https://github.com/vxcontrol/pentagi · MIT
 >
 > ⭐ **31.149 sao**, 4.888 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/5iuTYvBvcbwh4YAXUZcJJU (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

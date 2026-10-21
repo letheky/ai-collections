@@ -3,6 +3,8 @@
 > Repo: https://github.com/calesthio/OpenMontage · AGPLv3 · Trang: https://openmontage.video
 >
 > ⭐ **69.548 sao**, 8.986 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/SLcZu7ZYH9Q2Q1o7MJJpo1 (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

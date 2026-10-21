@@ -3,6 +3,8 @@
 > Số sao lấy qua GitHub API ngày 2026-10-19. Đã test ngày 2026-10-19.
 > Cột "Skill (đã cài)" là số `SKILL.md` thực tế cài được bằng `npx skills add <repo> --agent claude-code -y` (skills CLI 1.7.2),
 > hoặc đếm trực tiếp trong repo đã clone khi repo không cài qua CLI.
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/EPPqkjHvhpKRGWh7763ymW (video HyperFrames tự dựng (lãi kép, tiếng Việt))
 
 ## Bảng tổng hợp
 

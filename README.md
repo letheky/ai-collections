@@ -35,6 +35,8 @@ Ví dụ [Local Wan 2.2 Studio](video/local-wan22-studio.md) được bổ sung 
 | [`mcp/`](mcp/) | MCP server kết nối agent với dịch vụ ngoài |
 | [`database/`](database/) | Cơ sở dữ liệu, cache, vector store |
 
+Bản ghi có **▶ demo** là có trang kết quả chạy thật (ảnh, video hoặc demo tương tác) để xem trực tiếp. Các trang demo đang để riêng tư, chỉ chủ tài khoản mở được.
+
 Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần lưu ý · ❌ lỗi · ⛔ không test được trong môi trường này.
 
 ## Danh mục
@@ -42,31 +44,31 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Design
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
-| [Impeccable](design/impeccable.md) | 82.7k | Detector bắt 9 lỗi trên trang mẫu trong < 1 giây | ✅ Hợp để review UI; luật mang quan điểm riêng; telemetry bật mặc định |
-| [Taste Skill](design/taste-skill.md) | 98.9k | `draw` ra hướng thiết kế; `inspect` chụp 3 độ rộng, chấm 8 FAIL / 4 WARN | ✅ Hợp với landing page mới; khắt khe hơn Impeccable |
-| [SolidCraft](design/solidcraft.md) | — | Xuất STEP AP242 trong 0,49 giây; MCP có 17 tool, giới hạn đường dẫn file | ✅ CAD tham số cho agent; build từ source mất 13 phút |
+| [Impeccable](design/impeccable.md) · [▶ demo](https://claude.ai/artifact/FE4i9ujwmdHvhqHghRFcfZ) | 82.7k | Detector bắt 9 lỗi trên trang mẫu trong < 1 giây | ✅ Hợp để review UI; luật mang quan điểm riêng; telemetry bật mặc định |
+| [Taste Skill](design/taste-skill.md) · [▶ demo](https://claude.ai/artifact/8JGjviJjzz7ohMMpa5b6Ag) | 98.9k | `draw` ra hướng thiết kế; `inspect` chụp 3 độ rộng, chấm 8 FAIL / 4 WARN | ✅ Hợp với landing page mới; khắt khe hơn Impeccable |
+| [SolidCraft](design/solidcraft.md) · [▶ demo](https://claude.ai/artifact/9Qdiw94WeTHVmcphix9PXr) | — | Xuất STEP AP242 trong 0,49 giây; MCP có 17 tool, giới hạn đường dẫn file | ✅ CAD tham số cho agent; build từ source mất 13 phút |
 | [Figwright](design/figwright.md) | 1.1k | MCP server 0.6.0 khởi động, liệt kê 117 tool | ✅ Server chạy ngay; plugin Figma chưa test |
 
 ### Web
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
-| [Pretext](web/pretext.md) | 50.8k | Khớp DOM ở 60/61 độ rộng với văn bản tiếng Việt; nhanh hơn DOM khoảng 11,5 lần | ✅ Chính xác và nhanh |
+| [Pretext](web/pretext.md) · [▶ demo](https://claude.ai/artifact/HGYKd3syxPbvYFCJnG9qXz) | 50.8k | Khớp DOM ở 60/61 độ rộng với văn bản tiếng Việt; nhanh hơn DOM khoảng 11,5 lần | ✅ Chính xác và nhanh |
 | [Jev Ultrafast](web/jev-ultrafast.md) | 23.2k | 31/31 unit test đạt | ⚠️ Phần ra quyết định khóa vào API trả phí |
 
 ### Animation
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
-| [15 repo motion](animation/claude-motion-studio-15-repos.md) | — | HyperFrames render phim 5 giây trong 10,5 giây; đếm skill thực tế của 9 repo | ✅ Nên bắt đầu với HyperFrames + gsap-skills |
-| [anidoodle](animation/anidoodle.md) | 993 | Ảnh tĩnh lặp lại được; phim 4 giây render trong 4,3 giây | ✅ Nhẹ, nhanh |
-| [huashu-art-motion](animation/huashu-art-motion.md) | 4.4k | Biểu đồ tài chính 7 giây 1080p render trong 9,3 giây | ✅ Mẫu biểu đồ tài chính dùng được ngay |
-| [Mesh2Motion](animation/mesh2motion.md) | 3.5k | Build 10 giây, chạy không lỗi, có 251 clip CC0 | ✅ Thay thế Mixamo tốt |
+| [15 repo motion](animation/claude-motion-studio-15-repos.md) · [▶ demo](https://claude.ai/artifact/EPPqkjHvhpKRGWh7763ymW) | — | HyperFrames render phim 5 giây trong 10,5 giây; đếm skill thực tế của 9 repo | ✅ Nên bắt đầu với HyperFrames + gsap-skills |
+| [anidoodle](animation/anidoodle.md) · [▶ demo](https://claude.ai/artifact/WaETkwggYuzWMWC8yk9EHp) | 993 | Ảnh tĩnh lặp lại được; phim 4 giây render trong 4,3 giây | ✅ Nhẹ, nhanh |
+| [huashu-art-motion](animation/huashu-art-motion.md) · [▶ demo](https://claude.ai/artifact/1Xq7MWxqVgm4hX9owAUKCo) | 4.4k | Biểu đồ tài chính 7 giây 1080p render trong 9,3 giây | ✅ Mẫu biểu đồ tài chính dùng được ngay |
+| [Mesh2Motion](animation/mesh2motion.md) · [▶ demo](https://claude.ai/artifact/53Sh3dNsvRNkWpSyWkq76F) | 3.5k | Build 10 giây, chạy không lỗi, có 251 clip CC0 | ✅ Thay thế Mixamo tốt |
 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
 | [Local Wan 2.2 Studio](video/local-wan22-studio.md) | — | Clip Wan local, giọng Việt CPU; kèm code, kiểm tra đóng gói và 10 kịch bản | ✅ Có pipeline vận hành; ⚠️ phim dài đang render, 1080p nâng từ 480p |
-| [Recordly](video/recordly.md) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
-| [OpenMontage](video/openmontage.md) | 69.5k | Setup 53 giây; demo 23 giây 1080p render trong 2 phút 6 giây | ✅ Demo không cần key chạy ngay |
+| [Recordly](video/recordly.md) · [▶ demo](https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
+| [OpenMontage](video/openmontage.md) · [▶ demo](https://claude.ai/artifact/SLcZu7ZYH9Q2Q1o7MJJpo1) | 69.5k | Setup 53 giây; demo 23 giây 1080p render trong 2 phút 6 giây | ✅ Demo không cần key chạy ngay |
 | [lemo-opuscar](video/lemo-opuscar.md) | 3.1k | Pipeline lõi render được; demo có sẵn thiếu font | ⚠️ Không render lại được demo từ bản clone mới |
 | [Seedance 2.0 Skill OS](video/seedance-2.0-skill.md) | 7.8k | Kiểm tra repo đạt 19/19; bộ sàng lọc kiểm duyệt bắt đúng từ khóa | ✅ Công cụ viết prompt nghiêm túc |
 | [T3-Video](video/t3-video.md) | — (HF) | ⛔ Cần GPU khoảng 60 GB | ⛔ Không chạy được trên máy thường |
@@ -81,7 +83,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
 | [REA](security/rea-reverse-engineer-anything.md) | 323.5k | Phân tích một web app: 408k nút AST, 130 phát hiện trong 48 giây | ✅ Kết quả có cấu trúc, tự nêu giới hạn |
-| [PentAGI](security/pentagi.md) | 31.1k | Web UI chạy bằng Docker sau khoảng 10 giây | ⚠️ Có nút bỏ qua việc đổi mật khẩu mặc định; nên đổi ngay |
+| [PentAGI](security/pentagi.md) · [▶ demo](https://claude.ai/artifact/5iuTYvBvcbwh4YAXUZcJJU) | 31.1k | Web UI chạy bằng Docker sau khoảng 10 giây | ⚠️ Có nút bỏ qua việc đổi mật khẩu mặc định; nên đổi ngay |
 
 ### Game
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |

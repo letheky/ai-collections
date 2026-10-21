@@ -3,6 +3,8 @@
 > Repo: https://github.com/pbakaus/impeccable · Apache 2.0 · Trang: https://impeccable.style
 >
 > ⭐ **82.742 sao**, 4.999 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/FE4i9ujwmdHvhqHghRFcfZ (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

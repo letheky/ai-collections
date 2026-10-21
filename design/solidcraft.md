@@ -3,6 +3,8 @@
 > Repo: https://github.com/bherbruck/solidcraft · MIT hoặc Apache-2.0 · Phiên bản 0.18.2
 >
 > ⭐ Không lấy được qua GitHub search API (repo có thật, clone được, nhưng API chưa trả kết quả) · Đã test: 2026-10-21
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/9Qdiw94WeTHVmcphix9PXr (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 

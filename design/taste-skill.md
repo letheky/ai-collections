@@ -3,6 +3,8 @@
 > Repo: https://github.com/Leonxlnx/taste-skill · MIT · Trang: https://tasteskill.dev
 >
 > ⭐ **98.897 sao**, 6.723 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+>
+> 🎬 **Demo đã dựng:** https://claude.ai/artifact/8JGjviJjzz7ohMMpa5b6Ag (ảnh/video kết quả chạy thật kèm số đo)
 
 ## Là gì
 
