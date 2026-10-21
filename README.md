@@ -9,6 +9,8 @@ Mỗi ghi chú gồm: **Là gì**, **Đã test** (từng bước kèm số đo),
 
 ## Môi trường test (2026-10-19)
 
+Ví dụ [Local Wan 2.2 Studio](video/local-wan22-studio.md) được bổ sung ngày 21/10/2026, kiểm tra trên Windows với GPU riêng; xem môi trường và giới hạn trong ghi chú đó. Các số đo Linux bên dưới áp dụng cho bộ ghi chú ban đầu.
+
 - **Máy:** container Linux x86_64, 4 vCPU, 15 GB RAM, **không có GPU**.
 - **Phần mềm:** Node 22.22, Python 3.13, uv 0.11, ffmpeg 6.1, Docker 29.8, Chromium 1194 (Playwright).
 - **Mạng ra ngoài bị giới hạn:** chặn Hugging Face, index PyTorch, quay.io, các kho ảnh mở và một số API.
@@ -59,6 +61,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Local Wan 2.2 Studio](video/local-wan22-studio.md) | — | Clip Wan local, giọng Việt CPU; kèm code, kiểm tra đóng gói và 10 kịch bản | ✅ Có pipeline vận hành; ⚠️ phim dài đang render, 1080p nâng từ 480p |
 | [Recordly](video/recordly.md) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
 | [OpenMontage](video/openmontage.md) | 69.5k | Setup 53 giây; demo 23 giây 1080p render trong 2 phút 6 giây | ✅ Demo không cần key chạy ngay |
 | [lemo-opuscar](video/lemo-opuscar.md) | 3.1k | Pipeline lõi render được; demo có sẵn thiếu font | ⚠️ Không render lại được demo từ bản clone mới |

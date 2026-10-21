@@ -1,0 +1,20 @@
+# CPU dependencies from the working Windows video environment.
+# Install torch==2.8.0 and torchvision==0.23.0 from the cu128 index separately.
+accelerate==1.6.0
+diffusers==0.33.1
+transformers==4.51.3
+huggingface-hub==0.36.2
+tokenizers==0.21.4
+safetensors==0.5.3
+sentencepiece==0.2.2
+easydict==1.13
+einops==0.8.2
+ftfy==6.3.1
+numpy==2.4.6
+pillow==12.3.0
+opencv-python-headless==4.14.0.94
+scipy==1.17.1
+protobuf==5.29.6
+tqdm==4.70.1
+imageio==2.38.1
+imageio-ffmpeg==0.6.0

@@ -1,0 +1,155 @@
+[
+  {
+    "id": "opening",
+    "chapter": "01 / MỘT HÀNH TINH CÓ THỂ SỐNG",
+    "title": "Lớp khí mỏng.\nVai trò lớn.",
+    "source": "NASA · The greenhouse effect",
+    "sentences": [
+      "Nhìn từ không gian, Trái Đất hiện lên với một bầu khí quyển mỏng.",
+      "Chính trong lớp khí ấy, một quá trình vô hình đang giúp hành tinh giữ lại hơi ấm. Chúng ta gọi đó là hiệu ứng nhà kính.",
+      "Để hiểu vì sao Trái Đất nóng lên, trước hết hãy nhìn vào hành trình của năng lượng."
+    ],
+    "visual": "Orbital view of planet Earth at dawn, curved horizon with a thin blue atmospheric rim and slowly drifting white clouds, the camera gently moves along the illuminated limb.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "sunlight",
+    "chapter": "02 / HÀNH TRÌNH CỦA NĂNG LƯỢNG",
+    "title": "Ánh sáng đi vào.\nNhiệt phát ra.",
+    "source": "NASA · The greenhouse effect",
+    "sentences": [
+      "Năng lượng từ Mặt Trời đi tới Trái Đất dưới dạng bức xạ. Một phần bị mây và bề mặt phản xạ trở lại không gian.",
+      "Phần còn lại được đất liền và đại dương hấp thụ, làm bề mặt ấm lên.",
+      "Bề mặt sau đó phát năng lượng ra ngoài dưới dạng bức xạ hồng ngoại. Đó là bước quan trọng trong quá trình hành tinh tự làm mát."
+    ],
+    "visual": "Aerial view above thick bright white cloud tops, golden sunlight reflecting on the clouds, cloud shadows slowly moving, camera gliding smoothly.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "greenhouse",
+    "chapter": "03 / CƠ CHẾ GIỮ NHIỆT",
+    "title": "Khí quyển làm chậm\nsự thoát nhiệt.",
+    "source": "NASA · The greenhouse effect",
+    "sentences": [
+      "Các khí nhà kính hấp thụ một phần bức xạ hồng ngoại rồi phát xạ năng lượng theo nhiều hướng, trong đó có hướng trở lại bề mặt.",
+      "Năng lượng vẫn thoát ra không gian. Nhưng quá trình mất nhiệt diễn ra chậm hơn, khiến bề mặt và khí quyển thấp ấm hơn.",
+      "Đây là cơ chế bức xạ, chứ không phải một mái kính kín giữ toàn bộ nhiệt bên trong."
+    ],
+    "visual": "High altitude view of Earth curved horizon above a broad blanket of clouds, a thin blue atmosphere against black space, slow lateral camera movement.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "gases",
+    "chapter": "04 / NHỮNG PHÂN TỬ VÔ HÌNH",
+    "title": "Không chỉ có\ncác-bon đi-ô-xít.",
+    "source": "NASA · Causes of climate change",
+    "sentences": [
+      "Hơi nước, các-bon đi-ô-xít, mê-tan và ni-tơ ô-xít đều góp phần vào hiệu ứng nhà kính.",
+      "Hơi nước thường tăng khi không khí ấm lên, khuếch đại sự ấm lên ban đầu. Đó là một phản hồi của hệ thống khí hậu.",
+      "Còn việc bổ sung khí nhà kính từ hoạt động của con người làm thay đổi cân bằng năng lượng của hành tinh."
+    ],
+    "visual": "Low aerial tracking over rice paddies in a green rural valley, irrigation water glints in sunlight, breeze moves the rice plants, distant farms.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "human",
+    "chapter": "05 / KHI CÂN BẰNG THAY ĐỔI",
+    "title": "Tự nhiên là cần thiết.\nGia tăng mới là vấn đề.",
+    "source": "NASA · Causes of climate change",
+    "sentences": [
+      "Đốt than, dầu và khí đốt giải phóng các-bon đi-ô-xít. Phá rừng cũng làm giảm khả năng hấp thụ khí này.",
+      "Nông nghiệp, chăn nuôi và khai thác nhiên liệu còn có thể phát thải mê-tan cùng những khí nhà kính khác.",
+      "Khi nồng độ các khí ấy tăng, Trái Đất giữ thêm năng lượng. Sự ấm lên hiện nay không thể chỉ giải thích bằng thay đổi của Mặt Trời."
+    ],
+    "visual": "Wide documentary view of a coal fired power station beside a river, coal piles and industrial structures, visible pale plumes drifting downwind, camera slowly tracks sideways.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "effects",
+    "chapter": "06 / MỘT SỰ THAY ĐỔI TOÀN CẦU",
+    "title": "Nhiệt tăng.\nRủi ro thay đổi.",
+    "source": "NASA · Effects of climate change",
+    "sentences": [
+      "Một hành tinh ấm hơn làm thay đổi điều kiện sống trên đất liền và ngoài đại dương.",
+      "Sóng nhiệt có thể kéo dài và gay gắt hơn. Băng trên đất liền tan, cùng với nước biển giãn nở khi ấm lên, góp phần làm mực nước biển dâng.",
+      "Mưa lớn và hạn hán cũng thay đổi khác nhau giữa các khu vực. Không phải nơi nào cũng chịu tác động giống nhau."
+    ],
+    "visual": "Aerial view following a low lying tropical coastline, small houses near the shore and waves rolling toward the beach, slow steady camera movement.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "weather",
+    "chapter": "07 / NHÌN ĐÚNG QUY MÔ",
+    "title": "Thời tiết hôm nay\nkhác khí hậu lâu dài.",
+    "source": "NASA · Effects of climate change",
+    "sentences": [
+      "Một ngày lạnh không xóa đi xu hướng ấm lên toàn cầu. Khí hậu được đánh giá từ những thay đổi dài hạn, trên nhiều vùng và nhiều loại quan sát.",
+      "Cũng không thể quy mọi cơn bão hay trận lũ riêng lẻ hoàn toàn cho biến đổi khí hậu.",
+      "Điều cần hiểu là nền khí hậu đang thay đổi, kéo theo sự thay đổi của nhiều rủi ro cực đoan."
+    ],
+    "visual": "Documentary street scene on a cold winter morning with light snowfall, pedestrians wearing coats walking slowly in the distance, smooth camera tracking.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "solutions",
+    "chapter": "08 / NHỮNG LỰA CHỌN CÒN Ở PHÍA TRƯỚC",
+    "title": "Giảm phát thải.\nTăng khả năng thích ứng.",
+    "source": "NASA · Mitigation and adaptation",
+    "sentences": [
+      "Giảm nhẹ biến đổi khí hậu nghĩa là hạn chế nguồn phát thải và bảo vệ những nơi hấp thụ các-bon, như rừng.",
+      "Năng lượng ít phát thải, sử dụng năng lượng hiệu quả và giao thông sạch hơn đều là những hướng hành động quan trọng.",
+      "Đồng thời, cộng đồng cần thích ứng: chuẩn bị cho nắng nóng, quản lý nước và bảo vệ những khu vực dễ bị tổn thương."
+    ],
+    "visual": "Slow aerial tracking over a healthy restored forest, many layers of green trees swaying gently in the wind, sunlight crossing the canopy.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  },
+  {
+    "id": "closing",
+    "chapter": "09 / HIỂU ĐỂ HÀNH ĐỘNG",
+    "title": "Giữ sự sống.\nGiữ sự cân bằng.",
+    "source": "NASA · Climate science",
+    "sentences": [
+      "Hiệu ứng nhà kính tự nhiên là một phần thiết yếu của môi trường sống trên Trái Đất. Thách thức nằm ở phần gia tăng do con người tạo ra.",
+      "Mỗi lựa chọn về năng lượng, sản xuất và sử dụng đất đều góp phần định hình tương lai khí hậu.",
+      "Hiểu đúng cơ chế là bước đầu tiên. Hành động dựa trên bằng chứng là bước tiếp theo."
+    ],
+    "visual": "Wide view of a green forested mountain valley and a clean river flowing toward the camera, low clouds drift between hills, warm morning light.",
+    "source_urls": [
+      "https://science.nasa.gov/climate-change/faq/what-is-the-greenhouse-effect/",
+      "https://science.nasa.gov/climate-change/causes/",
+      "https://science.nasa.gov/climate-change/effects/"
+    ]
+  }
+]

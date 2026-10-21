@@ -1,0 +1,111 @@
+{
+  "title": "Trái Đất đang thay đổi",
+  "minimum_duration_seconds": 601,
+  "preferred_duration_seconds": 720,
+  "backend": "Wan2.2-TI2V-5B",
+  "voice": "VieNeu v3 Turbo / Ngọc Linh",
+  "wait_for": "../demo/COMPLETE.txt",
+  "episodes": [
+    {
+      "id": "01-ocean",
+      "title": "Đại dương ấm lên — Những thay đổi dưới mặt sóng",
+      "script": "01-ocean.md",
+      "sources": [
+        "https://oceanservice.noaa.gov/facts/acidification.html",
+        "https://oceanservice.noaa.gov/facts/sealevel.html",
+        "https://oceanservice.noaa.gov/facts/coral_bleach.html",
+        "https://www.noaa.gov/news/ongoing-marine-heat-waves-in-us-waters-explained"
+      ]
+    },
+    {
+      "id": "02-carbon",
+      "title": "Hành trình của carbon — Từ rừng, đất đến khí quyển",
+      "script": "02-carbon.md",
+      "sources": [
+        "https://science.nasa.gov/earth/earth-observatory/the-carbon-cycle/",
+        "https://www.nasa.gov/science-research/earth-science/a-breathing-planet-off-balance/",
+        "https://terra.nasa.gov/science/carbon-cycle-and-ecosystems"
+      ]
+    },
+    {
+      "id": "03-forests",
+      "title": "Rừng và khí hậu — Giá trị vượt xa những hàng cây",
+      "script": "03-forests.md",
+      "sources": [
+        "https://science.nasa.gov/climate-change/adaptation-mitigation/",
+        "https://science.nasa.gov/science-research/earth-science/carbon-cycle/seven-case-studies-in-carbon-and-climate/",
+        "https://www.fao.org/climate-change/en"
+      ]
+    },
+    {
+      "id": "04-ice",
+      "title": "Khi băng tan — Từ miền cực đến bờ biển",
+      "script": "04-ice.md",
+      "sources": [
+        "https://science.nasa.gov/climate-change/effects/",
+        "https://oceanservice.noaa.gov/facts/sealevel.html",
+        "https://science.nasa.gov/climate-change/what-is-climate-change/"
+      ]
+    },
+    {
+      "id": "05-extremes",
+      "title": "Thời tiết cực đoan — Hiểu rủi ro trong khí hậu mới",
+      "script": "05-extremes.md",
+      "sources": [
+        "https://science.nasa.gov/climate-change/extreme-weather/",
+        "https://science.nasa.gov/climate-change/effects/",
+        "https://www.ipcc.ch/report/ar6/wg2/chapter/technical-summary/"
+      ]
+    },
+    {
+      "id": "06-cities",
+      "title": "Thành phố nóng lên — Đi tìm những khoảng mát",
+      "script": "06-cities.md",
+      "sources": [
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/",
+        "https://www.ipcc.ch/report/ar6/wg2/chapter/technical-summary/",
+        "https://science.nasa.gov/climate-change/adaptation-mitigation/"
+      ]
+    },
+    {
+      "id": "07-food",
+      "title": "Bữa ăn trong khí hậu thay đổi — Từ cánh đồng đến bàn ăn",
+      "script": "07-food.md",
+      "sources": [
+        "https://www.fao.org/climate-change/en",
+        "https://www.fao.org/climate-change/what-we-do/en",
+        "https://www.fao.org/climate-change/cross-cutting-areas/climate-and-disaster-risk-management/en"
+      ]
+    },
+    {
+      "id": "08-energy",
+      "title": "Năng lượng và phát thải — Một cuộc chuyển đổi hệ thống",
+      "script": "08-energy.md",
+      "sources": [
+        "https://science.nasa.gov/climate-change/causes/",
+        "https://science.nasa.gov/climate-change/adaptation-mitigation/",
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/"
+      ]
+    },
+    {
+      "id": "09-biodiversity",
+      "title": "Mạng lưới sự sống — Đa dạng sinh học trong khí hậu mới",
+      "script": "09-biodiversity.md",
+      "sources": [
+        "https://www.ipcc.ch/report/ar6/wg2/chapter/technical-summary/",
+        "https://oceanservice.noaa.gov/facts/coral_bleach.html",
+        "https://science.nasa.gov/climate-change/effects/"
+      ]
+    },
+    {
+      "id": "10-future",
+      "title": "Sống cùng một hành tinh đang đổi — Giảm nhẹ và thích ứng",
+      "script": "10-future.md",
+      "sources": [
+        "https://science.nasa.gov/climate-change/adaptation-mitigation/",
+        "https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/",
+        "https://www.fao.org/climate-change/cross-cutting-areas/climate-and-disaster-risk-management/en"
+      ]
+    }
+  ]
+}
