@@ -32,6 +32,8 @@ Ví dụ [Local Wan 2.2 Studio](video/local-wan22-studio.md) được bổ sung 
 | [`dev-env/`](dev-env/) | Môi trường làm việc cho dev |
 | [`llm/`](llm/) | Chạy và suy luận LLM |
 | [`prompts/`](prompts/) | Bộ prompt dùng với Claude |
+| [`mcp/`](mcp/) | MCP server kết nối agent với dịch vụ ngoài |
+| [`database/`](database/) | Cơ sở dữ liệu, cache, vector store |
 
 Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần lưu ý · ❌ lỗi · ⛔ không test được trong môi trường này.
 
@@ -42,6 +44,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 |---|--:|---|---|
 | [Impeccable](design/impeccable.md) | 82.7k | Detector bắt 9 lỗi trên trang mẫu trong < 1 giây | ✅ Hợp để review UI; luật mang quan điểm riêng; telemetry bật mặc định |
 | [Taste Skill](design/taste-skill.md) | 98.9k | `draw` ra hướng thiết kế; `inspect` chụp 3 độ rộng, chấm 8 FAIL / 4 WARN | ✅ Hợp với landing page mới; khắt khe hơn Impeccable |
+| [SolidCraft](design/solidcraft.md) | — | Xuất STEP AP242 trong 0,49 giây; MCP có 17 tool, giới hạn đường dẫn file | ✅ CAD tham số cho agent; build từ source mất 13 phút |
 | [Figwright](design/figwright.md) | 1.1k | MCP server 0.6.0 khởi động, liệt kê 117 tool | ✅ Server chạy ngay; plugin Figma chưa test |
 
 ### Web
@@ -89,6 +92,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Agents
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [OpenClaw](agents/openclaw.md) | 392.7k | Gateway chạy trên 127.0.0.1:18789 có token, Control UI HTTP 200 | ✅ Mặc định an toàn; cần Node 24+ |
+| [Cua](agents/cua.md) | 30.5k | SDK 0.6.0 cài được; điều khiển máy cần `cua-spacesd` (giấy phép FSL, gắn tài khoản cua.ai) | ⚠️ Telemetry bật mặc định; nên chạy trong sandbox |
 | [The Agency](agents/agency-agents.md) | 161.2k | 18 phòng ban, 282 agent; cài thử 65 agent engineering | ✅ Chỉ nên cài phòng ban cần dùng |
 | [Agent Reach](agents/agent-reach.md) | 99.1k | `doctor`: 2/16 kênh dùng được; đọc web đi qua Jina Reader | ⚠️ Các kênh dùng cookie có nguy cơ bị khóa tài khoản |
 | [OpenWorker](agents/openworker.md) | 18.6k | Server chạy; API yêu cầu token; có 5 agent, 23 nhà cung cấp model, 40 connector | ✅ Đáng thử; vẫn đang beta |
@@ -112,6 +117,16 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã đánh giá | Kết luận nhanh |
 |---|--:|---|---|
 | [7 prompt Claude xây kênh YouTube](prompts/claude-youtube-7-prompts.md) | — | Đọc từng prompt, đối chiếu ngưỡng kiếm tiền YouTube | ⚠️ Khung brainstorm tốt; prompt 2 và 6 dễ sai nếu không có dữ liệu thật |
+
+### MCP
+| Ghi chú | ⭐ | Đã test | Kết luận nhanh |
+|---|--:|---|---|
+| [whatsapp-mcp](mcp/whatsapp-mcp.md) | 314 | Typecheck sạch, 25 test đạt | ⚠️ Dùng Baileys, trái điều khoản WhatsApp; cần Cloudflare Workers Paid |
+
+### Database
+| Ghi chú | ⭐ | Đã test | Kết luận nhanh |
+|---|--:|---|---|
+| [KiviDB](database/kividb.md) | 352 | Tương thích Redis; KNN recall@5 = 1,0; throughput cao hơn Redis 20–35% | ⚠️ Độ trễ đuôi kém hơn Redis; repo mới 5 ngày, giấy phép AGPL |
 
 ## Quy ước
 
