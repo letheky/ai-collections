@@ -32,14 +32,14 @@ class StudioTests(unittest.TestCase):
                 for name in ['produce.py','compose.py']:py_compile.compile(str(project/name),doraise=True)
 
     def test_runtime_templates_do_not_reference_original_workstation(self):
-        for name in ['runtime/produce.py','runtime/compose.py','series/narrate_long.py','series/prepare.py','series/queue.py']:
+        for name in ['runtime/produce.py','runtime/compose.py','series/narrate_long.py','series/prepare.py','series/run_series.py']:
             text=(BASE/name).read_text(encoding='utf-8')
             self.assertNotIn('E:/AI/',text)
             self.assertNotIn('E:\\AI\\',text)
             py_compile.compile(str(BASE/name),doraise=True)
 
     def test_final_duration_is_enforced_before_and_after_encoding(self):
-        queue=(BASE/'series/queue.py').read_text(encoding='utf-8')
+        queue=(BASE/'series/run_series.py').read_text(encoding='utf-8')
         self.assertIn("plan['duration']<=601",queue)
         self.assertIn("info['duration']<=600",queue)
 
@@ -47,18 +47,18 @@ class StudioTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);series=root/'series';series.mkdir()
             shutil.copy2(BASE/'studio_config.py',root/'studio_config.py')
-            shutil.copy2(BASE/'series/queue.py',series/'queue.py')
+            shutil.copy2(BASE/'series/run_series.py',series/'run_series.py')
             (series/'series.json').write_text(json.dumps({'wait_for':'missing-marker','episodes':[]}))
             python=getattr(sys,'_base_executable',sys.executable)
             env=dict(os.environ,PYTHONUTF8='1')
-            first=subprocess.Popen([python,str(series/'queue.py')],stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=env)
+            first=subprocess.Popen([python,str(series/'run_series.py')],stdout=subprocess.PIPE,stderr=subprocess.PIPE,env=env)
             try:
                 deadline=time.monotonic()+8
                 while not (series/'queue-status.json').exists():
                     if first.poll() is not None:self.fail(first.communicate()[1].decode())
                     if time.monotonic()>deadline:self.fail('Queue did not enter its waiting state')
                     time.sleep(.05)
-                second=subprocess.run([python,str(series/'queue.py')],capture_output=True,text=True,env=env,timeout=5)
+                second=subprocess.run([python,str(series/'run_series.py')],capture_output=True,text=True,env=env,timeout=5)
                 self.assertNotEqual(second.returncode,0)
                 self.assertIn('already running',second.stderr)
             finally:

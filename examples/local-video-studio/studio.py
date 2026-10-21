@@ -29,7 +29,7 @@ def main():
         run([settings.video_python,project/'compose.py'])
         (project/'COMPLETE.txt').write_text(str(project/'output/film.mp4'),encoding='utf-8')
     elif args.command=='queue':
-        run([settings.video_python,BUNDLE/'series/queue.py']+(['--no-wait'] if args.no_wait else []))
+        run([settings.video_python,BUNDLE/'series/run_series.py']+(['--no-wait'] if args.no_wait else []))
     else:
         for path in [BUNDLE/'demo/status.json',BUNDLE/'series/queue-status.json']:
             print(path.relative_to(BUNDLE))
