@@ -11,7 +11,9 @@ def main():
         root=Path(tmp)
         for folder in ['shots','audio','output']:(root/folder).mkdir()
         shutil.copy2(BASE/'runtime/compose.py',root/'compose.py')
-        shot={'id':'test','start':0.,'end':5.,'prompt':'Synthetic moving test pattern'}
+        # A 127-frame segment reproduces the former one-frame-short failure.
+        # Preview still trims the final output to five seconds / 120 frames.
+        shot={'id':'test','start':0.,'end':127/24,'prompt':'Synthetic moving test pattern'}
         plan={'title':'KIỂM TRA TIẾNG VIỆT','duration':5.,'model':'synthetic-test-fixture','width':832,'height':480,'frames':121,'fps':24,'steps':0,'shots':[shot]}
         timeline={'duration':5.,'intro':5.,'ending':0.,'scenes':[{'start':0.,'end':5.,'chapter':'01 / KIỂM TRA'}],'subtitles':[{'start':1.,'end':4.,'text':'Phụ đề tiếng Việt để kiểm tra bố cục.'}]}
         for name,value in [('plan.json',plan),('timeline.json',timeline)]:

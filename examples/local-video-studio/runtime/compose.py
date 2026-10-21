@@ -41,8 +41,8 @@ def main():
             # Retiming uses optical flow on the generated video, then upscale/crop to 16:9.
             # This is not native Full HD generation; the source resolution is retained in metadata.
             factor=(frame_total-1)/(plan['frames']-1)
-            vf=f'setpts={factor:.9f}*(PTS-STARTPTS),tpad=stop_mode=clone:stop_duration=1,minterpolate=fps=24:mi_mode=mci:mc_mode=obmc:me_mode=bidir:vsbmc=1,setpts=PTS-STARTPTS,fps=24:start_time=0,tpad=stop_mode=clone:stop_duration=1,trim=end_frame={frame_total},setpts=N/(24*TB),scale=1920:1080:force_original_aspect_ratio=increase:flags=lanczos,crop=1920:1080,setsar=1'
-            cmd=[FFMPEG,'-y','-hide_banner','-loglevel','error','-i',str(src),'-an','-vf',vf,'-fps_mode','passthrough','-frames:v',str(frame_total),'-c:v','libx264','-preset','fast','-crf','18','-threads','8','-pix_fmt','yuv420p',str(segment)]
+            vf=f'setpts={factor:.9f}*(PTS-STARTPTS),tpad=stop_mode=clone:stop_duration=1,minterpolate=fps=24:mi_mode=mci:mc_mode=obmc:me_mode=bidir:vsbmc=1,setpts=PTS-STARTPTS,fps=24:start_time=0,tpad=stop_mode=clone:stop_duration=1,trim=end_frame={frame_total},scale=1920:1080:force_original_aspect_ratio=increase:flags=lanczos,crop=1920:1080,setsar=1,settb=1/24,setpts=N'
+            cmd=[FFMPEG,'-y','-hide_banner','-loglevel','error','-i',str(src),'-an','-vf',vf,'-r','24','-fps_mode','cfr','-frames:v',str(frame_total),'-c:v','libx264','-preset','fast','-crf','18','-threads','8','-pix_fmt','yuv420p',str(segment)]
             subprocess.run(cmd,check=True,cwd=ROOT)
             check=imageio.get_reader(str(segment));actual=check.count_frames();check.close()
             if actual!=frame_total:raise RuntimeError(f'Segment frame count {actual} != {frame_total}: {segment}')
