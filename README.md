@@ -68,6 +68,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
 | [Local Wan 2.2 Studio](video/local-wan22-studio.md) | — | Clip Wan local, giọng Việt CPU; kèm code, kiểm tra đóng gói và 10 kịch bản | ✅ Có pipeline vận hành; ⚠️ phim dài đang render, 1080p nâng từ 480p |
+| [LocalMiniDrama](video/localminidrama.md) · [▶ demo](https://claude.ai/artifact/MFF19DzKxWSiRovS9D6Qfq) | 2.2k | Chạy từ source trên Linux; tạo kịch bản 2 tập qua model giả lập | ⚠️ Mặc định cài qua mirror với SSL tắt, server mở ra LAN; cần API key để làm ảnh và video |
 | [Recordly](video/recordly.md) · [▶ demo](https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
 | [OpenMontage](video/openmontage.md) · [▶ demo](https://claude.ai/artifact/SLcZu7ZYH9Q2Q1o7MJJpo1) | 69.5k | Setup 53 giây; demo 23 giây 1080p render trong 2 phút 6 giây | ✅ Demo không cần key chạy ngay |
 | [lemo-opuscar](video/lemo-opuscar.md) | 3.1k | Pipeline lõi render được; demo có sẵn thiếu font | ⚠️ Không render lại được demo từ bản clone mới |
