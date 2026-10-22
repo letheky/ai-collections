@@ -52,6 +52,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Web
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Crawl4AI](web/crawl4ai.md) · [▶ demo](https://claude.ai/artifact/TYfdt6Pr4h19iJ7asTcrBX) | 86.0k | Crawl trang có JS trong 0,61 giây; bảng ra Markdown đúng | ✅ Ổn định; bộ lọc còn để lọt quảng cáo |
 | [Pretext](web/pretext.md) · [▶ demo](https://claude.ai/artifact/HGYKd3syxPbvYFCJnG9qXz) | 50.8k | Khớp DOM ở 60/61 độ rộng với văn bản tiếng Việt; nhanh hơn DOM khoảng 11,5 lần | ✅ Chính xác và nhanh |
 | [Jev Ultrafast](web/jev-ultrafast.md) | 23.2k | 31/31 unit test đạt | ⚠️ Phần ra quyết định khóa vào API trả phí |
 
@@ -108,11 +109,15 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Dev environment
 | Ghi chú | ⭐ | Đã kiểm tra | Kết luận nhanh |
 |---|--:|---|---|
+| [Sphinx](dev-env/sphinx.md) · [▶ demo](https://claude.ai/artifact/Rz11HWWZJguQhvcBrPgqGT) | 291 | 740/740 test đạt; hook chặn push lên main | ✅ Đúng như mô tả; ⚠️ áp dụng mọi repo, gửi code tới nhà cung cấp model |
 | [Omarchy](dev-env/omarchy.md) | 45.1k | Phân tích tĩnh: 14 lệnh agent, 51 trang manual | ⚠️ Phải cài lại hệ điều hành; nên thử trên máy ảo |
 
 ### LLM
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [respan-gateway](llm/respan-gateway.md) · [▶ demo](https://claude.ai/artifact/4Ys9gHL13EWEpccbwj5cuH) | 126 | Failover và chuyển đổi Anthropic → OpenAI đúng; thêm 0,6 ms; RAM 16,6 MB | ✅ Nhẹ, nhanh; mặc định không có xác thực |
+| [DeepInfer](llm/deepinfer.md) | 18.2k | ⛔ Cần GPU NVIDIA SM100 hoặc Ascend 950 | ⛔ Chỉ cho DeepSeek-V4.1-Flash, chưa đủ để dựng dịch vụ online |
+| [TorchTPU](llm/torch-tpu.md) | 588 | Cài và import được; không có TPU để chạy | ⛔ Chỉ dùng trên Cloud TPU |
 | [AirLLM](llm/airllm.md) | 39.4k | Chạy từng layer trên model nhỏ cho logit khớp 100% với model đầy đủ; 44/45 test đạt | ✅ Cơ chế đúng; ⚠️ chậm vì phụ thuộc SSD, không hợp để chat |
 
 ### Prompts
