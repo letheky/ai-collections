@@ -60,6 +60,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
 | [15 repo motion](animation/claude-motion-studio-15-repos.md) · [▶ demo](https://claude.ai/artifact/EPPqkjHvhpKRGWh7763ymW) | — | HyperFrames render phim 5 giây trong 10,5 giây; đếm skill thực tế của 9 repo | ✅ Nên bắt đầu với HyperFrames + gsap-skills |
+| [iArt motion skills](animation/iart-motion-skills.md) | 955 | 18 gói, 55 skill; cài thử 4 gói, số skill khớp README | ✅ Chia gói rõ ràng, MIT |
 | [anidoodle](animation/anidoodle.md) · [▶ demo](https://claude.ai/artifact/WaETkwggYuzWMWC8yk9EHp) | 993 | Ảnh tĩnh lặp lại được; phim 4 giây render trong 4,3 giây | ✅ Nhẹ, nhanh |
 | [huashu-art-motion](animation/huashu-art-motion.md) · [▶ demo](https://claude.ai/artifact/1Xq7MWxqVgm4hX9owAUKCo) | 4.4k | Biểu đồ tài chính 7 giây 1080p render trong 9,3 giây | ✅ Mẫu biểu đồ tài chính dùng được ngay |
 | [Mesh2Motion](animation/mesh2motion.md) · [▶ demo](https://claude.ai/artifact/53Sh3dNsvRNkWpSyWkq76F) | 3.5k | Build 10 giây, chạy không lỗi, có 251 clip CC0 | ✅ Thay thế Mixamo tốt |
@@ -70,6 +71,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | [Local Wan 2.2 Studio](video/local-wan22-studio.md) | — | Clip Wan local, giọng Việt CPU; kèm code, kiểm tra đóng gói và 10 kịch bản | ✅ Có pipeline vận hành; ⚠️ phim dài đang render, 1080p nâng từ 480p |
 | [LocalMiniDrama](video/localminidrama.md) · [▶ demo](https://claude.ai/artifact/MFF19DzKxWSiRovS9D6Qfq) | 2.2k | Chạy từ source trên Linux; tạo kịch bản 2 tập qua model giả lập | ⚠️ Mặc định cài qua mirror với SSL tắt, server mở ra LAN; cần API key để làm ảnh và video |
 | [Recordly](video/recordly.md) · [▶ demo](https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
+| [Skillry (awesome-opus5-5-videos)](video/skillry-opus-videos.md) · [▶ demo](https://claude.ai/artifact/QAjKzMaye1tjEZVMq7tidm) | 8.8k | 703 prompt (29% không đầy đủ); làm theo 1 prompt bằng Remotion ra video 15 giây | ✅ Kho prompt tham khảo tốt; nên kết hợp với một skill có quy tắc rõ ràng |
+| [ghost-editor](video/ghost-editor.md) | 75 | Test đồng bộ hình–tiếng và giải mã màu đạt; 1 test cutout lỗi trên Linux | ⚠️ Cần Mac, Claude Code trả phí, key Gemini |
 | [OpenMontage](video/openmontage.md) · [▶ demo](https://claude.ai/artifact/SLcZu7ZYH9Q2Q1o7MJJpo1) | 69.5k | Setup 53 giây; demo 23 giây 1080p render trong 2 phút 6 giây | ✅ Demo không cần key chạy ngay |
 | [lemo-opuscar](video/lemo-opuscar.md) | 3.1k | Pipeline lõi render được; demo có sẵn thiếu font | ⚠️ Không render lại được demo từ bản clone mới |
 | [Seedance 2.0 Skill OS](video/seedance-2.0-skill.md) | 7.8k | Kiểm tra repo đạt 19/19; bộ sàng lọc kiểm duyệt bắt đúng từ khóa | ✅ Công cụ viết prompt nghiêm túc |

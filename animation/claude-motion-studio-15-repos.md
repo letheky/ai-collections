@@ -40,6 +40,8 @@
 
 **Remotion:** render demo "world-in-numbers" của OpenMontage → MP4 1920×1080, 690 khung hình, mất 2 phút 6 giây bằng CPU. Chi tiết xem [OpenMontage](../video/openmontage.md).
 
+**claude-remotion-skill (08) + Remotion (12):** tôi dựng một video 15 giây theo đủ 10 quy tắc của skill (easing, stagger, exit nhanh hơn, 5 lớp, grain, vignette, theme…). Render mất 1 phút 6 giây bằng CPU. Demo: https://claude.ai/artifact/QAjKzMaye1tjEZVMq7tidm
+
 **Các repo skill nhỏ (01–08, 10):** đã cài hoặc clone và đếm skill, script, giấy phép như trong bảng. **Chưa render thử** từng repo.
 
 ## Kết luận nhanh
