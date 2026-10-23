@@ -12,8 +12,8 @@ Mỗi ghi chú gồm: **Là gì**, **Đã test** (từng bước kèm số đo),
 Ví dụ [Local Wan 2.2 Studio](video/local-wan22-studio.md) được bổ sung ngày 21/10/2026, kiểm tra trên Windows với GPU riêng; xem môi trường và giới hạn trong ghi chú đó. Các số đo Linux bên dưới áp dụng cho bộ ghi chú ban đầu.
 
 - **Máy:** container Linux x86_64, 4 vCPU, 15 GB RAM, **không có GPU**.
-- **Phần mềm:** Node 22.22, Python 3.13, uv 0.11, ffmpeg 6.1, Docker 29.8, Chromium 1194 (Playwright).
-- **Mạng ra ngoài bị giới hạn:** chặn Hugging Face, index PyTorch, quay.io, các kho ảnh mở và một số API.
+- **Phần mềm:** Node 22.22, Python 3.13, uv 0.11, ffmpeg 6.1, Docker 29.8, Chromium 1194 (Playwright). Từ 23/10/2026 dùng thêm Go 1.24 (tự tải toolchain mới hơn khi repo yêu cầu), Rust 1.95–1.97 và Claude Code 2.1.309.
+- **Mạng ra ngoài bị giới hạn:** chặn Hugging Face, index PyTorch, quay.io, ghcr.io, nvcr.io, các kho ảnh mở và một số API.
   Bước nào cần các nguồn này được ghi là ⛔ không test được.
 
 ## Cấu trúc
@@ -68,6 +68,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [vox-director](video/vox-director.md) · [▶ demo](https://claude.ai/artifact/WGCtf6iFXo2Uyy3R6vxrde) | 2.4k | Ghép offline ra MP4 15 giây; phần AI cần Atlas Cloud | ⚠️ Phụ thuộc Atlas Cloud, watermark mặc định; lỗi font phụ đề trên Linux |
 | [Local Wan 2.2 Studio](video/local-wan22-studio.md) | — | Clip Wan local, giọng Việt CPU; kèm code, kiểm tra đóng gói và 10 kịch bản | ✅ Có pipeline vận hành; ⚠️ phim dài đang render, 1080p nâng từ 480p |
 | [LocalMiniDrama](video/localminidrama.md) · [▶ demo](https://claude.ai/artifact/MFF19DzKxWSiRovS9D6Qfq) | 2.2k | Chạy từ source trên Linux; tạo kịch bản 2 tập qua model giả lập | ⚠️ Mặc định cài qua mirror với SSL tắt, server mở ra LAN; cần API key để làm ảnh và video |
 | [Recordly](video/recordly.md) · [▶ demo](https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
@@ -87,6 +88,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Security
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [OpenShell](security/openshell.md) · [▶ demo](https://claude.ai/artifact/5nu9fdeUN787NRYPz8rDGF) | 17.8k | Sandbox lên trong 1 giây; chặn file/mạng, đổi policy khi đang chạy; prover bắt quyền POST và host mới | ✅ Cô lập đúng như mô tả; ⚠️ bản 0.1.x, image trên ghcr/nvcr |
 | [REA](security/rea-reverse-engineer-anything.md) | 323.5k | Phân tích một web app: 408k nút AST, 130 phát hiện trong 48 giây | ✅ Kết quả có cấu trúc, tự nêu giới hạn |
 | [PentAGI](security/pentagi.md) · [▶ demo](https://claude.ai/artifact/5iuTYvBvcbwh4YAXUZcJJU) | 31.1k | Web UI chạy bằng Docker sau khoảng 10 giây | ⚠️ Có nút bỏ qua việc đổi mật khẩu mặc định; nên đổi ngay |
 
@@ -99,6 +101,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Agents
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Hermes Agent](agents/hermes-agent.md) | 256.3k | Cài bằng uv (Python 3.14); agent gọi tool `terminal` qua mock LLM | ✅ Chạy đúng; ⚠️ ~12k token system prompt + schema tool mỗi lượt |
 | [OpenClaw](agents/openclaw.md) | 392.7k | Gateway chạy trên 127.0.0.1:18789 có token, Control UI HTTP 200 | ✅ Mặc định an toàn; cần Node 24+ |
 | [Cua](agents/cua.md) | 30.5k | SDK 0.6.0 cài được; điều khiển máy cần `cua-spacesd` (giấy phép FSL, gắn tài khoản cua.ai) | ⚠️ Telemetry bật mặc định; nên chạy trong sandbox |
 | [The Agency](agents/agency-agents.md) | 161.2k | 18 phòng ban, 282 agent; cài thử 65 agent engineering | ✅ Chỉ nên cài phòng ban cần dùng |
@@ -113,12 +116,15 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Dev environment
 | Ghi chú | ⭐ | Đã kiểm tra | Kết luận nhanh |
 |---|--:|---|---|
+| [Open Code Review](dev-env/open-code-review.md) | 48.1k | Review repo mẫu: 2 comment gắn đúng dòng; JSON cho CI | ✅ Pipeline chặt chẽ; ⚠️ F1 ~25% theo benchmark của chính họ |
+| [agent-usage-guard](dev-env/agent-usage-guard.md) | 45 | `plugin validate --strict` đạt, 101/101 test | ✅ Chặn fan-out, ngữ cảnh lớn, vòng lặp lỗi; repo nhỏ |
 | [Sphinx](dev-env/sphinx.md) · [▶ demo](https://claude.ai/artifact/Rz11HWWZJguQhvcBrPgqGT) | 291 | 740/740 test đạt; hook chặn push lên main | ✅ Đúng như mô tả; ⚠️ áp dụng mọi repo, gửi code tới nhà cung cấp model |
 | [Omarchy](dev-env/omarchy.md) | 45.1k | Phân tích tĩnh: 14 lệnh agent, 51 trang manual | ⚠️ Phải cài lại hệ điều hành; nên thử trên máy ảo |
 
 ### LLM
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [OpenAI CLI](llm/openai-cli.md) | 1.1k | Build Go; responses, `--transform`, stdin, exit code đúng với mock server | ✅ CLI chính thức, hợp script/CI |
 | [respan-gateway](llm/respan-gateway.md) · [▶ demo](https://claude.ai/artifact/4Ys9gHL13EWEpccbwj5cuH) | 126 | Failover và chuyển đổi Anthropic → OpenAI đúng; thêm 0,6 ms; RAM 16,6 MB | ✅ Nhẹ, nhanh; mặc định không có xác thực |
 | [DeepInfer](llm/deepinfer.md) | 18.2k | ⛔ Cần GPU NVIDIA SM100 hoặc Ascend 950 | ⛔ Chỉ cho DeepSeek-V4.1-Flash, chưa đủ để dựng dịch vụ online |
 | [TorchTPU](llm/torch-tpu.md) | 588 | Cài và import được; không có TPU để chạy | ⛔ Chỉ dùng trên Cloud TPU |
