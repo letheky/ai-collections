@@ -83,6 +83,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Voice
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Biên bản họp tiếng Việt](examples/vi-meeting-minutes/) | — | Hướng dẫn Meetily và WhisperX, cùng script `bien_ban.py` tự viết; WhisperX 3.8.6 cài được, script đã test với mock | ⚠️ Chưa chạy nhận dạng giọng nói thật (Hugging Face bị chặn) |
 | [VoiceStudio](voice/voicestudio.md) | 75.6k | ❌ Cài thất bại (không tải được PyTorch, Hugging Face bị chặn) | ⚠️ Model mặc định CC-BY-NC, không dùng thương mại được |
 
 ### Security
