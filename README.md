@@ -34,6 +34,7 @@ Ví dụ [Local Wan 2.2 Studio](video/local-wan22-studio.md) được bổ sung 
 | [`prompts/`](prompts/) | Bộ prompt dùng với Claude |
 | [`mcp/`](mcp/) | MCP server kết nối agent với dịch vụ ngoài |
 | [`database/`](database/) | Cơ sở dữ liệu, cache, vector store |
+| [`ml/`](ml/) | Machine learning, khoa học dữ liệu |
 
 Bản ghi có **▶ demo** là có trang kết quả chạy thật (ảnh, video hoặc demo tương tác) để xem trực tiếp. Các trang demo đang để riêng tư, chỉ chủ tài khoản mở được.
 
@@ -89,8 +90,10 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Security
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Codex Security](security/codex-security.md) | 11.2k | Cài 17 giây; `--dry-run` chạy; mặc định gpt-5.6-sol mức xhigh | ✅ Đủ quy trình quét–vá–SARIF; ⚠️ cần tài khoản OpenAI, dễ tốn tiền |
+| [VoidAccess](security/voidaccess.md) | 925 | Chạy không Tor/LLM trong 30 giây; xuất STIX, Sigma | ⚠️ Gắn sai thực thể với độ tin cậy 93 rồi sinh rule Sigma; phải duyệt tay |
 | [OpenShell](security/openshell.md) · [▶ demo](https://claude.ai/artifact/5nu9fdeUN787NRYPz8rDGF) | 17.8k | Sandbox lên trong 1 giây; chặn file/mạng, đổi policy khi đang chạy; prover bắt quyền POST và host mới | ✅ Cô lập đúng như mô tả; ⚠️ bản 0.1.x, image trên ghcr/nvcr |
-| [REA](security/rea-reverse-engineer-anything.md) | 323.5k | Phân tích một web app: 408k nút AST, 130 phát hiện trong 48 giây | ✅ Kết quả có cấu trúc, tự nêu giới hạn |
+| [REA](security/rea-reverse-engineer-anything.md) | 385.0k | Phân tích web app: 408k nút AST, 130 phát hiện trong 48 giây; 6.8.0 đọc đúng header GGUF/safetensors và hàm EVM | ✅ Kết quả có cấu trúc, tự nêu giới hạn |
 | [PentAGI](security/pentagi.md) · [▶ demo](https://claude.ai/artifact/5iuTYvBvcbwh4YAXUZcJJU) | 31.1k | Web UI chạy bằng Docker sau khoảng 10 giây | ⚠️ Có nút bỏ qua việc đổi mật khẩu mặc định; nên đổi ngay |
 
 ### Game
@@ -102,6 +105,9 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Agents
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Pi](agents/pi.md) | 117.8k | Chỉ 4 tool, prompt khoảng 3k ký tự; gọi bash qua mock | ✅ Gọn và rẻ nhất; ⚠️ treo nếu không đóng stdin |
+| [Qwen Code](agents/qwen-code.md) | 28.7k | Gọi shell qua mock trong 4,5 giây; prompt khoảng 36k ký tự | ✅ Giống Claude Code, đa nhà cung cấp; ⚠️ thống kê sử dụng bật mặc định |
+| [Harness²](agents/harness2.md) | 19.7k | Demo không cần key: 2 tác vụ, 28 lần thực thi, 2,3 giây | ✅ Hợp nghiên cứu; ⚠️ chạy thật cần Vertex AI |
 | [Hermes Agent](agents/hermes-agent.md) | 256.3k | Cài bằng uv (Python 3.14); agent gọi tool `terminal` qua mock LLM | ✅ Chạy đúng; ⚠️ ~12k token system prompt + schema tool mỗi lượt |
 | [OpenClaw](agents/openclaw.md) | 392.7k | Gateway chạy trên 127.0.0.1:18789 có token, Control UI HTTP 200 | ✅ Mặc định an toàn; cần Node 24+ |
 | [Cua](agents/cua.md) | 30.5k | SDK 0.6.0 cài được; điều khiển máy cần `cua-spacesd` (giấy phép FSL, gắn tài khoản cua.ai) | ⚠️ Telemetry bật mặc định; nên chạy trong sandbox |
@@ -125,6 +131,9 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### LLM
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [colibri](llm/colibri.md) | 43.9k | Build bằng gcc trong 6 giây; kiểm tra model MoE tí hon đạt hết | ✅ Chạy MoE khổng lồ không cần GPU lớn; ⚠️ model lớn dưới 2 tok/s |
+| [gpu-unlock](llm/gpu-unlock.md) | 6.9k | 5/5 test đóng gói; không có GPU để chạy thật | ⚠️ Tăng BF16 trên RTX 30; module nạp firmware lúc boot, tự chịu rủi ro |
+| [Janus](llm/janus.md) | 136 | Build 30 giây; API OpenAI, đổi model nóng 19 ms, tách `<think>` đúng | ✅ Server GGUF nhẹ; ⚠️ repo rất nhỏ, không có xác thực |
 | [OpenAI CLI](llm/openai-cli.md) | 1.1k | Build Go; responses, `--transform`, stdin, exit code đúng với mock server | ✅ CLI chính thức, hợp script/CI |
 | [respan-gateway](llm/respan-gateway.md) · [▶ demo](https://claude.ai/artifact/4Ys9gHL13EWEpccbwj5cuH) | 126 | Failover và chuyển đổi Anthropic → OpenAI đúng; thêm 0,6 ms; RAM 16,6 MB | ✅ Nhẹ, nhanh; mặc định không có xác thực |
 | [DeepInfer](llm/deepinfer.md) | 18.2k | ⛔ Cần GPU NVIDIA SM100 hoặc Ascend 950 | ⛔ Chỉ cho DeepSeek-V4.1-Flash, chưa đủ để dựng dịch vụ online |
@@ -145,6 +154,11 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
 | [KiviDB](database/kividb.md) | 352 | Tương thích Redis; KNN recall@5 = 1,0; throughput cao hơn Redis 20–35% | ⚠️ Độ trễ đuôi kém hơn Redis; repo mới 5 ngày, giấy phép AGPL |
+
+### Machine learning
+| Ghi chú | ⭐ | Đã test | Kết luận nhanh |
+|---|--:|---|---|
+| [PySR](ml/pysr.md) · [▶ demo](https://claude.ai/artifact/UyeEfqbRo4yrTizUCYMV1j) | 4.2k | 200 vòng (19,5 giây) tìm đúng `x0² + 2,5·cos(x2) − 2`; 40 vòng chỉ ra xấp xỉ | ✅ Ra công thức tường minh; ⚠️ lần đầu phải cài Julia vài phút |
 
 ## Quy ước
 
