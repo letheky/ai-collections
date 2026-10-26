@@ -106,6 +106,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Agents
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Grok Build](agents/grok-build.md) | 27.5k | Binary Rust; headless ra JSON; `--yolo` thực thi tạo file, mặc định chặn chờ duyệt | ✅ Gọn, an toàn mặc định; ⚠️ build from source tải công cụ lúc build |
 | [ThinkRail](agents/thinkrail.md) | 2.0k | Cài 2,7 giây; mỗi agent một git worktree riêng, thay đổi không đụng checkout chính | ✅ Ý tưởng worktree chạy đúng; ⚠️ công tắc chia sẻ dữ liệu bật sẵn |
 | [Claude SEO](agents/claude-seo.md) | 21.2k | 1.068/1.074 test đạt (6 lỗi do mạng test); phân tích HTML và kiểm schema đúng | ✅ Chạy trên máy, nhiều script độc lập; ⚠️ nhiều tính năng cần API key |
 | [Pi](agents/pi.md) | 117.8k | Chỉ 4 tool, prompt khoảng 3k ký tự; gọi bash qua mock | ✅ Gọn và rẻ nhất; ⚠️ treo nếu không đóng stdin |
