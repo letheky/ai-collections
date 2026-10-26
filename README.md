@@ -90,6 +90,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Security
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Strix](security/strix.md) | 71.9k | Cài pip + CLI + định tuyến LLM chạy; sandbox Kali không dựng được ở đây | ⚠️ Chưa kiểm được chất lượng; telemetry bật mặc định; chỉ quét hệ thống được phép |
 | [Codex Security](security/codex-security.md) | 11.2k | Cài 17 giây; `--dry-run` chạy; mặc định gpt-5.6-sol mức xhigh | ✅ Đủ quy trình quét–vá–SARIF; ⚠️ cần tài khoản OpenAI, dễ tốn tiền |
 | [VoidAccess](security/voidaccess.md) | 925 | Chạy không Tor/LLM trong 30 giây; xuất STIX, Sigma | ⚠️ Gắn sai thực thể với độ tin cậy 93 rồi sinh rule Sigma; phải duyệt tay |
 | [OpenShell](security/openshell.md) · [▶ demo](https://claude.ai/artifact/5nu9fdeUN787NRYPz8rDGF) | 17.8k | Sandbox lên trong 1 giây; chặn file/mạng, đổi policy khi đang chạy; prover bắt quyền POST và host mới | ✅ Cô lập đúng như mô tả; ⚠️ bản 0.1.x, image trên ghcr/nvcr |
@@ -105,6 +106,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Agents
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [ThinkRail](agents/thinkrail.md) | 2.0k | Cài 2,7 giây; mỗi agent một git worktree riêng, thay đổi không đụng checkout chính | ✅ Ý tưởng worktree chạy đúng; ⚠️ công tắc chia sẻ dữ liệu bật sẵn |
+| [Claude SEO](agents/claude-seo.md) | 21.2k | 1.068/1.074 test đạt (6 lỗi do mạng test); phân tích HTML và kiểm schema đúng | ✅ Chạy trên máy, nhiều script độc lập; ⚠️ nhiều tính năng cần API key |
 | [Pi](agents/pi.md) | 117.8k | Chỉ 4 tool, prompt khoảng 3k ký tự; gọi bash qua mock | ✅ Gọn và rẻ nhất; ⚠️ treo nếu không đóng stdin |
 | [Qwen Code](agents/qwen-code.md) | 28.7k | Gọi shell qua mock trong 4,5 giây; prompt khoảng 36k ký tự | ✅ Giống Claude Code, đa nhà cung cấp; ⚠️ thống kê sử dụng bật mặc định |
 | [Harness²](agents/harness2.md) | 19.7k | Demo không cần key: 2 tác vụ, 28 lần thực thi, 2,3 giây | ✅ Hợp nghiên cứu; ⚠️ chạy thật cần Vertex AI |
@@ -131,6 +134,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### LLM
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [GVS5H](llm/gvs5h.md) | 993 | Tự tính lại pass@1 từ dữ liệu repo, khớp bài báo; Qwen3.8-27B 66,8% → 92,4% với manager | ✅ Số liệu tái lập được; ⚠️ phụ thuộc hiệu chỉnh evaluator của tác giả, lợi thế chi phí mong manh |
 | [colibri](llm/colibri.md) | 43.9k | Build bằng gcc trong 6 giây; kiểm tra model MoE tí hon đạt hết | ✅ Chạy MoE khổng lồ không cần GPU lớn; ⚠️ model lớn dưới 2 tok/s |
 | [gpu-unlock](llm/gpu-unlock.md) | 6.9k | 5/5 test đóng gói; không có GPU để chạy thật | ⚠️ Tăng BF16 trên RTX 30; module nạp firmware lúc boot, tự chịu rủi ro |
 | [Janus](llm/janus.md) | 136 | Build 30 giây; API OpenAI, đổi model nóng 19 ms, tách `<think>` đúng | ✅ Server GGUF nhẹ; ⚠️ repo rất nhỏ, không có xác thực |
