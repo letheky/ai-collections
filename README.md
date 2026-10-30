@@ -69,6 +69,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Freefield](video/freefield.md) · [▶ demo](https://claude.ai/artifact/Gq4szHmbhpdZrcSdT7GbGE) | 229 | ComfyUI CPU chấp nhận 122/122 workflow + 334/334 lab case; app smoke chạy thật | ✅ Rất chỉn chu, toàn bộ workflow hợp lệ; ⚠️ app thật cần GPU mạnh/Modal |
 | [vox-director](video/vox-director.md) · [▶ demo](https://claude.ai/artifact/WGCtf6iFXo2Uyy3R6vxrde) | 2.4k | Ghép offline ra MP4 15 giây; phần AI cần Atlas Cloud | ⚠️ Phụ thuộc Atlas Cloud, watermark mặc định; lỗi font phụ đề trên Linux |
 | [Local Wan 2.2 Studio](video/local-wan22-studio.md) | — | Clip Wan local, giọng Việt CPU; kèm code, kiểm tra đóng gói và 10 kịch bản | ✅ Có pipeline vận hành; ⚠️ phim dài đang render, 1080p nâng từ 480p |
 | [LocalMiniDrama](video/localminidrama.md) · [▶ demo](https://claude.ai/artifact/MFF19DzKxWSiRovS9D6Qfq) | 2.2k | Chạy từ source trên Linux; tạo kịch bản 2 tập qua model giả lập | ⚠️ Mặc định cài qua mirror với SSL tắt, server mở ra LAN; cần API key để làm ảnh và video |
