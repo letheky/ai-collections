@@ -52,6 +52,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Animation
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Code Animation Prompts](animation/code-animation-prompts.md) · [▶ demo](https://claude.ai/artifact/AhpmG8QwaAmts5nWEpWNac) | 422 | 341 prompt, 193 ảnh tĩnh; làm theo prompt B3 ra đúng hình, render 1080p | ✅ Prompt rất chi tiết; ⚠️ tiếng Trung, 148 phong cách chỉ có mô tả chữ |
+| [AnyScene](animation/anyscene.md) · [▶ demo](https://claude.ai/artifact/FqweHvq9w5ibrDY3w8SFLR) | 285 | Camera rig quay đúng (đổi tiêu cự, kéo nét); encoder chỉ chạy trên Windows | ⚠️ Cần fal trả phí: ~150 USD cho cảnh 90 prop |
 | [15 repo motion](animation/claude-motion-studio-15-repos.md) · [▶ demo](https://claude.ai/artifact/EPPqkjHvhpKRGWh7763ymW) | — | HyperFrames render phim 5 giây trong 10,5 giây; đếm skill thực tế của 9 repo | ✅ Nên bắt đầu với HyperFrames + gsap-skills |
 | [anidoodle](animation/anidoodle.md) · [▶ demo](https://claude.ai/artifact/WaETkwggYuzWMWC8yk9EHp) | 993 | Ảnh tĩnh lặp lại được; phim 4 giây render trong 4,3 giây | ✅ Nhẹ, nhanh |
 
@@ -83,6 +85,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Game
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [pixelfx](game/pixelfx.md) · [▶ demo](https://claude.ai/artifact/EM7uifwYmXvKWgSY4GK8a2) | 4.2k | 244/244 hiệu ứng qua check; tự viết thêm 1 hiệu ứng, check bắt đúng lỗi | ✅ Đẹp, gọn, công cụ kiểm tra tốt |
 | [Claude Code Game Studios](game/claude-code-game-studios.md) | 26.8k | 49 agent, 74 skill; cả 14 hook đều qua `bash -n` | ✅ Template chặt chẽ; nên dùng mức `minimal` |
 | [Scenario Agent Skills](game/scenario-skills.md) | 1.1k | Cài được 149 skill | ⚠️ Phần tạo asset là dịch vụ trả phí |
 
