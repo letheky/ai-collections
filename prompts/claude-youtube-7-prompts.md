@@ -51,7 +51,7 @@ Phần đánh giá dưới đây dựa trên việc đọc từng prompt và đ�
 
 | Prompt tạo ra | Dùng tiếp với |
 |---|---|
-| Kịch bản (prompt 4) | [OpenMontage](../video/openmontage.md) hoặc [HyperFrames](../animation/claude-motion-studio-15-repos.md) để dựng video giải thích; [huashu-art-motion](../animation/huashu-art-motion.md) có sẵn mẫu biểu đồ tài chính |
+| Kịch bản (prompt 4) | [OpenMontage](../video/openmontage.md) hoặc [HyperFrames](../animation/claude-motion-studio-15-repos.md) để dựng video giải thích |
 | Ý tưởng thumbnail (prompt 5) | [Taste Skill](../design/taste-skill.md) / [Impeccable](../design/impeccable.md) để kiểm tra độ tương phản và thứ bậc chữ |
 | Video demo sản phẩm (cho affiliate, prompt 7) | [Recordly](../video/recordly.md) |
 
