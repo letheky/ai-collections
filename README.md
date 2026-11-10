@@ -60,6 +60,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [Tech stack video YouTube bằng AI](video/youtube-ai-stacks.md) | — | Kiểm tra nhanh 18 repo (sao, giấy phép, ngày cập nhật); chưa cài thử | ⚠️ Nhiều repo được gọi "trending" nhưng rất nhỏ hoặc bỏ lâu |
+| [MoneyPrinterTurbo](video/moneyprinterturbo.md) | 141.6k | Cài 37 giây; 3.191/3.200 test đạt; Edge TTS giọng Việt chạy được | ✅ Pipeline chủ đề → video miễn phí; ⚠️ Pexels tạm ngưng cấp key mới |
 | [Freefield](video/freefield.md) · [▶ demo](https://claude.ai/artifact/Gq4szHmbhpdZrcSdT7GbGE) | 229 | ComfyUI CPU chấp nhận 122/122 workflow + 334/334 lab case; app smoke chạy thật | ✅ Rất chỉn chu, toàn bộ workflow hợp lệ; ⚠️ app thật cần GPU mạnh/Modal |
 | [Recordly](video/recordly.md) · [▶ demo](https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
 | [Skillry (awesome-opus5-5-videos)](video/skillry-opus-videos.md) · [▶ demo](https://claude.ai/artifact/QAjKzMaye1tjEZVMq7tidm) | 8.8k | 703 prompt (29% không đầy đủ); làm theo 1 prompt bằng Remotion ra video 15 giây | ✅ Kho prompt tham khảo tốt; nên kết hợp với một skill có quy tắc rõ ràng |
