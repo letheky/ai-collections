@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><title>Cà phê Việt Nam</title>
+<style>html,body{margin:0;background:#140d08;overflow:hidden}canvas{display:block}</style></head>
+<body><canvas id="c" width="1080" height="1920"></canvas>
+<script>
+const cv = document.getElementById('c'), x = cv.getContext('2d');
+const P = new URLSearchParams(location.search), SCENE = P.get('scene') || 'hook';
+const W = 1080, H = 1920, F = '"DejaVu Sans", sans-serif';
+const C = { bg: '#140d08', bg2: '#2a1a10', cream: '#f3e3c7', coffee: '#6b3e1f', dark: '#3a210f', orange: '#e08a2e', green: '#5f8f4e', milk: '#f6efe2', red: '#c8412b' };
+const cl = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
+const seg = (t, a, b) => cl((t - a) / (b - a));
+const ease = u => u < .5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+const back = u => { const s = 1.6; u = u - 1; return 1 + (s + 1) * u * u * u + s * u * u; };
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+
+function bg(t) {
+  const g = x.createLinearGradient(0, 0, 0, H); g.addColorStop(0, C.bg2); g.addColorStop(1, C.bg);
+  x.fillStyle = g; x.fillRect(0, 0, W, H);
+  const r = x.createRadialGradient(W / 2, 700, 50, W / 2, 700, 900);
+  r.addColorStop(0, 'rgba(224,138,46,0.16)'); r.addColorStop(1, 'rgba(224,138,46,0)');
+  x.fillStyle = r; x.fillRect(0, 0, W, H);
+}
+function bean(cx, cy, s, rot, col = C.coffee) {
+  x.save(); x.translate(cx, cy); x.rotate(rot);
+  x.fillStyle = col; x.beginPath(); x.ellipse(0, 0, 26 * s, 36 * s, 0, 0, 6.283); x.fill();
+  x.strokeStyle = 'rgba(20,10,4,0.75)'; x.lineWidth = 5 * s; x.beginPath();
+  x.moveTo(0, -30 * s); x.bezierCurveTo(-12 * s, -10 * s, 12 * s, 10 * s, 0, 30 * s); x.stroke();
+  x.restore();
+}
+function text(s, px, y, col, a = 1, weight = 'bold', align = 'center', xx = W / 2) {
+  x.globalAlpha = a; x.fillStyle = col; x.font = `${weight} ${px}px ${F}`; x.textAlign = align; x.textBaseline = 'middle';
+  x.fillText(s, xx, y); x.globalAlpha = 1;
+}
+function badge(n, t) {
+  const k = back(seg(t, 0, 0.6));
+  x.save(); x.translate(W / 2, 230); x.scale(k, k);
+  x.fillStyle = C.orange; x.beginPath(); x.arc(0, 0, 92, 0, 6.283); x.fill();
+  text(String(n), 110, 6, C.bg, 1, 'bold', 'center', 0); x.restore();
+}
+function roundRect(px, py, w, h, r) { x.beginPath(); x.roundRect(px, py, w, h, r); }
+
+// ------------------------------------------------------------------ scenes (t = seconds from scene start)
+const R = rng(2026), BEANS = Array.from({ length: 42 }, () => ({ x: R() * W, d: 0.3 + R() * 1.2, s: 0.7 + R() * 1.1, sp: 260 + R() * 260, r: R() * 6.28, vr: (R() - .5) * 3 }));
+function hook(t) {
+  bg(t);
+  for (const b of BEANS) { const y = -120 + ((t * b.sp + b.d * 900) % (H + 240)); bean(b.x, y, b.s, b.r + t * b.vr, C.dark); }
+  x.fillStyle = 'rgba(20,13,8,0.55)'; x.fillRect(0, 430, W, 760);
+  const a1 = ease(seg(t, 0.2, 0.9)), a2 = ease(seg(t, 0.7, 1.4)), a3 = ease(seg(t, 1.2, 1.9));
+  text('3 ĐIỀU THÚ VỊ', 120, 600 - 40 * (1 - a1), C.orange, a1);
+  text('VỀ', 90, 760 - 40 * (1 - a2), C.cream, a2);
+  text('CÀ PHÊ', 170, 920 - 40 * (1 - a3), C.cream, a3);
+  text('VIỆT NAM', 150, 1080 - 40 * (1 - a3), C.cream, a3);
+  x.fillStyle = C.red; x.fillRect(W / 2 - 180 * a3, 1170, 360 * a3, 10);
+}
+function exportScene(t) {
+  bg(t); badge(1, t);
+  // part A (0-6s): ranking bars
+  const A = 1 - seg(t, 5.6, 6.2), B = seg(t, 5.9, 6.6);
+  if (A > 0) {
+    x.globalAlpha = A;
+    text('XUẤT KHẨU CÀ PHÊ', 64, 420, C.cream);
+    const rows = [['Brazil', 1.0, '#7d9a6a', '#1'], ['Việt Nam', 0.62, C.red, '#2']];
+    rows.forEach(([name, v, col, rank], i) => {
+      const y = 600 + i * 230, g = ease(seg(t, 0.6 + i * 0.9, 1.9 + i * 0.9));
+      text(rank, 64, y + 60, C.orange, g, 'bold', 'left', 80);
+      x.fillStyle = col; roundRect(190, y, 760 * v * g, 120, 18); x.fill();
+      text(name, 54, y + 60, C.cream, g, 'bold', 'left', 215);
+    });
+    const s = seg(t, 2.8, 3.4);
+    if (s > 0) { x.save(); x.translate(W / 2, 1150); x.scale(back(s), back(s)); text('lớn thứ 2 thế giới', 66, 0, C.orange, 1, 'bold', 'center', 0); x.restore(); }
+    x.globalAlpha = 1;
+  }
+  // part B (6-12s): ~9/10 robusta + caffeine bars
+  if (B > 0) {
+    x.globalAlpha = B;
+    text('KHOẢNG 9/10 LÀ ROBUSTA', 58, 420, C.cream);
+    for (let i = 0; i < 10; i++) {
+      const gx = 160 + (i % 5) * 190, gy = 600 + Math.floor(i / 5) * 210, pop = back(seg(t, 6.4 + i * 0.12, 6.9 + i * 0.12));
+      bean(gx, gy, 1.6 * pop, 0.4, i < 9 ? C.coffee : '#b7864f');
+    }
+    text('Robusta', 46, 925, C.cream, seg(t, 7.8, 8.3), 'bold', 'left', 110);
+    text('Arabica', 46, 925, '#d8b483', seg(t, 7.8, 8.3), 'bold', 'right', 980);
+    text('CAFFEINE', 52, 1050, C.orange, seg(t, 8.6, 9.0));
+    const g1 = ease(seg(t, 9.0, 10.2)), g2 = ease(seg(t, 9.0, 9.8));
+    x.fillStyle = C.coffee; roundRect(140, 1110, 800 * g1, 70, 14); x.fill();
+    x.fillStyle = '#b7864f'; roundRect(140, 1200, 420 * g2, 70, 14); x.fill();
+    text('Robusta  ~2×', 40, 1145, C.cream, g1, 'bold', 'left', 165);
+    text('Arabica', 40, 1235, C.bg, g2, 'bold', 'left', 165);
+    x.globalAlpha = 1;
+  }
+}
+function phinScene(t) {
+  bg(t); badge(2, t);
+  text('PHIN & SỮA ĐẶC', 66, 420, C.cream, ease(seg(t, 0.2, 0.8)));
+  const cx = W / 2, gy0 = 820, gy1 = 1300, gw0 = 300, gw1 = 250;
+  // glass
+  const glass = (y) => { const u = (y - gy0) / (gy1 - gy0); return gw0 / 2 + (gw1 - gw0) / 2 * u; };
+  const milkH = 90 * ease(seg(t, 4.6, 6.0)), coffH = 300 * ease(seg(t, 1.2, 8.5));
+  // condensed milk at bottom, coffee above
+  const fillLayer = (y0, y1, col) => { x.fillStyle = col; x.beginPath(); x.moveTo(cx - glass(y0), y0); x.lineTo(cx + glass(y0), y0); x.lineTo(cx + glass(y1), y1); x.lineTo(cx - glass(y1), y1); x.closePath(); x.fill(); };
+  if (milkH > 0) fillLayer(gy1 - milkH, gy1, C.milk);
+  fillLayer(gy1 - milkH - coffH, gy1 - milkH, C.coffee);
+  x.strokeStyle = 'rgba(243,227,199,0.85)'; x.lineWidth = 8; x.beginPath();
+  x.moveTo(cx - gw0 / 2, gy0); x.lineTo(cx - gw1 / 2, gy1); x.lineTo(cx + gw1 / 2, gy1); x.lineTo(cx + gw0 / 2, gy0); x.stroke();
+  // phin on top
+  x.fillStyle = '#c9c9c4'; roundRect(cx - 130, gy0 - 170, 260, 150, 14); x.fill();
+  x.fillStyle = '#e4e4df'; roundRect(cx - 190, gy0 - 30, 380, 26, 10); x.fill();
+  x.fillStyle = '#b5b5ae'; roundRect(cx - 120, gy0 - 210, 240, 48, 18); x.fill();
+  x.fillStyle = '#9d9d96'; x.beginPath(); x.arc(cx, gy0 - 214, 16, 0, 6.283); x.fill();
+  // drips
+  for (let k = 0; k < 6; k++) {
+    const p = ((t * 1.1 + k / 6) % 1), surface = gy1 - milkH - coffH;
+    const y = gy0 + 6 + p * (surface - gy0 - 6);
+    if (t > 0.8 && y < surface - 8) { x.fillStyle = C.dark; x.beginPath(); x.ellipse(cx + (k % 2 ? 6 : -6), y, 9, 14, 0, 0, 6.283); x.fill(); }
+  }
+  const lab = seg(t, 1.4, 2.0), lab2 = seg(t, 5.2, 5.8);
+  text('nhỏ giọt thật chậm', 50, 1420, C.orange, lab);
+  text('← sữa đặc', 44, gy1 - 40, C.cream, lab2, 'bold', 'left', cx + 150);
+  text('sữa tươi ngày trước khó tìm, khó bảo quản', 34, 1500, C.cream, seg(t, 6.2, 6.8), 'normal');
+}
+function eggScene(t) {
+  bg(t); badge(3, t);
+  text('CÀ PHÊ TRỨNG', 70, 420, C.cream, ease(seg(t, 0.2, 0.8)));
+  const tag = back(seg(t, 1.0, 1.6));
+  x.save(); x.translate(W / 2, 560); x.scale(tag, tag); x.fillStyle = C.red; roundRect(-230, -50, 460, 100, 50); x.fill();
+  text('Hà Nội · 1946', 52, 2, C.cream, 1, 'bold', 'center', 0); x.restore();
+  const cx = W / 2, cy = 1130;
+  // cup
+  x.fillStyle = '#e9e2d6'; x.beginPath(); x.moveTo(cx - 230, cy - 170); x.lineTo(cx + 230, cy - 170); x.lineTo(cx + 180, cy + 150); x.lineTo(cx - 180, cy + 150); x.closePath(); x.fill();
+  x.strokeStyle = '#e9e2d6'; x.lineWidth = 34; x.beginPath(); x.arc(cx + 235, cy - 30, 80, -1.2, 1.2); x.stroke();
+  x.fillStyle = '#d8cfc0'; x.beginPath(); x.ellipse(cx, cy + 175, 300, 40, 0, 0, 6.283); x.fill();
+  // coffee then foam layer growing
+  const foam = ease(seg(t, 5.5, 8.5));
+  x.fillStyle = C.dark; x.beginPath(); x.ellipse(cx, cy - 170, 230, 46, 0, 0, 6.283); x.fill();
+  if (foam > 0) {
+    x.fillStyle = '#f2d58a'; x.beginPath(); x.ellipse(cx, cy - 170 - 30 * foam, 226, 44, 0, 0, 6.283); x.fill();
+    x.fillRect(cx - 226, cy - 170 - 30 * foam, 452, 30 * foam);
+    x.fillStyle = '#f8e6ad'; x.beginPath(); x.ellipse(cx - 40, cy - 182 - 30 * foam, 120, 18, 0, 0, 6.283); x.fill();
+  }
+  // whisk + egg yolk + sugar while whipping (2.5-6s)
+  const wa = seg(t, 2.2, 2.7) * (1 - seg(t, 5.6, 6.0));
+  if (wa > 0) {
+    x.globalAlpha = wa;
+    x.fillStyle = '#f0b429'; x.beginPath(); x.arc(cx - 250, 760, 46, 0, 6.283); x.fill();
+    text('lòng đỏ trứng', 36, 830, C.cream, 1, 'normal', 'center', cx - 250);
+    x.fillStyle = '#fbf6ee'; for (let i = 0; i < 18; i++) { x.fillRect(cx + 220 + (i % 6) * 14, 730 + Math.floor(i / 6) * 14, 9, 9); }
+    text('đường', 36, 830, C.cream, 1, 'normal', 'center', cx + 255);
+    const ang = t * 14;
+    x.save(); x.translate(cx, cy - 300); x.rotate(Math.sin(ang) * 0.35);
+    x.strokeStyle = '#cfcfca'; x.lineWidth = 7;
+    for (let k = -2; k <= 2; k++) { x.beginPath(); x.ellipse(k * 6, 40, 34 - Math.abs(k) * 6, 70, 0, 0, 6.283); x.stroke(); }
+    x.fillStyle = '#8c5a2b'; roundRect(-12, -160, 24, 140, 10); x.fill();
+    x.restore(); x.globalAlpha = 1;
+  }
+  text('lớp kem trứng mịn', 50, 1420, C.orange, seg(t, 7.0, 7.6));
+}
+function outro(t) {
+  bg(t);
+  text('Bạn thích điều nào nhất?', 64, 470, C.cream, ease(seg(t, 0.1, 0.7)));
+  const items = [['1', 'Robusta'], ['2', 'Phin'], ['3', 'Cà phê trứng']];
+  items.forEach(([n, s], i) => {
+    const k = back(seg(t, 0.6 + i * 0.35, 1.2 + i * 0.35)), cy = 680 + i * 190;
+    x.save(); x.translate(W / 2, cy); x.scale(k, k);
+    x.fillStyle = 'rgba(243,227,199,0.1)'; roundRect(-360, -70, 720, 140, 70); x.fill();
+    x.fillStyle = C.orange; x.beginPath(); x.arc(-280, 0, 50, 0, 6.283); x.fill();
+    text(n, 56, 3, C.bg, 1, 'bold', 'center', -280); text(s, 54, 3, C.cream, 1, 'bold', 'left', -200);
+    x.restore();
+  });
+  const f = back(seg(t, 2.6, 3.2));
+  x.save(); x.translate(W / 2, 1330); x.scale(f, f); x.fillStyle = C.red; roundRect(-250, -60, 500, 120, 60); x.fill();
+  text('THEO DÕI', 56, 3, C.cream, 1, 'bold', 'center', 0); x.restore();
+}
+const SC = { hook, export: exportScene, phin: phinScene, egg: eggScene, outro };
+window.renderAt = async t => SC[SCENE](t);
+if (P.get('export') !== '1') { const t0 = performance.now(); const loop = () => { SC[SCENE]((performance.now() - t0) / 1000); requestAnimationFrame(loop); }; loop(); }
+else SC[SCENE](0);
+</script></body></html>
