@@ -23,7 +23,7 @@ TTS tiếng Việt chạy ngay trên máy, do Phạm Nguyễn Ngọc Bảo xây 
 | Chạy với onnxruntime 1.31.1 (bản mới nhất pip cài) | ❌ Lỗi `External data path escapes model directory`: onnxruntime mới chặn đọc dữ liệu model khi cache Hugging Face để các file ở thư mục con khác nhau |
 | Hạ `onnxruntime==1.22.1` | ✅ Chạy được, nạp model 7,6 giây |
 | Đọc kịch bản video cà phê (144 từ) bằng 3 giọng trên 4 vCPU | ✅ Thùy Dung (nữ, Nam) 31,5 giây audio trong 26,9 giây; Thiện Minh (nam, Bắc) 35,5 giây trong 30,5 giây; Ngọc Trân (nữ, Trung) 40,5 giây trong 36,0 giây. RTF 0,82–0,89 |
-| Kiểm tra đọc sót bằng faster-whisper | ✅ Cả 3 giọng nghe ra 139/144 từ, không sót đoạn nào (phần lệch là Whisper đổi chữ thành số, ví dụ "1946"). Giọng miền Trung Whisper nhận kém nhất |
+| Kiểm tra đọc sót bằng faster-whisper | ✅ Cả 3 giọng nghe ra 139–140/144 từ, không sót đoạn nào (phần lệch là Whisper đổi chữ thành số, ví dụ "1946"). Giọng miền Trung Whisper nhận kém nhất |
 | Watermark audio | ✅ Chỉ bật khi cài thêm `vieneu[watermark]`; bản cài mặc định không gắn |
 
 ## Kết luận nhanh
