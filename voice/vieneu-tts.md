@@ -25,7 +25,7 @@ TTS tiếng Việt chạy ngay trên máy, do Phạm Nguyễn Ngọc Bảo xây 
 | Đọc kịch bản video cà phê (144 từ) bằng 3 giọng trên 4 vCPU | ✅ Thùy Dung (nữ, Nam) 31,5 giây audio trong 26,9 giây; Thiện Minh (nam, Bắc) 35,5 giây trong 30,5 giây; Ngọc Trân (nữ, Trung) 40,5 giây trong 36,0 giây. RTF 0,82–0,89 |
 | Kiểm tra đọc sót bằng faster-whisper | ✅ Cả 3 giọng nghe ra 139–140/144 từ, không sót đoạn nào (phần lệch là Whisper đổi chữ thành số, ví dụ "1946"). Giọng miền Trung Whisper nhận kém nhất |
 | Nghe lại bằng tai (người dùng) | ⚠️ Giọng Thùy Dung đọc cả bài một lần có chỗ ngắt sai và sai dấu, ví dụ "cho nhỏ … giọt thật châm" thay vì "nhỏ giọt thật chậm". Whisper không bắt được lỗi này (nó tự sửa theo ngữ cảnh), nên bước kiểm tra trên chỉ chứng minh không sót chữ, không chứng minh đọc đúng |
-| Tạo lại từng câu, `temperature=0.1` | ⚠️ Cả bài dài 65 giây thay vì 31,5 giây, nhiều khoảng lặng hơn; chất lượng phát âm cần nghe lại mới kết luận |
+| Tạo lại từng câu, `temperature=0.1` | ❌ Kết quả lần này không dùng được: script của tôi ghi file ở 24 kHz trong khi VieNeu xuất **48 kHz** (`tts.sample_rate`), nên audio chậm gấp đôi (65 giây thay vì khoảng 32 giây). Đây là lỗi của tôi, không phải lỗi của VieNeu |
 | Watermark audio | ✅ Chỉ bật khi cài thêm `vieneu[watermark]`; bản cài mặc định không gắn |
 
 ## Kết luận nhanh
@@ -46,6 +46,7 @@ tts = Vieneu()
 print(tts.list_preset_voices())                 # 25 giọng
 v = tts.get_preset_voice("Thùy Dung")
 tts.save(tts.infer(text="Xin chào các bạn", voice=v), "out.wav")
+# tự ghi bằng soundfile thì phải dùng đúng tts.sample_rate (48000), không phải 24000
 ```
 
 Web UI: `uv run vieneu-web` trong repo đã clone. GPU NVIDIA: `pip install "vieneu[cuda]"`.
