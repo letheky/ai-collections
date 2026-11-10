@@ -13,6 +13,7 @@ Mỗi ghi chú gồm: **Là gì**, **Đã test** (từng bước kèm số đo),
 - **Phần mềm:** Node 22.22, Python 3.13, uv 0.11, ffmpeg 6.1, Docker 29.8, Chromium 1194 (Playwright). Từ 23/10/2026 dùng thêm Go 1.24 (tự tải toolchain mới hơn khi repo yêu cầu), Rust 1.95–1.97 và Claude Code 2.1.309.
 - **Mạng ra ngoài bị giới hạn:** chặn Hugging Face, index PyTorch, quay.io, ghcr.io, nvcr.io, các kho ảnh mở và một số API.
   Bước nào cần các nguồn này được ghi là ⛔ không test được.
+- **Từ 10/11/2026:** môi trường cloud riêng `ai-collections` mở thêm Hugging Face (tải model), Edge TTS, Meshy, Poly Haven. Các ghi chú từ ngày này trở đi có thể đã tải model thật.
 
 ## Cấu trúc
 
@@ -22,6 +23,7 @@ Mỗi ghi chú gồm: **Là gì**, **Đã test** (từng bước kèm số đo),
 | [`web/`](web/) | Frontend, browser agent |
 | [`animation/`](animation/) | Hoạt hình và motion graphics bằng code, hoạt hình 3D |
 | [`video/`](video/) | Sản xuất video bằng agent, model tạo video, AI hiểu video |
+| [`voice/`](voice/) | TTS, clone giọng, lồng tiếng |
 | [`security/`](security/) | Kiểm thử bảo mật, phân tích phần mềm |
 | [`game/`](game/) | Làm game bằng agent, art game |
 | [`agents/`](agents/) | Agent đa năng, bộ agent, công cụ cho agent |
@@ -72,6 +74,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Voice
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [VieNeu-TTS](voice/vieneu-tts.md) · [▶ demo](https://claude.ai/artifact/QovAghxN6vmvbz2iW2nu55) | 3.2k | 25 giọng Việt 3 miền, chạy CPU nhanh hơn thời gian thực; không đọc sót chữ | ✅ TTS Việt miễn phí tốt nhất đã thử, Apache-2.0; ⚠️ phải ghim onnxruntime 1.22.1 |
+| [edge-tts](voice/edge-tts.md) | 12.5k | 2 giọng Việt, mốc thời gian từng từ; cần chỉ định proxy | ✅ Nhanh, miễn phí; ⚠️ dịch vụ Microsoft dùng không chính thức |
 | [Biên bản họp tiếng Việt](examples/vi-meeting-minutes/) | — | Hướng dẫn Meetily và WhisperX, cùng script `bien_ban.py` tự viết; WhisperX 3.8.6 cài được, script đã test với mock | ⚠️ Chưa chạy nhận dạng giọng nói thật (Hugging Face bị chặn) |
 
 ### Security
