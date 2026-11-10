@@ -23,7 +23,7 @@ Mỗi ghi chú gồm: **Là gì**, **Đã test** (từng bước kèm số đo),
 | [`web/`](web/) | Frontend, browser agent |
 | [`animation/`](animation/) | Hoạt hình và motion graphics bằng code, hoạt hình 3D |
 | [`video/`](video/) | Sản xuất video bằng agent, model tạo video, AI hiểu video |
-| [`voice/`](voice/) | TTS, clone giọng, lồng tiếng |
+| [`voice/`](voice/) | TTS, clone giọng, lồng tiếng, hiệu ứng âm thanh |
 | [`security/`](security/) | Kiểm thử bảo mật, phân tích phần mềm |
 | [`game/`](game/) | Làm game bằng agent, art game |
 | [`agents/`](agents/) | Agent đa năng, bộ agent, công cụ cho agent |
@@ -58,6 +58,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | [AnyScene](animation/anyscene.md) · [▶ demo](https://claude.ai/artifact/FqweHvq9w5ibrDY3w8SFLR) | 285 | Camera rig quay đúng (đổi tiêu cự, kéo nét); encoder chỉ chạy trên Windows | ⚠️ Cần fal trả phí: ~150 USD cho cảnh 90 prop |
 | [15 repo motion](animation/claude-motion-studio-15-repos.md) · [▶ demo](https://claude.ai/artifact/EPPqkjHvhpKRGWh7763ymW) | — | HyperFrames render phim 5 giây trong 10,5 giây; đếm skill thực tế của 9 repo | ✅ Nên bắt đầu với HyperFrames + gsap-skills |
 | [anidoodle](animation/anidoodle.md) · [▶ demo](https://claude.ai/artifact/WaETkwggYuzWMWC8yk9EHp) | 993 | Ảnh tĩnh lặp lại được; phim 4 giây render trong 4,3 giây | ✅ Nhẹ, nhanh |
+| [srt-whiteboard-animation](animation/srt-whiteboard-animation.md) | 5.5k | Render cảnh mẫu 8,6 giây trong 41 giây trên CPU, tay vẽ từng vùng theo lời kể | ✅ Phần hoạt hình miễn phí; ⚠️ vẫn phải tự có ảnh nét vẽ |
+| [Claude Animation Base](animation/claude-animation-base.md) | 2.8k | Đọc mã: p5.js + p5.brush, nhân vật Clawd vẽ tay | ⚠️ Chưa chạy; không GPU thì lớp màu nước chậm |
 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
@@ -68,8 +70,10 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | [Recordly](video/recordly.md) · [▶ demo](https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
 | [Skillry (awesome-opus5-5-videos)](video/skillry-opus-videos.md) · [▶ demo](https://claude.ai/artifact/QAjKzMaye1tjEZVMq7tidm) | 8.8k | 703 prompt (29% không đầy đủ); làm theo 1 prompt bằng Remotion ra video 15 giây | ✅ Kho prompt tham khảo tốt; nên kết hợp với một skill có quy tắc rõ ràng |
 | [OpenMontage](video/openmontage.md) · [▶ demo](https://claude.ai/artifact/SLcZu7ZYH9Q2Q1o7MJJpo1) | 69.5k | Setup 53 giây; demo 23 giây 1080p render trong 2 phút 6 giây | ✅ Demo không cần key chạy ngay |
-| [lemo-opuscar](video/lemo-opuscar.md) | 3.1k | Pipeline lõi render được; demo có sẵn thiếu font | ⚠️ Không render lại được demo từ bản clone mới |
+| [lemo-opuscar](video/lemo-opuscar.md) | 14.2k | Pipeline lõi render được; demo có sẵn thiếu font | ⚠️ Không render lại được demo từ bản clone mới |
 | [Seedance 2.0 Skill OS](video/seedance-2.0-skill.md) | 7.8k | Kiểm tra repo đạt 19/19; bộ sàng lọc kiểm duyệt bắt đúng từ khóa | ✅ Công cụ viết prompt nghiêm túc |
+| [onetake](video/onetake.md) | 4.0k | Đọc mã render: Playwright + motion blur thật; phim mẫu không kèm mã nguồn | ⚠️ Chưa chạy; giấy phép phi thương mại, Pro $79 |
+| [gbro-collage-broll](video/gbro-collage-broll.md) | 1.9k | B-roll cắt dán giấy từ model Gemini, 3 cổng duyệt | ⚠️ Không phải làm bằng code; cần key Gemini trả phí |
 
 ### Voice
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
@@ -77,6 +81,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | [VieNeu-TTS](voice/vieneu-tts.md) · [▶ demo](https://claude.ai/artifact/QovAghxN6vmvbz2iW2nu55) | 3.2k | 25 giọng Việt 3 miền, chạy CPU nhanh hơn thời gian thực; không sót chữ nhưng có chỗ ngắt sai, sai dấu | ✅ Offline, Apache-2.0; ⚠️ phải nghe lại trước khi dùng, ghim onnxruntime 1.22.1 |
 | [edge-tts](voice/edge-tts.md) | 12.5k | 2 giọng Việt, mốc thời gian từng từ; cần chỉ định proxy | ✅ Nhanh, miễn phí; ⚠️ dịch vụ Microsoft dùng không chính thức |
 | [Biên bản họp tiếng Việt](examples/vi-meeting-minutes/) | — | Hướng dẫn Meetily và WhisperX, cùng script `bien_ban.py` tự viết; WhisperX 3.8.6 cài được, script đã test với mock | ⚠️ Chưa chạy nhận dạng giọng nói thật (Hugging Face bị chặn) |
+| [Âm thanh cho video code](voice/sfx-for-code-videos.md) | 4.4k | earshot: 252 hiệu ứng tạo bằng code; Openverse; "Real SFX" không tìm thấy | ⚠️ Chưa chạy; earshot đáng thử nhất |
 
 ### Security
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |

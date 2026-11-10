@@ -2,7 +2,9 @@
 
 > Repo: https://github.com/lemomo-ai/lemo-opuscar · Code MIT; phim mẫu CC BY 4.0
 >
-> ⭐ **3.060 sao**, 339 fork (GitHub API, 2026-10-19) · Đã test: 2026-10-19
+> ⭐ **14.161 sao**, 1.709 fork (GitHub API, 2026-11-10; lúc test 2026-10-19 là 3.060 sao) · Đã test: 2026-10-19
+>
+> Cập nhật 2026-11-10: mô tả repo giờ ghi "66 phong cách dùng ngay" (bài giới thiệu nói 43; lúc test có 53 thư mục `styles/`). Chưa test lại.
 
 ## Là gì
 
