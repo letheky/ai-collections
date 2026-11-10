@@ -24,11 +24,13 @@ TTS tiếng Việt chạy ngay trên máy, do Phạm Nguyễn Ngọc Bảo xây 
 | Hạ `onnxruntime==1.22.1` | ✅ Chạy được, nạp model 7,6 giây |
 | Đọc kịch bản video cà phê (144 từ) bằng 3 giọng trên 4 vCPU | ✅ Thùy Dung (nữ, Nam) 31,5 giây audio trong 26,9 giây; Thiện Minh (nam, Bắc) 35,5 giây trong 30,5 giây; Ngọc Trân (nữ, Trung) 40,5 giây trong 36,0 giây. RTF 0,82–0,89 |
 | Kiểm tra đọc sót bằng faster-whisper | ✅ Cả 3 giọng nghe ra 139–140/144 từ, không sót đoạn nào (phần lệch là Whisper đổi chữ thành số, ví dụ "1946"). Giọng miền Trung Whisper nhận kém nhất |
+| Nghe lại bằng tai (người dùng) | ⚠️ Giọng Thùy Dung đọc cả bài một lần có chỗ ngắt sai và sai dấu, ví dụ "cho nhỏ … giọt thật châm" thay vì "nhỏ giọt thật chậm". Whisper không bắt được lỗi này (nó tự sửa theo ngữ cảnh), nên bước kiểm tra trên chỉ chứng minh không sót chữ, không chứng minh đọc đúng |
+| Tạo lại từng câu, `temperature=0.1` | ⚠️ Cả bài dài 65 giây thay vì 31,5 giây, nhiều khoảng lặng hơn; chất lượng phát âm cần nghe lại mới kết luận |
 | Watermark audio | ✅ Chỉ bật khi cài thêm `vieneu[watermark]`; bản cài mặc định không gắn |
 
 ## Kết luận nhanh
 
-✅ Lựa chọn TTS tiếng Việt miễn phí tốt nhất trong số tôi đã thử: chạy offline trên CPU, nhiều giọng 3 miền, Apache-2.0 nên dùng thương mại được, không phụ thuộc dịch vụ nào. Hợp để thay Edge TTS khi cần ổn định hoặc cần giọng địa phương.
+✅ Lựa chọn TTS tiếng Việt miễn phí tốt nhất trong số tôi đã thử: chạy offline trên CPU, nhiều giọng 3 miền, Apache-2.0 nên dùng thương mại được, không phụ thuộc dịch vụ nào. Hợp để thay Edge TTS khi cần giọng địa phương, **nhưng phải nghe lại toàn bộ trước khi dùng**: model sinh âm theo kiểu ngẫu nhiên nên có lúc ngắt giữa từ ghép hoặc đọc sai dấu.
 ⚠️ Trên máy 4 nhân chỉ nhanh hơn thời gian thực một chút; video dài nên chạy ở nền hoặc dùng GPU. Phải ghim `onnxruntime==1.22.1` cho tới khi tác giả sửa lỗi tương thích.
 
 ## Cài đặt

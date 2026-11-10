@@ -74,7 +74,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Voice
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
-| [VieNeu-TTS](voice/vieneu-tts.md) · [▶ demo](https://claude.ai/artifact/QovAghxN6vmvbz2iW2nu55) | 3.2k | 25 giọng Việt 3 miền, chạy CPU nhanh hơn thời gian thực; không đọc sót chữ | ✅ TTS Việt miễn phí tốt nhất đã thử, Apache-2.0; ⚠️ phải ghim onnxruntime 1.22.1 |
+| [VieNeu-TTS](voice/vieneu-tts.md) · [▶ demo](https://claude.ai/artifact/QovAghxN6vmvbz2iW2nu55) | 3.2k | 25 giọng Việt 3 miền, chạy CPU nhanh hơn thời gian thực; không sót chữ nhưng có chỗ ngắt sai, sai dấu | ✅ Offline, Apache-2.0; ⚠️ phải nghe lại trước khi dùng, ghim onnxruntime 1.22.1 |
 | [edge-tts](voice/edge-tts.md) | 12.5k | 2 giọng Việt, mốc thời gian từng từ; cần chỉ định proxy | ✅ Nhanh, miễn phí; ⚠️ dịch vụ Microsoft dùng không chính thức |
 | [Biên bản họp tiếng Việt](examples/vi-meeting-minutes/) | — | Hướng dẫn Meetily và WhisperX, cùng script `bien_ban.py` tự viết; WhisperX 3.8.6 cài được, script đã test với mock | ⚠️ Chưa chạy nhận dạng giọng nói thật (Hugging Face bị chặn) |
 
