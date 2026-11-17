@@ -44,6 +44,61 @@
 - "Mã nguồn mở": n8n, HunyuanVideo, LTX dùng giấy phép riêng của hãng, phải đọc điều khoản trước khi kiếm tiền.
 - Pexels (nguồn footage miễn phí mà nhiều pipeline dùng) ngày 10/11/2026 báo tạm dừng cấp key API mới.
 
+## Bản tin 17/11/2026 (6 bản)
+
+Số sao, fork, giấy phép, ngày push cuối lấy qua GitHub API ngày 2026-11-17. Cột "Đối chiếu" là kết quả tôi đọc mã nguồn; cột này chưa phải chạy thử.
+
+### Đã chạy thử
+
+| Repo | ⭐ | Kết quả |
+|---|---:|---|
+| [ffmpeg-skill](ffmpeg-skill.md) | 7.151 | ✅ 42 công cụ; tự đo lại kết quả, bắt đúng lỗi âm lượng và 24 kHz của pilot Berlin |
+| [anything2explainer](anything2explainer.md) | 3.369 | ✅ Render được lời Việt; ⚠️ giấy phép phi thương mại |
+| [html-video](html-video.md) | 4.849 | ❌ Điền nội dung qua CLI không có tác dụng, video ra vẫn là nội dung mẫu |
+| [Comfy MCP](../agents/comfy-mcp.md) | 348 | ✅ Đủ 41 công cụ, `preview_media` chạy; phần cần ComfyUI chưa test |
+
+### Kiểm tra nhanh (chưa cài thử)
+
+| Repo | ⭐ | Fork | Giấy phép | Push cuối | Đối chiếu với bản tin |
+|---|---:|---:|---|---|---|
+| [heygen-com/hyperframes](https://github.com/heygen-com/hyperframes) | 85.390 | 7.910 | Apache-2.0 | 2026-11-17 | Đã test trong [15 repo motion](../animation/claude-motion-studio-15-repos.md) |
+| [ATH-MaaS/Pixelle-Video](https://github.com/ATH-MaaS/Pixelle-Video) | 30.164 | 4.375 | Apache-2.0 | 2026-06-14 | Đúng là máy tạo video ngắn tự động; 5 tháng chưa push |
+| [jub0t/Concat](https://github.com/jub0t/Concat) | 18.202 | 2.234 | **AGPL-3.0** | 2026-11-16 | Đúng: có MCP (`concat --mcp`) và JSON-RPC API; đang beta |
+| [MeiGen-AI/InfiniteTalk](https://github.com/MeiGen-AI/InfiniteTalk) | 8.415 | 1.448 | Apache-2.0 | 2026-05-22 | Ra từ 8/2025, không phải "thế hệ mới"; cần GPU |
+| [PurpleDoubleD/locally-uncensored](https://github.com/PurpleDoubleD/locally-uncensored) | 4.327 | 701 | **AGPL-3.0** | 2026-11-17 | — |
+| [0xsline/OpenChatCut](https://github.com/0xsline/OpenChatCut) | 3.159 | 476 | **AGPL-3.0** | 2026-11-12 | Có MCP và Remotion; **không tìm thấy** tính năng "face-safe zone" trong mã |
+| [dmtrKovalenko/fframes](https://github.com/dmtrKovalenko/fframes) | 3.126 | 97 | MIT | 2026-11-15 | Rust, mỗi khung là một SVG; bản tin ghi "Rust/WASM" và "Apache-2.0/MIT" là gộp chung với html-video |
+| [zhuyansen/awesome-claude-video-skills](https://github.com/zhuyansen/awesome-claude-video-skills) | 2.241 | 213 | "NOASSERTION" | 2026-11-16 | Danh mục liệt kê; **không có** phần đo hiệu năng như bản tin nói |
+| [iart-ai/motion-skills](https://github.com/iart-ai/motion-skills) | 1.762 | 176 | MIT | 2026-11-13 | Repo "cổng" dẫn sang 19 repo con; trong repo này không có file SKILL.md nào |
+| [Fantasy-AMAP/fantasy-talking](https://github.com/Fantasy-AMAP/fantasy-talking) | 1.629 | 127 | Apache-2.0 | 2026-01-26 | Ra từ 4/2025; 10 tháng chưa push |
+| [JayWebtech/autoshorts](https://github.com/JayWebtech/autoshorts) | 1.556 | 283 | **Không có giấy phép** | 2026-11-16 | Đúng là có xếp hạng "viral moment"; không có giấy phép thì mặc định không được sửa hay phân phối lại |
+| [ersinkoc/AI-Video-Factory](https://github.com/ersinkoc/AI-Video-Factory) | 485 | 67 | MIT | 2026-11-16 | Đúng: agent Claude + Remotion + Studio web để duyệt; mới tạo 29/10 |
+| [appergb/OpenTake](https://github.com/appergb/OpenTake) | 126 | 30 | GPL-3.0 | **2026-09-07** | Fork của Palmier Pro; hơn 2 tháng chưa push |
+| [appergb/ClipSkills](https://github.com/appergb/ClipSkills) | 69 | 2 | "NOASSERTION" | **2026-06-19** | Chỉ có 1 lần push, ngày tạo repo |
+| [sieve-community/sievesync](https://github.com/sieve-community/sievesync) | 54 | 7 | MIT | **2024-09-25** | Bỏ từ 2024; là mã mẫu cho dịch vụ trả phí của Sieve |
+| [TechBeme/open-higgsfield](https://github.com/TechBeme/open-higgsfield) | 47 | 14 | MIT | 2026-11-17 | Gọi model qua API trả phí (Freepik, Gemini, Vertex AI...) |
+| [AIPMAndy/Andy-Video-Skill](https://github.com/AIPMAndy/Andy-Video-Skill) | 19 | 1 | MIT | 2026-11-12 | Có `director.py`; 19 sao, gần như chưa ai dùng |
+| [ismael-joffroy-chandoutis/comfyui-cinema-pipeline](https://github.com/ismael-joffroy-chandoutis/comfyui-cinema-pipeline) | 8 | 1 | "NOASSERTION" | 2026-09-09 | Nguồn duy nhất của tin "DaVinci Resolve 21.1 có MCP gốc" |
+| [akash-aman/Algorithmics](https://github.com/akash-aman/Algorithmics) | 2 | 0 | MIT | 2026-08-08 | Tài liệu ghi "proposed, not yet implemented"; chỉ là ghi chép nghiên cứu, không phải tài liệu của Fish Audio |
+| [YashvanthSankar/choco.video](https://github.com/YashvanthSankar/choco.video) | 1 | 0 | MIT | 2026-10-23 | **Chỉ chạy trên macOS**. "2¢ mỗi giờ video" là phí trả cho nhà cung cấp LLM nếu không dùng Apple Intelligence |
+| [anzy-renlab-ai/vocut](https://github.com/anzy-renlab-ai/vocut) | 0 | 1 | MIT | **2026-06-01** | 0 sao, gần 6 tháng chưa push; tính năng đúng như mô tả (yt-dlp, rerank, Remotion) |
+
+### Chỗ bản tin 17/11 chưa đúng
+
+- **Link HN sai chỗ:** item 50368804 được gắn cho cả OpenChatCut lẫn "Kino AI"; item 47170174 được gắn cho cả HyperFrames lẫn "Cardboard". Một link không thể là hai bài. Máy test không mở được HN để kiểm.
+- **Link Product Hunt:** FocuSee và Vozo AI đều trỏ về trang danh mục chung, không phải trang sản phẩm.
+- **Link GitHub không đúng repo:** "html-video (OpenDesign)" trỏ vào trang tổ chức `nexu-io`, repo thật là `nexu-io/html-video`.
+- **"Kiến trúc đồng bộ thời gian thực" của Fish Audio:** link dẫn tới một repo 2 sao, ghi chú nghiên cứu chưa làm. Thông tin Fish Audio trả mốc thời gian từng từ là do người viết ghi chú tự tìm, chưa phải tài liệu chính thức.
+- **"Trending" nhưng rất nhỏ hoặc bỏ lâu:** choco.video (1 sao), vocut (0 sao), Andy-Video-Skill (19), ClipSkills (69), sievesync (bỏ từ 2024).
+- **Giấy phép:**
+  - Bản tin không nhắc anything2explainer là phi thương mại.
+  - OpenChatCut, Concat, Locally Uncensored dùng AGPL.
+  - AutoShorts không có giấy phép.
+- **"html-video có sẵn 21 template kèm nhạc nền AI":** nhạc và lời đọc phải có key MiniMax trả phí. Điền nội dung qua CLI chưa chạy (xem [ghi chú](html-video.md)).
+- **Chưa kiểm chứng được:**
+  - Các bài Reddit (máy test bị chặn) và các số liệu trong đó: $0.07/clip trên Runware, ngưỡng 80% stayed-to-watch, 1.000 sub sau 3 tháng.
+  - Tên model "MiniMax H3 open-weight", "Seedance 2.5", "LTX 2.5".
+
 ## Gợi ý stack 0đ (không cần GPU)
 
 Claude viết kịch bản → người duyệt → Edge TTS giọng Việt → hình motion graphics bằng code (HyperFrames/Remotion) hoặc footage stock → phụ đề → ghép bằng MoneyPrinterTurbo hoặc FFmpeg → duyệt trước khi đăng.

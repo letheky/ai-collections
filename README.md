@@ -64,7 +64,10 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
-| [Tech stack video YouTube bằng AI](video/youtube-ai-stacks.md) | — | Kiểm tra nhanh 18 repo (sao, giấy phép, ngày cập nhật); chưa cài thử | ⚠️ Nhiều repo được gọi "trending" nhưng rất nhỏ hoặc bỏ lâu |
+| [Tech stack video YouTube bằng AI](video/youtube-ai-stacks.md) | — | Kiểm tra nhanh 18 repo (10/11) + 21 repo (17/11): sao, giấy phép, ngày cập nhật, đối chiếu mã nguồn | ⚠️ Nhiều repo được gọi "trending" nhưng rất nhỏ hoặc bỏ lâu; vài link HN/Product Hunt gắn sai |
+| [ffmpeg-skill](video/ffmpeg-skill.md) | 7.2k | 42 công cụ ffmpeg; trên pilot Berlin: 9:16 trong 24 giây, chuẩn hóa −14 LUFS, phụ đề karaoke tiếng Việt, `check` bắt đúng lỗi âm lượng/24 kHz | ✅ Không phụ thuộc gì, tự đo lại kết quả |
+| [anything2explainer](video/anything2explainer.md) | 3.4k | 8/8 test; lời Việt (Edge NamMinh) qua `tts_build`, render 25 giây trong 88 giây trên CPU | ⚠️ Quy tắc "số liệu phải có nguồn" rất tốt; giấy phép phi thương mại, chỉ hỗ trợ chính thức Trung/Anh |
+| [html-video](video/html-video.md) | 4.8k | Build 42 giây, render template 5 giây 1080p60 trong 10 giây | ❌ Điền nội dung qua CLI không có tác dụng: video ra vẫn là nội dung mẫu |
 | [MoneyPrinterTurbo](video/moneyprinterturbo.md) · [▶ ví dụ](examples/caphe-vietnam-shorts/) | 141.6k | Ra Shorts tiếng Việt 43,6 giây trong 2 phút 14 giây (hình tự làm, Edge TTS, phụ đề, nhạc) | ✅ Pipeline miễn phí chạy thật; ⚠️ Pexels tạm ngưng cấp key mới |
 | [Freefield](video/freefield.md) · [▶ demo](https://claude.ai/artifact/Gq4szHmbhpdZrcSdT7GbGE) | 229 | ComfyUI CPU chấp nhận 122/122 workflow + 334/334 lab case; app smoke chạy thật | ✅ Rất chỉn chu, toàn bộ workflow hợp lệ; ⚠️ app thật cần GPU mạnh/Modal |
 | [Recordly](video/recordly.md) · [▶ demo](https://claude.ai/artifact/Xq6vaMXuPw299JkPv17nGc) | 34.5k | 1.604 test đạt; mở được app Electron trên Linux | ✅ Lựa chọn miễn phí cho video demo; giấy phép AGPL kèm điều khoản ghi công |
@@ -104,6 +107,7 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
 | [Grok Build](agents/grok-build.md) | 27.5k | Binary Rust; headless ra JSON; `--yolo` thực thi tạo file, mặc định chặn chờ duyệt | ✅ Gọn, an toàn mặc định; ⚠️ build from source tải công cụ lúc build |
+| [Comfy MCP](agents/comfy-mcp.md) | 348 | 41 công cụ MCP; `preview_media` ra contact sheet từ pilot Berlin; phần cần ComfyUI chưa test | ⚠️ Chính chủ Comfy-Org, đủ công cụ; AGPL hoặc mua giấy phép |
 | [ThinkRail](agents/thinkrail.md) | 2.0k | Cài 2,7 giây; mỗi agent một git worktree riêng, thay đổi không đụng checkout chính | ✅ Ý tưởng worktree chạy đúng; ⚠️ công tắc chia sẻ dữ liệu bật sẵn |
 | [Claude SEO](agents/claude-seo.md) | 21.2k | 1.068/1.074 test đạt (6 lỗi do mạng test); phân tích HTML và kiểm schema đúng | ✅ Chạy trên máy, nhiều script độc lập; ⚠️ nhiều tính năng cần API key |
 | [Pi](agents/pi.md) | 117.8k | Chỉ 4 tool, prompt khoảng 3k ký tự; gọi bash qua mock | ✅ Gọn và rẻ nhất; ⚠️ treo nếu không đóng stdin |
