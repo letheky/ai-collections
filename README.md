@@ -64,6 +64,8 @@ Ký hiệu: ✅ chạy tốt · ⚠️ chạy được nhưng có điểm cần 
 ### Video
 | Ghi chú | ⭐ | Đã test | Kết luận nhanh |
 |---|--:|---|---|
+| [5 reel Facebook "hoạt hình code / stickman"](video/fb-reels-stickman-11-2026.md) | — | Chép lời, contact sheet, đo âm lượng và cắt cảnh 5 reel; đối chiếu repo và số liệu được nêu | ⚠️ Cùng mô-típ quảng cáo; "miễn phí" chỉ đúng phần skill, hình 3D cần credit tạo video; số view, thu nhập chưa kiểm chứng |
+| [Stickman Video Director](video/stickman-video-director.md) | 7.8k | 603/603 test; project mẫu B1 render 16,4 giây trong 16 giây trên CPU (sau khi sửa cho qua kiểm tra) | ✅ Skill nghiêm túc, có cổng duyệt; ⚠️ kiểu 3D cần Google Flow/credit, project mẫu chưa theo kịp kiểm tra của repo |
 | [Kinh nghiệm dựng video bằng AI](video/kinh-nghiem-dung-video.md) | — | 5 nguyên tắc và quy trình từng khâu, rút từ Shorts cà phê, phim Berlin và khoảng 15 công cụ đã chạy; mẹo từ bản tin tách riêng | ✅ Đo lại mọi file đầu ra, kiểm sự kiện trước khi thu âm, tạo giọng theo từng câu |
 | [Tech stack video YouTube bằng AI](video/youtube-ai-stacks.md) | — | Kiểm tra nhanh 18 repo (10/11) + 21 repo (17/11): sao, giấy phép, ngày cập nhật, đối chiếu mã nguồn | ⚠️ Nhiều repo được gọi "trending" nhưng rất nhỏ hoặc bỏ lâu; vài link HN/Product Hunt gắn sai |
 | [ffmpeg-skill](video/ffmpeg-skill.md) | 7.2k | 42 công cụ ffmpeg; trên pilot Berlin: 9:16 trong 24 giây, chuẩn hóa −14 LUFS, phụ đề karaoke tiếng Việt, `check` bắt đúng lỗi âm lượng/24 kHz | ✅ Không phụ thuộc gì, tự đo lại kết quả |
