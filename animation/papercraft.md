@@ -30,6 +30,8 @@ Template `popup-3d`: một làng quê mùa thu với 425 mảnh và nhân vật 
 | Video 4 giây 720p 24 fps, cảnh gập dựng lên từ mặt phẳng | ✅ 96 khung trong 507 giây, **khoảng 5 giây/khung** trên CPU (máy có GPU sẽ nhanh hơn nhiều) |
 | Tiếng giấy trong video | ⚠️ `capture.py` không tự ghép âm thanh. Thư viện có `renderOffline()` tạo tiếng giấy theo sự kiện, nhưng agent phải tự ghi sự kiện, xuất WAV rồi ghép vào video |
 
+| Dựng cảnh riêng: cửa khẩu Bornholmer đêm 9/11/1989 ([ví dụ](../examples/bornholmer-papercraft/)) | ✅ Khoảng 330 dòng `scene.js` tự viết: cầu giàn thép khoét lỗ, chòi gác phát sáng, barie, 46 người, lính gác, sĩ quan 3D. Dựng 2,4–3,6 giây; video 6 giây 720p trong ~4,5 phút (~1,9 giây/khung) |
+
 ## Kết luận nhanh
 
 ✅ Skill có chất lượng hình cao nhất trong các skill "phong cách" đã thử. Tài liệu rất kỹ, có số liệu cụ thể cho từng chi tiết (độ dày mép cắt, màu bóng, tiêu cự). Cùng một cảnh xuất được 16:9, 9:16, vuông, 4K.
