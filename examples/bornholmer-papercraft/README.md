@@ -39,7 +39,7 @@ Máy không có GPU thì thêm `'--use-angle=swiftshader', '--enable-unsafe-swif
 ## Còn thiếu
 
 - Video bắt đầu khi phần lớn cảnh đã dựng xong (camera tiến vào, cây bật lên), chưa có đoạn cả trạm gập lên từ mặt phẳng rõ ràng.
-- Chưa có tiếng giấy và chưa ghép lời dẫn.
+- Chưa có tiếng giấy (lời dẫn đã ghép trong bản nháp cả phim bên dưới).
 - Cảnh là dựng lại theo tinh thần sự kiện, không phải bản sao kiến trúc chính xác (số chòi, vị trí đèn, hình giàn cầu đều giản lược).
 
 ## Bản nháp cả phim (2026-11-26)
