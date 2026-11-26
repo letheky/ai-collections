@@ -21,7 +21,8 @@ BANNED   sky, snow, glossy steel, readable slogans, stamped identical people
 import * as P2 from 'papercraft/lib/paperkit-2d.js';
 import { makeCard, platform, boxFold } from 'papercraft/lib/paperkit-3d.js';
 import { createLife } from 'papercraft/lib/paper-life.js';
-import { createHarness } from './harness.js';
+import { createHarness, MOODS } from './harness.js';
+import { figures } from '../film-lib/figures.js';
 
 const C = {
   ground: '#a9a497', asphalt: '#9a978e', cobble: '#8d8a80', lane: '#e9e2cf', ballast: '#9c8f7c', rail: '#5b5048', sleeper: '#6e5642',
@@ -29,11 +30,17 @@ const C = {
   red: '#c0392b', cream: '#efe6d2', ink: '#2a2420', uniform: '#66704f', wall: '#cbc6b8', brick: '#9a5a44', plaster: '#bfae93',
   trunk: '#5a4636', trab: ['#9fb7c4', '#d9c9a0', '#b9c79a', '#c98f6a'], coats: ['#b0803a', '#8b3a2e', '#3f5a7a', '#5d4a6a', '#7a6a50', '#a2553a', '#4f6b5e', '#c9b48a'],
 };
-const H = createHarness({ ground: C.ground, stock: '#eef0f2', mood: 'night', view: { pitch: 47, dist: 70, target: [4, 1.5, -6] },
+const Q = new URLSearchParams(location.search), CAM = (Q.get('cam') || '').split(',').map(Number), FLOW = Number(Q.get('flow') || 0);
+// this world's night: a cooler, less violet moon than the template's, stronger sodium pools, deep navy only far away
+const NIGHT = { ...MOODS.night, key: '#c3d0f0', ki: 1.7, fill: '#7a8cbc', fi: 0.75, leak: '#2a3a72', glow: 1.7, lamp: 6.5,
+  post: { ...MOODS.night.post, saturation: 1.04, haze: '#121c40', hazeAmount: 0.75, vignette: 0.2, vignetteColor: '#080a1a', shadowTint: '#141a3c' } };
+const H = createHarness({ ground: C.ground, stock: '#eef0f2', mood: 'night', moods: { ...MOODS, night: NIGHT },
+  view: CAM.length === 3 ? { pitch: 46, dist: CAM[2], target: [CAM[0], 1.5, CAM[1]] } : { pitch: 47, dist: 70, target: [4, 1.5, -6] },
   bounds: { x0: -64, x1: 64, z0: -62, z1: 38 }, play: false, subject: [12, -5] });
 const D = P2.draw2;
 const STATE = new URLSearchParams(location.search).get('state') || 'closed';   // closed | few | open | morning
 let rnd = P2.rng(1989);
+const FIG = figures(() => rnd());
 const between = (a, b) => a + rnd() * (b - a), pick = (a) => a[Math.floor(rnd() * a.length)];
 
 // ---- leading lines --------------------------------------------------------------------------------------------------
@@ -61,6 +68,12 @@ H.printGround(({ g, ppu, X, Z, rnd: r, washes, torn, bandOf, line, drifts }) => 
   for (const s of [-1, 1]) line(roadPts.map(([x, z]) => [x, z + s * 3.25]), 0.5, P2.rgba(C.cobble, 0.6));
   for (let x = -60; x < 60; x += 3.2) { if (x > BR.x0 && x < BR.x1) continue; g.save(); g.translate(X(x), Z(roadZ(x))); g.rotate(Math.atan(roadZ(x + 0.1) - roadZ(x)) * 10 / ppu * ppu / 10); g.fillStyle = P2.rgba(C.lane, 0.7); g.fillRect(0, -0.08 * ppu, 1.6 * ppu, 0.16 * ppu); g.restore(); }
   { const x = 1.2, z = roadZ(x); g.fillStyle = P2.rgba(C.lane, 0.85); g.fillRect(X(x), Z(z - 2.8), 0.35 * ppu, 5.6 * ppu); }
+  // sidewalks: square paving slabs beyond the kerb, a pale kerb line, manhole covers, fallen leaves in the gutters
+  for (const sd of [-1, 1]) { for (let i = 0; i < roadPts.length - 1; i++) { const [x, z] = roadPts[i]; if (x > BR.x0 - 1 && x < BR.x1 + 1) continue;
+      for (let k = 0; k < 3; k++) { const zz = z + sd * (3.9 + k * 0.75); g.fillStyle = P2.rgba(k % 2 ? '#aaa597' : '#b6b1a3', 0.85); g.fillRect(X(x) + 1, Z(zz) - 0.33 * ppu, (128 / 120) * ppu - 2, 0.66 * ppu); } }
+    line(roadPts.filter(([x]) => x < BR.x0 - 1 || x > BR.x1 + 1).map(([x, z]) => [x, z + sd * 3.5]), 0.22, P2.rgba('#d8d2c2', 0.9)); }
+  for (const x of [-34, -6, 9, 17, 27, 38]) { const z = roadZ(x) + 1.4; g.fillStyle = P2.rgba('#5a5650', 0.8); g.beginPath(); g.arc(X(x), Z(z), 0.45 * ppu, 0, 7); g.fill(); g.strokeStyle = P2.rgba('#8a857a', 0.8); g.lineWidth = 0.06 * ppu; for (let k = -2; k <= 2; k++) { g.beginPath(); g.moveTo(X(x - 0.35), Z(z + k * 0.13)); g.lineTo(X(x + 0.35), Z(z + k * 0.13)); g.stroke(); } }
+  for (let k = 0; k < 1400; k++) { const x = -60 + r() * 120, sd = r() < 0.5 ? -1 : 1, z = roadZ(x) + sd * (2.9 + Math.abs(r() + r() - 1) * 3.5); g.fillStyle = P2.rgba(pick(['#b07a3a', '#8a5a2e', '#c99a4a', '#7a4a2a']), 0.75); g.save(); g.translate(X(x), Z(z)); g.rotate(r() * 6.3); g.beginPath(); g.ellipse(0, 0, 0.16 * ppu, 0.08 * ppu, 0, 0, 7); g.fill(); g.restore(); }
   // cobble patches and oil stains in drifts
   drifts((x, y) => { g.fillStyle = r() < 0.6 ? P2.rgba('#7f7b72', 0.45) : P2.rgba('#c9c3b4', 0.5); g.fillRect(x, y, 2.2 + r() * 1.5, 1.6 + r() * 1.2); });
 });
@@ -119,41 +132,19 @@ const K = {
   block: (w, h, col) => [P2.shape.rect(w, h), (P) => { const { box } = P; plain(col, 0.08)(P); P.marks('window', { color: C.window, alpha: 0.9, size: 0.09, lit: 0.22, dark: '#3b3a44', region: { ...box, y1: box.y1 - box.h * 0.08 } });
     P.layer((g) => { g.fillStyle = P2.shade(col, -0.3); g.fillRect(box.x0 - 1, box.y1 - box.h * 0.06, box.w + 2, box.h); }, P2.shade(col, -0.3), { lip: 0.6 }); }],
   // a bare November tree: trunk and forked limbs (both planes of a cross)
-  bareTree: () => { const h = between(7, 9.5); return piece((g, ink) => { g.fillStyle = ink('#4f433a'); for (const [cx, cy, rx, ry] of [[0, 0.74, 0.2, 0.17], [-0.17, 0.62, 0.14, 0.12], [0.18, 0.64, 0.14, 0.12], [-0.06, 0.88, 0.12, 0.08], [0.1, 0.86, 0.11, 0.08]]) D.ell(g, cx * h, cy * h, rx * h, ry * h);
-      g.fillStyle = ink('#8a7258', 'print'); for (let k = 0; k < 9; k++) { const a = -0.3 + k * 0.45; D.poly(g, [[-0.04, h * 0.5], [0.04, h * 0.5], [Math.cos(Math.PI / 2 + a - 2) * h * 0.3 + 0.03, h * 0.72 + Math.sin(Math.PI / 2 + a - 2) * h * 0.2], [Math.cos(Math.PI / 2 + a - 2) * h * 0.3 - 0.03, h * 0.72 + Math.sin(Math.PI / 2 + a - 2) * h * 0.2]]); }
-      g.fillStyle = ink(C.trunk, 'print'); D.poly(g, [[-0.28, 0], [0.28, 0], [0.16, h * 0.45], [-0.16, h * 0.45]]);
-      const limb = (x, y, a, L, w, d) => { if (d > 3) return; const x1 = x + Math.cos(a) * L, y1 = y + Math.sin(a) * L; D.poly(g, [[x - w, y], [x + w, y], [x1 + w * 0.5, y1], [x1 - w * 0.5, y1]]); limb(x1, y1, a + 0.45 + rnd() * 0.2, L * 0.72, w * 0.62, d + 1); limb(x1, y1, a - 0.45 - rnd() * 0.2, L * 0.72, w * 0.62, d + 1); };
-      limb(0, h * 0.42, Math.PI / 2 + 0.35, h * 0.24, 0.16, 0); limb(0, h * 0.42, Math.PI / 2 - 0.35, h * 0.24, 0.16, 0); limb(0, h * 0.4, Math.PI / 2, h * 0.28, 0.17, 1);
-      g.fillStyle = ink('#7a6248', 'print'); for (let k = 0; k < 6; k++) D.rect(g, -0.2, h * 0.05 + k * 0.5, 0.18, 0.06); }, h * 0.9, h, 'bare tree'); },
+  bareTree: () => { const h = between(7, 9.5), lobes = Array.from({ length: 7 }, (_, k) => [(rnd() - 0.5) * 0.42, 0.6 + rnd() * 0.3, 0.12 + rnd() * 0.07, 0.1 + rnd() * 0.05]);
+    const [pts, paint] = piece((g, ink) => {
+      g.fillStyle = ink(C.trunk); D.poly(g, [[-0.3, 0], [0.3, 0], [0.15, h * 0.5], [-0.15, h * 0.5]]);
+      for (const [a, L] of [[-0.6, 0.22], [0.55, 0.2], [0.05, 0.26]]) D.poly(g, [[-0.08, h * 0.42], [0.08, h * 0.42], [Math.sin(a) * h * L + 0.05, h * (0.42 + Math.cos(a) * L)], [Math.sin(a) * h * L - 0.05, h * (0.42 + Math.cos(a) * L)]]);
+      g.fillStyle = ink('#6e5a3e'); for (const [cx, cy, rx, ry] of lobes) D.ell(g, cx * h, cy * h, rx * h, ry * h); D.ell(g, 0, 0.7 * h, 0.2 * h, 0.16 * h);
+      g.fillStyle = ink('#4a3a2a', 'print'); for (let k = 0; k < 7; k++) { const a = -1.1 + k * 0.37; D.poly(g, [[-0.03, h * 0.55], [0.03, h * 0.55], [Math.sin(a) * h * 0.3 + 0.025, h * (0.55 + Math.cos(a) * 0.3)], [Math.sin(a) * h * 0.3 - 0.025, h * (0.55 + Math.cos(a) * 0.3)]]); }
+      g.fillStyle = ink('#7a6248', 'print'); for (let k = 0; k < 6; k++) D.rect(g, -0.22, h * 0.05 + k * 0.55, 0.16, 0.06);
+    }, h * 0.95, h, 'autumn tree');
+    return [pts, (P) => { paint(P); const r = { ...P.box, y0: P.box.y0 + P.box.h * 0.5 };
+      P.marks('leaf', { color: '#d39a3a', alpha: 0.85, size: 0.05, density: 0.7, region: r }); P.marks('leaf', { color: '#a8552e', alpha: 0.75, size: 0.045, density: 0.45, region: r }); P.marks('dab', { color: '#e8c46a', alpha: 0.6, size: 0.03, density: 0.35, region: r }); }]; },
   hedge: () => [P2.shape.mound(rnd, { w: between(4, 5.5), h: 1.8, lobes: 6, depth: 0.2 }), (P) => { plain('#56664f', 0.12)(P); P.marks('dab', { color: '#41503c', alpha: 0.55, size: 0.09 }); P.marks('dab', { color: '#8a8f6a', alpha: 0.45, size: 0.06 }); }],
 };
-// a person in the crowd: one frontal card, coat, scarf, hat or bare head; every one printed with its own colours
-function person(seedCol) {
-  const coat = pick(C.coats), scarf = pick(['#c0392b', '#efe6d2', '#d9a03a', '#3f5a7a']), hat = rnd() < 0.55, h = between(2.7, 3.2), skin = pick(['#f1d9b8', '#e8c9a4', '#dcb894']);
-  const arm = rnd() < 0.3;   // some raise an arm
-  return piece((g, ink) => {
-    g.fillStyle = ink('#2f2d2b'); D.rect(g, -0.28, 0, 0.22, h * 0.36, 0.06); D.rect(g, 0.06, 0, 0.22, h * 0.36, 0.06);
-    g.fillStyle = ink(coat); D.rect(g, -0.42, h * 0.28, 0.84, h * 0.46, 0.18);
-    if (arm) { D.poly(g, [[0.3, h * 0.66], [0.44, h * 0.62], [0.62, h * 0.98], [0.5, h * 1.0]]); g.fillStyle = ink(skin); D.ell(g, 0.57, h * 1.0, 0.09, 0.09); }
-    g.fillStyle = ink(scarf, 'print'); D.rect(g, -0.32, h * 0.68, 0.64, 0.14, 0.05);
-    g.fillStyle = ink(skin); D.rect(g, -0.1, h * 0.7, 0.2, h * 0.16); D.ell(g, 0, h * 0.85, 0.24, 0.27);
-    g.fillStyle = ink('#2a1608', 'print'); D.ell(g, -0.08, h * 0.86, 0.03, 0.035); D.ell(g, 0.08, h * 0.86, 0.03, 0.035);
-    g.fillStyle = ink(hat ? pick(['#4a4038', '#6b2f2a', '#3c4a5a']) : pick(['#4a2e1c', '#8a6a3a', '#2a2420'])); hat ? D.rect(g, -0.28, h * 0.85 + 0.17, 0.56, 0.22, 0.1) : D.ell(g, 0, h * 0.85 + 0.2, 0.25, 0.13);
-    g.fillStyle = ink(P2.shade(coat, -0.3), 'print'); D.rect(g, -0.02, h * 0.3, 0.04, h * 0.38); D.ell(g, 0.12, h * 0.5, 0.03, 0.03); D.ell(g, 0.12, h * 0.6, 0.03, 0.03);
-  }, 1.4, h * 1.1, 'person');
-}
-// a guard: grey-green uniform, peaked cap, belt
-function guard() {
-  const h = 3.2;
-  return piece((g, ink) => {
-    g.fillStyle = ink('#3f4433'); D.rect(g, -0.28, 0, 0.24, h * 0.38, 0.05); D.rect(g, 0.04, 0, 0.24, h * 0.38, 0.05);
-    g.fillStyle = ink(C.uniform); D.rect(g, -0.44, h * 0.3, 0.88, h * 0.45, 0.14);
-    g.fillStyle = ink('#3a3226', 'print'); D.rect(g, -0.44, h * 0.42, 0.88, 0.09);
-    g.fillStyle = ink('#f1d9b8'); D.rect(g, -0.1, h * 0.7, 0.2, h * 0.16); D.ell(g, 0, h * 0.84, 0.23, 0.26);
-    g.fillStyle = ink(C.uniform); D.rect(g, -0.3, h * 0.84 + 0.18, 0.6, 0.22, 0.08); g.fillStyle = ink('#2c2e26'); D.rect(g, -0.34, h * 0.84 + 0.16, 0.68, 0.08, 0.03);
-    g.fillStyle = ink('#c0392b', 'print'); D.ell(g, 0, h * 0.84 + 0.3, 0.05, 0.05);
-  }, 1.2, h * 1.1, 'guard');
-}
+const person = () => FIG.person(), guard = () => FIG.guard();
 
 // ---- the hero: the passport-control officer as a small 3D paper model (front + profile cards per part) -------------
 const officer = () => {
@@ -208,7 +199,7 @@ function barrier(x, raised) {
 }
 
 // ---- the world ------------------------------------------------------------------------------------------------------
-const LIFE = { breath: [] };
+const LIFE = { breath: [] }, MOVERS = [];
 {
   // 1. the bridge: deck (platform) over the rail cut, two riveted arch girders with their panels cut out
   const L = BR.x1 - BR.x0, cx = (BR.x0 + BR.x1) / 2, cz = roadZ(cx), W = 8.4, DH = 1.4;
@@ -243,10 +234,10 @@ const LIFE = { breath: [] };
   // and over the bridge. morning: thinner, people walking back east over the bridge.
   rnd = P2.rng(77);
   const onDeck = (n, dir) => { for (let k = 0; k < n; k++) { const u = between(-L / 2 + 1.5, L / 2 - 1.5), v = between(1.2, W - 1.2);
-      H.popup(...person(), { parent: deck.userData.deck, x: u, z: v - W, order: deckH.order + 0.5 + k * 0.01, res: 0.7, yaw: 0, scale: between(0.95, 1.08) }); } };
+      const hd = H.popup(...person(), { parent: deck.userData.deck, x: u, z: v - W, order: deckH.order + 0.5 + k * 0.01, res: 0.7, yaw: 0, scale: between(0.95, 1.08) }); MOVERS.push({ h: hd, deck: true, x0: -L / 2 + 1, x1: L / 2 - 1, ph: rnd() * 6, sp: between(0.9, 1.3) }); } };
   const street = (n, x0, x1, spread = 2.7) => { for (let k = 0; k < n; k++) { const x = between(x0, x1), z = roadZ(x) + between(-spread, spread);
       if (booths.some(([bx, sg]) => Math.hypot(x - bx, z - (roadZ(bx) + sg * 4.6)) < 3)) continue;
-      H.popup(...person(), { x, z, res: 0.7, scale: between(0.95, 1.08) }); if (k % 7 === 0) LIFE.breath.push([x, 2.8, z]); } };
+      const hd = H.popup(...person(), { x, z, res: 0.7, scale: between(0.95, 1.08) }); MOVERS.push({ h: hd, off: z - roadZ(x), x0, x1, ph: rnd() * 6, sp: between(0.9, 1.3) }); if (k % 7 === 0) LIFE.breath.push([x, 2.8, z]); } };
   if (STATE === 'closed' || STATE === 'few') {
     street(54, 24.2, 40, 3.0);
     for (const [x, dz] of [[21, -1.6], [21.6, 1.8], [6, -2.0], [2.8, 1.4]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
@@ -291,9 +282,17 @@ const LIFE = { breath: [] };
     H.popup(...piece((g, ink) => { g.fillStyle = ink('#5d605a'); D.rect(g, -0.1, 0, 0.2, 5.2); D.rect(g, -0.1 - s * 0, 4.9, s * 2.6 || 2.6, 0.14); }, 3, 5.4, 'mast'), { x, z, yaw: 0 }); }
 }
 
+// ---- ?flow=-1 (west, the night of the opening) / 1 (east, the morning after): the crowd walks along the road and the deck
+if (FLOW) {
+  const base = new Map();
+  H.onStep((t, dt) => { if (t < 3.2) return; const tt = t - 3.2;
+    for (const m of MOVERS) { const g = m.h.group; if (!base.has(m)) base.set(m, g.position.clone()); const b = base.get(m);
+      const span = m.x1 - m.x0; let x = b.x + FLOW * m.sp * 1.4 * tt; x = m.x0 + (((x - m.x0) % span) + span) % span;
+      g.position.x = x; if (!m.deck) g.position.z = roadZ(x) + m.off; g.position.y = b.y + Math.abs(Math.sin(tt * 5.5 * m.sp + m.ph)) * 0.07; g.rotation.z = Math.sin(tt * 5.5 * m.sp + m.ph) * 0.03; } });
+}
+
 // ---- life: breath and lamp haze over the crowd, a few dry leaves ---------------------------------------------------
 const life = createLife({ scene: H.scene, camera: H.camera, heroHeight: H.heroHeight, seed: 9, wind: [0.9, 0.3] });
-life.puffs({ at: LIFE.breath, night: 1, perEmitter: 2, life: 3.5, rise: 0.3, size: [0.06, 0.12], colors: ['#e8ecf2', '#dfe4ec'] });
 life.fallers({ night: 1, count: 18, cut: 'leaf', colors: ['#8a5a32', '#a7743e', '#6e4a2c'], size: [0.18, 0.26], land: 9 });
 life.setNight(1);
 life.reset(H.target);

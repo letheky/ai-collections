@@ -61,3 +61,13 @@ Quy trình (`film/`): `tts.py` tạo lời VieNeu từng câu và mốc thời g
 Chưa có: nhạc nền, tiếng giấy, người đi bộ (cảnh đám đông qua barie là ảnh tĩnh), băng gốc và ảnh tư liệu (đang để nhãn "Chèn …").
 
 ![Contact sheet v1](film/contact_v1.jpg)
+
+### Bản v3 (2026-11-26)
+
+- Nhân vật vẽ lại (`film-lib/figures.js`): áo khoác có vai, tay áo, cổ áo, cúc, khăn, 6 kiểu đầu (mũ lưỡi trai, mũ len, mũ lông, khăn trùm, tóc), mặt có má hồng; lính gác mặc áo choàng dài, mũ kê-pi viền đỏ; quan chức ngồi có vest, cà vạt, người phát ngôn giơ tờ văn bản.
+- Cây cuối thu tán thưa còn lá vàng; vỉa hè lát gạch, viền vỉa, nắp cống, lá rơi; đêm bớt tím, đèn vàng mạnh hơn.
+- Người đi bộ thật (`?flow=-1|1`): dòng người qua trạm lên cầu (N21b) và quay về sáng hôm sau (N23b).
+- Âm thanh: nhạc nền tự tổng hợp (pad La thứ + nốt piano thưa), tự hạ khi có lời; tiếng giấy rất nhẹ ở mỗi chuyển cảnh; cả bản trộn −14,3 LUFS.
+- Hình: tối viền khung, hạt phim nhẹ, mở từ đen và kết thúc về đen.
+
+![Contact sheet v3](film/contact_v3.jpg)

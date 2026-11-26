@@ -11,12 +11,14 @@ LIGHT    golden mood, practical pools over the table and the desk
 import * as P2 from 'papercraft/lib/paperkit-2d.js';
 import { makeCard, platform } from 'papercraft/lib/paperkit-3d.js';
 import { createHarness } from '../berlin/harness.js';
+import { figures } from '../film-lib/figures.js';
 
 const C = { floor: '#c9b48e', wall: '#4f5d6e', cloth: '#efe6d2', skirt: '#46604f', ink: '#2a2420', suit: ['#4a4a4e', '#5a4a3e', '#3e4652', '#6a5f52'], skin: ['#f1d9b8', '#e8c9a4'], red: '#c0392b' };
 const H = createHarness({ ground: C.floor, mood: 'golden', view: { pitch: 46, dist: 62, target: [0, 2, -5] }, bounds: { x0: -60, x1: 60, z0: -60, z1: 40 },
   play: false, subject: [0, -8], focus: [0, 2, -7], lens: { focusBand: 0.36, ramp: 0.45, maxBlur: 10 } });
 const D = P2.draw2;
 let rnd = P2.rng(911);
+const FIG = figures(() => rnd());
 const between = (a, b) => a + rnd() * (b - a), pick = (a) => a[Math.floor(rnd() * a.length)];
 const piece = (draw, w, h, name) => P2.drawnPiece(draw, { w, h, name });
 const plain = (c, k = 0.1) => (P) => { P.gradient(P2.shade(c, k), P2.shade(c, -k), 0.5); P.felt(0.4); P.innerShade(P2.shade(c, -0.55), { alpha: 0.3, blurPx: 8 }); };
@@ -38,19 +40,15 @@ const curtain = [P2.shape.rect(56, 16), (P) => { const { box } = P; plain(C.wall
 H.popup(...curtain, { x: 0, z: -16, yaw: 0 });
 
 // ---- the panel table: a platform with a cloth front and a deck for the microphones and papers --------------------
-const TW = 20, TD = 3.4, TH = 2.3;
+const TW = 20, TD = 3.4, TH = 1.7;
 const table = platform({ w: TW, d: TD, h: TH, paper: H.paper, seed: 931, print: H.cardOpts(0, -9),
   paints: { face: (P) => { const { box } = P; plain(C.cloth, 0.06)(P); P.layer((g) => { g.fillStyle = C.skirt; g.fillRect(box.x0 - 1, box.y0 - 1, box.w + 2, box.h * 0.62); }, C.skirt, { lip: 0.8 }); P.marks('stripe', { color: '#3a5040', alpha: 0.3, size: 0.04, region: { ...box, y1: box.y0 + box.h * 0.6 } }); },
     deck: plain(C.cloth, 0.05), support: plain(C.skirt, 0.08) } });
 const tableH = H.popup(null, null, { node: table, height: TH, x: 0, z: -7.6, level: true });
 // the panel: four seated men behind the table (upper bodies), the spokesman second from the left holding the paper
-const official = (holding) => { const suit = pick(C.suit), skin = pick(C.skin), tie = pick(['#7a2a2a', '#2a3a5a', '#4a4a2a']);
-  return piece((g, ink) => { g.fillStyle = ink(suit); D.rect(g, -0.75, 0, 1.5, 1.7, 0.3); g.fillStyle = ink('#efe6d2'); D.poly(g, [[-0.25, 1.7], [0.25, 1.7], [0, 1.1]]); g.fillStyle = ink(tie, 'print'); D.poly(g, [[-0.07, 1.6], [0.07, 1.6], [0.1, 1.05], [0, 0.95], [-0.1, 1.05]]);
-    g.fillStyle = ink(skin); D.rect(g, -0.14, 1.6, 0.28, 0.25); D.ell(g, 0, 2.15, 0.42, 0.48); g.fillStyle = ink(pick(['#8a8a88', '#5a4030', '#b9b5ac'])); D.ell(g, 0, 2.5, 0.4, 0.18);
-    g.fillStyle = ink('#2a1608', 'print'); D.ell(g, -0.15, 2.18, 0.05, 0.05); D.ell(g, 0.15, 2.18, 0.05, 0.05); D.rect(g, -0.32, 2.2, 0.64, 0.04);
-    if (holding) { g.fillStyle = ink(suit); D.poly(g, [[0.55, 1.4], [0.75, 1.3], [1.15, 1.9], [0.95, 2.0]]); g.fillStyle = ink('#fbf6ea'); D.rect(g, 0.85, 1.8, 0.9, 1.15, 0.03); g.fillStyle = ink('#8a8478', 'print'); for (let y = 2.0; y < 2.85; y += 0.16) D.rect(g, 0.95, y, 0.7, 0.04); g.fillStyle = ink(skin); D.ell(g, 1.0, 1.95, 0.12, 0.12); } }, 3.8, 3.2, 'official'); };
+const official = (holding) => FIG.official({ paper: holding });
 rnd = P2.rng(5);
-[-6, -2, 2, 6].forEach((x, i) => H.popup(...official(i === 1), { x, z: -11.6, yaw: 0, scale: 1.45, res: 0.9 }));
+[-6.5, -2.2, 2.2, 6.5].forEach((x, i) => H.popup(...official(i === 1), { x, z: -11.3, yaw: 0, scale: 1.85, res: 1 }));
 H.spots.spokesman = [-2, -10];
 // microphones, glasses and papers on the table deck (deck frame: x along the table, z 0 at its front edge to -TD)
 const mic = () => piece((g, ink) => { g.fillStyle = ink('#2a2a2c'); D.rect(g, -0.3, 0, 0.6, 0.12, 0.04); D.poly(g, [[-0.04, 0.1], [0.04, 0.1], [0.3, 1.3], [0.22, 1.32]]); D.ell(g, 0.28, 1.38, 0.14, 0.2); }, 0.9, 1.7, 'mic');
@@ -61,8 +59,7 @@ for (const x of [-5, 1, 5]) H.popup(...glass(), { parent: table.userData.deck, x
 for (const [x, w] of [[-8.5, 1], [-4.2, 1.2], [3, 1], [8.2, 0.9]]) H.popup(...piece((g, ink) => { g.fillStyle = ink('#efe6d2'); D.rect(g, -0.6 * w, 0, 1.2 * w, 0.55, 0.03); g.fillStyle = ink('#3a3a3a', 'print'); D.rect(g, -0.45 * w, 0.22, 0.9 * w, 0.1); }, 1.4 * w, 0.6, 'name plate'), { parent: table.userData.deck, x, z: -0.4, yaw: 0, order: (o += 0.01) });
 
 // ---- the press: rows of journalists seen from behind, TV cameras on tripods, photographers -------------------------
-const back = () => { const coat = pick(['#5a4a3e', '#3e4652', '#6a5f52', '#7a3a2e', '#4f6b5e', '#8a7a5a']), hair = pick(['#3a2a1a', '#6a4a2a', '#8a8a88', '#2a2420', '#b08a5a']);
-  return piece((g, ink) => { g.fillStyle = ink(coat); D.rect(g, -0.7, 0, 1.4, 1.9, 0.3); g.fillStyle = ink(P2.shade(coat, -0.2), 'print'); D.rect(g, -0.02, 0.2, 0.04, 1.5); g.fillStyle = ink(pick(C.skin)); D.rect(g, -0.15, 1.8, 0.3, 0.2); g.fillStyle = ink(hair); D.ell(g, 0, 2.3, 0.42, 0.48); }, 1.6, 2.9, 'journalist'); };
+const back = () => FIG.back();
 rnd = P2.rng(21);
 for (let row = 0; row < 4; row++) for (let k = 0; k < 9; k++) { const x = -14 + k * 3.4 + (row % 2) * 1.6 + between(-0.4, 0.4), z = -1.5 + row * 3.2 + between(-0.3, 0.3); if (Math.abs(x) < 1.2 && row < 2) continue; H.popup(...back(), { x, z, yaw: 0, scale: between(1.25, 1.4), res: 0.7 }); }
 const tvcam = () => piece((g, ink) => { g.fillStyle = ink('#3a3a3c'); D.poly(g, [[-1.0, 0], [-0.85, 0], [0, 2.6], [0.85, 0], [1.0, 0], [0.1, 2.9], [-0.1, 2.9]]); g.fillStyle = ink('#4a4c50'); D.rect(g, -0.9, 2.8, 1.8, 1.0, 0.1); D.rect(g, 0.85, 3.0, 0.6, 0.6, 0.05); g.fillStyle = ink(C.red, 'print'); D.ell(g, -0.6, 3.6, 0.1, 0.1); g.fillStyle = ink('#8a8c90', 'print'); D.rect(g, -0.9, 3.3, 1.8, 0.08); }, 3.2, 4.1, 'tv camera');
