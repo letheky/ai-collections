@@ -41,3 +41,23 @@ Máy không có GPU thì thêm `'--use-angle=swiftshader', '--enable-unsafe-swif
 - Video bắt đầu khi phần lớn cảnh đã dựng xong (camera tiến vào, cây bật lên), chưa có đoạn cả trạm gập lên từ mặt phẳng rõ ràng.
 - Chưa có tiếng giấy và chưa ghép lời dẫn.
 - Cảnh là dựng lại theo tinh thần sự kiện, không phải bản sao kiến trúc chính xác (số chòi, vị trí đèn, hình giàn cầu đều giản lược).
+
+## Bản nháp cả phim (2026-11-26)
+
+Dựng toàn bộ kịch bản v7 (33 đoạn) thành video 5 phút 56 giây, 1080p, bằng 3 bối cảnh giấy:
+
+| Bối cảnh | File | Dùng cho |
+|---|---|---|
+| Cửa khẩu Bornholmer, `?state=closed\|few\|open\|morning` | `scene.js` | N00, N01, N13b–N23 |
+| Bản đồ giấy, `?map=city\|europe`, `&state=demo` | `map/scene.js` | N02–N05 |
+| Phòng họp báo (bàn văn bản, góc ti vi và telex) | `press/scene.js` | N06–N13a |
+
+Quy trình (`film/`): `tts.py` tạo lời VieNeu từng câu và mốc thời gian; `shots.sh` chụp 27 ảnh 2400×1350; `clips.sh` render 3 đoạn gập dựng lên 6 giây; `assemble.py` lia/zoom ảnh, chuyển cảnh mờ dần, ghép lời, phụ đề theo chữ kịch bản, chuẩn hóa âm lượng.
+
+Đã sửa theo nguồn (Wikipedia tiếng Đức, bài Bösebrücke): trạm kiểm soát ở đầu phía đông cầu; trước giờ mở, đám đông đứng **ngoài** barie phía đông, cầu trống; barie hạ nằm ngang đường. Vị trí chính xác từng barie không có trong nguồn, nên đây là bố cục giản lược.
+
+Đo được: dựng mỗi bối cảnh 1–3,5 giây; ảnh 2400×1350 khoảng 30–60 giây mỗi ảnh; đoạn video 1080p khoảng 3–4 giây mỗi khung (WebGL chạy bằng CPU); âm lượng −14,3 LUFS sau khi nén nhẹ và chuẩn hóa hai lượt (chỉ chuẩn hóa tuyến tính thì chỉ đạt −15,2 vì lời đọc có đỉnh cao).
+
+Chưa có: nhạc nền, tiếng giấy, người đi bộ (cảnh đám đông qua barie là ảnh tĩnh), băng gốc và ảnh tư liệu (đang để nhãn "Chèn …").
+
+![Contact sheet v1](film/contact_v1.jpg)

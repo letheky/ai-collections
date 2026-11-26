@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Press room 9.11.1989</title>
+<link rel="icon" href="data:,">
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #2a2f3a; }
+  canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+  .hint { position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); font: italic 14px/1.3 Georgia, 'Times New Roman', serif;
+          color: #fff6e4; opacity: .85; letter-spacing: .03em; pointer-events: none; text-shadow: 0 1px 3px #5a3a20; }
+</style>
+<!-- "papercraft/" points at the folder that holds lib/ (and examples/): in your own project, wherever you copied them -->
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.187.0/build/three.module.js", "papercraft/": "../" } }</script>
+</head>
+<body>
+<div class="hint" id="hint">arrows / WASD to walk - click to fold the world flat - drag to look around</div>
+<!-- A pop-up world seen from INSIDE it: the camera looks down into the world, the printed ground runs past every edge,
+     dense groups of printed cards rise on hinges, a tilt-shift macro lens. harness.js is the fixed harness (renderer,
+     light, lens, clock, walking, capture hook); scene.js is the countryside WORKED EXAMPLE: write your own scene.js
+     with your own pieces. Serve assets/ over http (npx serve assets) and open /templates/popup-3d/.
+     ?capture ?test ?mood=golden|dusk|night ?walk ?still ?roam ?diag=key ?ss=2 -->
+<script type="module" src="./scene.js"></script>
+</body>
+</html>

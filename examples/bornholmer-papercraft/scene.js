@@ -29,9 +29,10 @@ const C = {
   red: '#c0392b', cream: '#efe6d2', ink: '#2a2420', uniform: '#66704f', wall: '#cbc6b8', brick: '#9a5a44', plaster: '#bfae93',
   trunk: '#5a4636', trab: ['#9fb7c4', '#d9c9a0', '#b9c79a', '#c98f6a'], coats: ['#b0803a', '#8b3a2e', '#3f5a7a', '#5d4a6a', '#7a6a50', '#a2553a', '#4f6b5e', '#c9b48a'],
 };
-const H = createHarness({ ground: C.ground, stock: '#eef0f2', mood: 'night', view: { pitch: 47, dist: 66, target: [0, 1.5, -6] },
-  bounds: { x0: -64, x1: 64, z0: -62, z1: 38 }, play: false, subject: [4, -5] });
+const H = createHarness({ ground: C.ground, stock: '#eef0f2', mood: 'night', view: { pitch: 47, dist: 70, target: [4, 1.5, -6] },
+  bounds: { x0: -64, x1: 64, z0: -62, z1: 38 }, play: false, subject: [12, -5] });
 const D = P2.draw2;
+const STATE = new URLSearchParams(location.search).get('state') || 'closed';   // closed | few | open | morning
 let rnd = P2.rng(1989);
 const between = (a, b) => a + rnd() * (b - a), pick = (a) => a[Math.floor(rnd() * a.length)];
 
@@ -192,14 +193,28 @@ const officer = () => {
   return g;
 };
 
+// a barrier across the road: a striped post (camera-facing) and a plank lying across the lanes on a pivot (flat when
+// lowered so the camera sees its stripes from above; tipped up ~65 deg when raised)
+function barrier(x, raised) {
+  const z0 = roadZ(x) - 3.0, g = new H.THREE.Group();
+  const post = makeCard(...(([pts, paint]) => [pts, { paint, paper: H.paper, thickness: 0.08, edgeWidth: 0.06, pxPerUnit: 48, seed: 601, folds: ['bottom'] }])(K.barrierPost()));
+  post.scale.setScalar(1.3); g.add(post);
+  const len = 6.2, [pp, ppaint] = piece((gg, ink) => { gg.fillStyle = ink(C.cream); D.rect(gg, 0, -0.26, len, 0.52, 0.18); gg.fillStyle = ink(C.red, 'print'); for (let t = 0.5; t < len - 0.5; t += 1.2) D.rect(gg, t, -0.26, 0.6, 0.52); }, len + 0.2, 0.7, 'barrier plank');
+  const plank = makeCard(pp.map(([px, py]) => [px, py + 0.35]), { paint: ppaint, paper: H.paper, thickness: 0.08, edgeWidth: 0.06, pxPerUnit: 48, seed: 603, folds: [] });
+  const pivot = new H.THREE.Group(); pivot.position.set(0, 2.0, 0.2); g.add(pivot);
+  const lay = new H.THREE.Group(); lay.rotation.set(-Math.PI / 2, 0, -Math.PI / 2); lay.add(plank); plank.position.y = -0.35;   // the plank's length runs along +z (across the road), its face up
+  const tip = new H.THREE.Group(); tip.add(lay); tip.rotation.x = raised ? -1.15 : 0; pivot.add(tip);
+  H.popup(null, null, { node: g, height: 2.6, x, z: z0, yaw: 0 }); mark(x, z0, 2);
+}
+
 // ---- the world ------------------------------------------------------------------------------------------------------
 const LIFE = { breath: [] };
 {
   // 1. the bridge: deck (platform) over the rail cut, two riveted arch girders with their panels cut out
-  const L = BR.x1 - BR.x0, cx = (BR.x0 + BR.x1) / 2, cz = roadZ(cx), W = 6.2, DH = 1.4;
+  const L = BR.x1 - BR.x0, cx = (BR.x0 + BR.x1) / 2, cz = roadZ(cx), W = 8.4, DH = 1.4;
   const deck = platform({ w: L, d: W, h: DH, paper: H.paper, seed: 501, print: H.cardOpts(cx, cz),
     paints: { face: steelPrint, deck: (P) => { plain(C.asphalt, 0.06)(P); P.draw((g) => { g.fillStyle = P2.rgba(C.lane, 0.6); for (let x = P.box.x0 + 0.5; x < P.box.x1; x += 3.2) g.fillRect(x, P.box.y0 + P.box.h * 0.48, 1.6, 0.16); }); }, support: steelPrint } });
-  H.popup(null, null, { node: deck, height: DH, x: cx, z: cz + W / 2, level: true });
+  const deckH = H.popup(null, null, { node: deck, height: DH, x: cx, z: cz + W / 2, level: true });
   mark(cx, cz, L / 2 + 1);
   for (const [dz, seed] of [[W / 2 + 0.15, 511], [-W / 2 - 0.15, 513]]) {
     const t = truss(L, 6.2);
@@ -209,13 +224,13 @@ const LIFE = { breath: [] };
   for (const x of [BR.x0 + 4, cx, BR.x1 - 4]) { H.popup(...K.streetLamp(), { x, z: cz + W / 2 + 0.9, yaw: 0, scale: 1.1 }); H.lamp(x + 1.3, 5, cz + W / 2, 0.7, 9); }
 
   // 2. the checkpoint: three booths along the lanes, a barrier across the road, floodlights, the wall at the cut
-  const booths = [[7.5, -1], [13, -1], [18.5, -1]];
+  var booths = [[7.5, -1], [13, -1], [18.5, -1]];
   booths.forEach(([x, s], i) => {
     const z = roadZ(x) + s * 4.6, col = i % 2 ? C.boothB : C.booth;
     const node = boxFold({ w: 4.2, d: 3.2, wallH: 3.6, roofH: 0.5, overhang: 0.35, paper: H.paper, seed: 521 + i * 7, paints: boothPaint(col), print: H.cardOpts(x, z) });
     const h = H.popup(null, null, { node, height: 4.1, x, z, yaw: -0.08 * s, solid: 2.6 }); H.glowing(h.group); H.lamp(x, 2.4, z + 2.2, 0.8, 8); mark(x, z, 3.4);
   });
-  { const x = 2.0, z = roadZ(x) - 2.4; H.popup(...K.barrierRaised(), { x, z, yaw: 0, scale: 1.25 }); mark(x, z, 2.5); }
+  barrier(2.0, STATE === 'open' || STATE === 'morning'); barrier(22.5, STATE === 'open' || STATE === 'morning');
   for (const [x, dz] of [[-0.5, -5.5], [13, 6.8], [21, -6.5]]) { const z = roadZ(x) + dz; H.popup(...K.floodlight(), { x, z, yaw: 0, scale: 1.2 }); H.lamp(x, 8.6, z + 1, 2.2, 18); mark(x, z, 1.2); }
   { const x = 4.5, z = roadZ(x) + 4.2; H.popup(...K.sign(), { x, z, yaw: -0.1, scale: 1.2 }); mark(x, z, 1); }
   // crowd fences along the verge east of the booths
@@ -223,19 +238,30 @@ const LIFE = { breath: [] };
   // the wall (Hinterlandmauer) along the east edge of the rail cut, broken by the road
   for (let z = -40; z < 30; z += 2.9) { const x = railX(z) + 7.2; if (Math.abs(z - roadZ(x)) < 5) continue; H.popup(...K.wallSlab(), { x, z, yaw: -Math.atan(0.32) + Math.PI / 2 - Math.PI / 2, scale: 1 }); }
 
-  // 3. the crowd: pressed against the barrier and the booths, looking west; a few guards between them and the gate
+  // 3. people. closed: the crowd waits OUTSIDE the outer barrier (east), guards and the officer inside, the bridge empty.
+  // few: as closed, plus a handful let through walking west on the bridge. open: the crowd streams through the booths
+  // and over the bridge. morning: thinner, people walking back east over the bridge.
   rnd = P2.rng(77);
-  for (let k = 0; k < 46; k++) {
-    const x = between(3.6, 24), off = between(-2.6, 2.6), z = roadZ(x) + off;
-    if (Math.hypot(x - 7, z - (roadZ(7) - 4.6)) < 2.8 || false) continue;
-    H.popup(...person(), { x, z, res: 0.7, scale: between(0.95, 1.08) });
-    if (k % 6 === 0) LIFE.breath.push([x, 2.8, z]);
+  const onDeck = (n, dir) => { for (let k = 0; k < n; k++) { const u = between(-L / 2 + 1.5, L / 2 - 1.5), v = between(1.2, W - 1.2);
+      H.popup(...person(), { parent: deck.userData.deck, x: u, z: v - W, order: deckH.order + 0.5 + k * 0.01, res: 0.7, yaw: 0, scale: between(0.95, 1.08) }); } };
+  const street = (n, x0, x1, spread = 2.7) => { for (let k = 0; k < n; k++) { const x = between(x0, x1), z = roadZ(x) + between(-spread, spread);
+      if (booths.some(([bx, sg]) => Math.hypot(x - bx, z - (roadZ(bx) + sg * 4.6)) < 3)) continue;
+      H.popup(...person(), { x, z, res: 0.7, scale: between(0.95, 1.08) }); if (k % 7 === 0) LIFE.breath.push([x, 2.8, z]); } };
+  if (STATE === 'closed' || STATE === 'few') {
+    street(54, 24.2, 40, 3.0);
+    for (const [x, dz] of [[21, -1.6], [21.6, 1.8], [6, -2.0], [2.8, 1.4]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
+    if (STATE === 'few') onDeck(5, -1);
+  } else if (STATE === 'open') {
+    street(40, 3, 40, 2.8); onDeck(26, -1);
+    for (const [x, dz] of [[1.0, -3.0], [23.5, -3.4]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
+  } else {
+    street(10, 3, 30, 2.6); onDeck(14, 1);
+    for (const [x, dz] of [[1.0, -3.0]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
   }
-  for (const [x, dz] of [[1.2, -1.2], [0.8, 1.6], [5.2, -4.8]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
-  // the officer (the hero), off-centre between the barrier and the first booth
-  { const doll = officer(), x = 3.6, z = roadZ(x) - 1.0; H.setHero(H.popup(null, null, { node: doll, height: 3.1, x, z, sway: 0.15, scale: 1.2 }), { stride: doll.userData.stride }); mark(x, z, 1.5); }
-  // Trabants queued on the east approach
-  for (const [x, dz, i] of [[27, 1.2, 0], [32, -1.0, 1], [37, 1.0, 2], [42, -0.8, 3]]) H.popup(...K.trabant(C.trab[i]), { x, z: roadZ(x) + dz, yaw: -Math.atan(0.0105 * 2 * (x + 2)), scale: 1.15 });
+  // the officer (the hero): inside, by the outer barrier he will open
+  { const doll = officer(), x = 19.5, z = roadZ(x) - 0.6; H.setHero(H.popup(null, null, { node: doll, height: 3.1, x, z, sway: 0.15, scale: 1.2 }), { stride: doll.userData.stride }); mark(x, z, 1.5); }
+  // Trabants among the crowd on the east approach
+  for (const [x, dz, i] of [[31, 2.2, 0], [37, -2.2, 1], [44, 1.8, 2], [50, -1.6, 3]]) H.popup(...K.trabant(C.trab[i]), { x, z: roadZ(x) + dz, yaw: -Math.atan(0.0105 * 2 * (x + 2)), scale: 1.15 });
 
   // 4. the far edge: tenement blocks (layered flats cut by the top edge), hedges and bare trees
   rnd = P2.rng(303);
