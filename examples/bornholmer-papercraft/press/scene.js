@@ -61,21 +61,25 @@ for (const [x, w] of [[-8.5, 1], [-4.2, 1.2], [3, 1], [8.2, 0.9]]) H.popup(...pi
 // ---- the press: rows of journalists seen from behind, TV cameras on tripods, photographers -------------------------
 const back = () => FIG.back();
 rnd = P2.rng(21);
-for (let row = 0; row < 4; row++) for (let k = 0; k < 9; k++) { const x = -14 + k * 3.4 + (row % 2) * 1.6 + between(-0.4, 0.4), z = -1.5 + row * 3.2 + between(-0.3, 0.3); if (Math.abs(x) < 1.2 && row < 2) continue; H.popup(...back(), { x, z, yaw: 0, scale: between(1.25, 1.4), res: 0.7 }); }
+for (let row = 0; row < 4; row++) for (let k = 0; k < 9; k++) { const x = -14 + k * 3.4 + (row % 2) * 1.6 + between(-0.4, 0.4), z = -1.5 + row * 3.2 + between(-0.3, 0.3); if ((Math.abs(x) < 1.2 && row < 2) || (x > 10.5 && z > 4.5) || (x < -10.5 && z > 4.5)) continue; H.popup(...back(), { x, z, yaw: 0, scale: between(1.25, 1.4), res: 0.7 }); }
 const tvcam = () => piece((g, ink) => { g.fillStyle = ink('#3a3a3c'); D.poly(g, [[-1.0, 0], [-0.85, 0], [0, 2.6], [0.85, 0], [1.0, 0], [0.1, 2.9], [-0.1, 2.9]]); g.fillStyle = ink('#4a4c50'); D.rect(g, -0.9, 2.8, 1.8, 1.0, 0.1); D.rect(g, 0.85, 3.0, 0.6, 0.6, 0.05); g.fillStyle = ink(C.red, 'print'); D.ell(g, -0.6, 3.6, 0.1, 0.1); g.fillStyle = ink('#8a8c90', 'print'); D.rect(g, -0.9, 3.3, 1.8, 0.08); }, 3.2, 4.1, 'tv camera');
 for (const [x, z] of [[-11, -5], [10.5, -5.2], [0.4, 11]]) H.popup(...tvcam(), { x, z, yaw: 0, scale: 1.4 });
 for (const [x, z] of [[-16.5, -3], [15.5, -1]]) H.lamp(x, 6, z, 1.0, 14);
 H.lamp(0, 7, -9, 1.6, 16);
 
 // ---- the desk with the regulation text (front right): a paper lying flat, a stamp, a pen ---------------------------
-{ const desk = platform({ w: 7, d: 4.2, h: 2.0, paper: H.paper, seed: 951, print: H.cardOpts(15, 6), paints: { face: plain('#7a5a3a', 0.1), deck: (P) => { plain('#8a6a46', 0.08)(P); P.marks('hatch', { color: '#6a4a2a', alpha: 0.3, size: 0.06 }); }, support: plain('#6a4a2a', 0.1) } });
+{ const desk = platform({ w: 7, d: 4.2, h: 2.0, paper: H.paper, seed: 951, print: H.cardOpts(15, 6), paints: { face: plain('#7a5a3a', 0.1), deck: (P) => { plain('#8a6a46', 0.08)(P); P.marks('hatch', { color: '#6a4a2a', alpha: 0.3, size: 0.06 });
+    const { box } = P; const sheetAt = (x0, y0, w, h, a, stamp) => { P.layer((g) => { g.save(); g.translate(x0 + w / 2, y0 + h / 2); g.rotate(a); g.fillStyle = '#fbf6ea'; g.fillRect(-w / 2, -h / 2, w, h);
+        g.fillStyle = '#3a3a3a'; g.fillRect(-w * 0.25, h * 0.36, w * 0.5, 0.12); for (let y = -h * 0.38; y < h * 0.28; y += 0.22) g.fillRect(-w * 0.4, y, w * (0.55 + ((y * 7 + 9) % 1) * 0.3), 0.06);
+        if (stamp) { g.strokeStyle = '#3a5a9a'; g.lineWidth = 0.1; g.beginPath(); g.arc(w * 0.22, -h * 0.3, 0.4, 0, 7); g.stroke(); g.beginPath(); g.arc(w * 0.22, -h * 0.3, 0.24, 0, 7); g.stroke(); g.fillStyle = '#3a5a9a'; g.fillRect(w * 0.22 - 0.3, -h * 0.3 - 0.04, 0.6, 0.08); }
+        g.restore(); }, '#fbf6ea', { lip: 0.8 }); };
+    sheetAt(box.x0 + 0.5, box.y0 + 0.3, 3.0, 3.6, 0.1, true); sheetAt(box.x0 + 3.7, box.y0 + 0.4, 2.6, 3.2, -0.18, false); }, support: plain('#6a4a2a', 0.1) } });
   const dh = H.popup(null, null, { node: desk, height: 2.0, x: 15, z: 8.4, level: true });
   const sheet = (w, h, stamp, seed) => { const g = new H.THREE.Group(); const [pts, paint] = piece((gg, ink) => { gg.fillStyle = ink('#fbf6ea'); D.rect(gg, 0, 0, w, h, 0.02); gg.fillStyle = ink('#3a3a3a', 'print'); D.rect(gg, w * 0.25, h * 0.88, w * 0.5, 0.12); for (let y = h * 0.12; y < h * 0.8; y += 0.22) D.rect(gg, w * 0.1, y, w * (0.55 + ((y * 7) % 1) * 0.3), 0.06);
       if (stamp) { gg.fillStyle = ink('#3a5a9a', 'print'); D.ell(gg, w * 0.75, h * 0.18, 0.42, 0.42); gg.fillStyle = ink('#fbf6ea', 'print'); D.ell(gg, w * 0.75, h * 0.18, 0.3, 0.3); gg.fillStyle = ink('#3a5a9a', 'print'); D.ell(gg, w * 0.75, h * 0.18, 0.12, 0.12); } }, w + 0.1, h + 0.1, 'sheet');
-    const m = card(pts, paint, seed); m.rotation.x = -Math.PI / 2; m.position.y = 0.02; g.add(m); return g; };
+    const m = card(pts, paint, seed); g.add(m); return g; };
   let od = dh.order + 0.5;
-  H.popup(null, null, { node: sheet(3.0, 3.9, true, 961), parent: desk.userData.deck, x: -1.6, z: -0.3, yaw: 0.12, order: (od += 0.01), height: 0.1 });
-  H.popup(null, null, { node: sheet(2.6, 3.4, false, 963), parent: desk.userData.deck, x: 1.6, z: -0.5, yaw: -0.2, order: (od += 0.01), height: 0.1 });
+
   H.popup(...piece((g, ink) => { g.fillStyle = ink('#5a3a2a'); D.rect(g, -0.25, 0, 0.5, 0.25, 0.05); D.rect(g, -0.08, 0.25, 0.16, 0.5); D.ell(g, 0, 0.85, 0.2, 0.16); }, 0.6, 1.1, 'stamp'), { parent: desk.userData.deck, x: 2.6, z: -2.8, yaw: 0, order: (od += 0.01) });
   H.spots.desk = [15, 6.5]; H.lamp(15, 5, 7, 1.2, 9); }
 

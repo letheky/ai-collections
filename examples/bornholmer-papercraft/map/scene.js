@@ -86,8 +86,8 @@ if (MAP === 'city') {
   }
   if (STATE === 'demo') {   // 4 November 1989: hundreds of thousands at Alexanderplatz, by the TV tower
     rnd = P2.rng(11);
-    for (let k = 0; k < 120; k++) { const a = rnd() * 6.28, r = Math.sqrt(rnd()) * 5.5, x = 9 + Math.cos(a) * r * 1.3, z = -1 + Math.sin(a) * r * 0.8; if (Math.hypot(x - 9, z + 1.5) < 1.2) continue; H.popup(...person(), { x, z, res: 0.5, scale: between(0.9, 1.1) }); }
-    for (const [x, z] of [[6, 1.5], [12, 2], [10.5, -4.5], [5.5, -3]]) H.popup(...banner(), { x, z, yaw: 0, res: 0.7 });
+    const DEMO = []; for (let k = 0; k < 260; k++) { const a = rnd() * 6.28, r = Math.sqrt(rnd()) * 5.5, x = 9 + Math.cos(a) * r * 1.3, z = -1 + Math.sin(a) * r * 0.8; if (Math.hypot(x - 9, z + 1.5) < 1.4 || spree.some(([sx, sz]) => Math.hypot(x - sx, z - sz) < 1.6) || DEMO.some(([a, b]) => Math.hypot(x - a, z - b) < 0.55) || keep.some(([a, b, r]) => r === 1.6 && Math.hypot(x - a, z - b) < 1.3)) continue; DEMO.push([x, z]); H.popup(...person(), { x, z, res: 0.5, scale: between(0.9, 1.1) }); }
+    for (const [x, z] of [[6.5, 2.6], [12.5, 3.2], [11.5, -5.2], [5.2, -4.4]].filter(([x, z]) => !spree.some(([sx, sz]) => Math.hypot(x - sx, z - sz) < 1.8))) H.popup(...banner(), { x, z, yaw: 0, res: 0.7 });
   }
   H.setHero(H.popup(...person(1.6), { x: -40, z: 30 }), {});
 } else {

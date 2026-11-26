@@ -1,7 +1,7 @@
 # Assemble the papercraft draft of the film: Ken Burns moves over 2400x1350 stills, three pop-up clips, crossfades,
 # narration with per-sentence subtitles (script text, not ASR), an intro title, loudness to -14 LUFS.
 import json, os, subprocess, glob, numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter
 
 D = os.path.dirname(os.path.abspath(__file__)); SH = f"{D}/shots"
 W, H, FPS, XF = 1920, 1080, 25, 10          # output, crossfade frames
@@ -14,14 +14,14 @@ PLAN = {   # segment -> shots (stills by name, V_* = pop-up clips); time is spli
   "N02a": ["M_city", "M_city_west"], "N02b": ["M_city_bridge", "B_bridge_empty"], "N01a": ["B_closed_booth", "B_closed_crowd"],
   "N03a": ["V_map", "M_city_wall"], "N03b": ["M_city_wall", "B_closed_wide"], "N04a": ["M_europe", "M_europe_hun"],
   "N04b": ["M_europe_cssr", "M_europe"], "N05b": ["M_demo"], "N06b": ["P_desk"], "N07a": ["P_desk", "P_wide"],
-  "N07b": ["P_desk", "B_closed_booth"], "N08a": ["P_desk"], "N10a": ["V_press", "P_spk"], "N10b": ["P_wide", "P_table"],
+  "N07b": ["P_desk", "B_closed_booth"], "N08a": ["P_desk"], "N10a": ["V_press", "P_spk"], "N10b": ["P_wide", "A_schabowski"],
   "N11a": ["P_spk"], "N11b": ["P_spk", "P_table"], "N09a": ["P_desk", "B_closed_barrier"], "N13a": ["P_news"],
   "N13b": ["P_news", "B_closed_crowd"], "N14b": ["B_closed_officer", "B_closed_booth"], "N15b": ["B_few_bridge", "B_closed_barrier"],
   "N16a": ["B_few_bridge"], "N16b": ["B_few_bridge", "B_closed_officer"], "N17b": ["B_closed_crowd", "B_closed_wide"],
-  "N20a": ["B_closed_wide", "B_closed_crowd"], "N21a": ["B_closed_barrier", "B_open_barrier"], "N21b": ["V_flow", "B_open_bridge"],
-  "N22a": ["B_closed_officer", "B_morning_wide"], "N23a": ["M_city", "B_open_wide"], "N23b": ["V_back"],
+  "N20a": ["B_closed_wide", "B_closed_crowd"], "N21a": ["B_closed_barrier", "V_raise"], "N21b": ["V_flow", "B_open_bridge"],
+  "N22a": ["B_closed_officer", "V_back"], "N23a": ["M_city", "B_open_wide"], "N23b": ["A_danigel"],
 }
-TAGS = {"N10b": "Chèn băng gốc: họp báo 9.11.1989", "N23b": "Chèn ảnh tư liệu: 10.11.1989"}
+TAGS = {}
 
 # ---- timeline ---------------------------------------------------------------------------------------------------------
 segs, t = [], LEAD
@@ -29,6 +29,7 @@ for s in T["segs"]:
     segs.append({"id": s["id"], "start": t, "dur": s["dur"], "sents": s["sents"]}); t += s["dur"] + GAP
     if s["id"] == INTRO_AFTER: segs.append({"id": "INTRO", "start": t, "dur": INTRO - GAP, "sents": []}); t += INTRO
 TOTAL = t + 1.0
+CREDITS_AT = TOTAL; TOTAL += 6.0
 slots = []   # (shot, start, dur)
 for k, sg in enumerate(segs):
     end = segs[k + 1]["start"] if k + 1 < len(segs) else TOTAL
@@ -39,6 +40,7 @@ for k, sg in enumerate(segs):
     if k == 0: span += sg["start"]; rest += sg["start"] / max(1, len([n for n in names if not n.startswith("V_")]))
     for n in names:
         d = fixed.get(n, rest); slots.append((n, tt, d)); tt += d
+slots.append(("BLACK", CREDITS_AT, TOTAL - CREDITS_AT))
 
 # ---- frames -------------------------------------------------------------------------------------------------------------
 cache = {}
@@ -60,6 +62,7 @@ def clip_frames(n):
     fs = sorted(glob.glob(f"{SH}/{n}/*.png")); return fs
 def frame_of(slot_i, f):
     n, s0, d = slots[slot_i]; occ = sum(1 for k in range(slot_i) if slots[k][0] == n)
+    if n == "BLACK": return np.full((H, W, 3), 6, np.float32)
     if n.startswith("V_"):
         fs = clip_frames(n); idx = min(len(fs) - 1, f)
         return np.asarray(Image.open(fs[idx]).convert("RGB").resize((W, H), Image.BICUBIC), dtype=np.float32)
@@ -69,6 +72,52 @@ yy, xx = np.mgrid[0:H, 0:W]; rr = ((xx - W / 2) / (W / 2)) ** 2 + ((yy - H / 2) 
 VIG = (1 - 0.2 * np.clip(rr - 0.25, 0, None) ** 1.2)[..., None].astype(np.float32)
 GR = [np.random.default_rng(k).normal(0, 2.2, (H, W, 1)).astype(np.float32) for k in range(6)]
 FADE_IN, FADE_OUT = 1.0, 1.8
+# ---- transitions between scene families (B checkpoint, M Berlin map, E Europe map, P press room, A archive photo) --------
+def fam(n):
+    if n == "BLACK": return "K"
+    if n.startswith("A_"): return "A"
+    if n in ("V_map",) or n.startswith("M_"): return "E" if n.startswith("M_europe") else "M"
+    if n == "V_press" or n.startswith("P_"): return "P"
+    return "B"
+def kind(i):
+    a, b = slots[i - 1][0], slots[i][0]; fa, fb = fam(a), fam(b)
+    if fb == "K" or fa == fb: return "fade", 10
+    if a == "P_news": return "zoom", 22
+    if "A" in (fa, fb): return "flash", 18
+    if {fa, fb} == {"M", "E"}: return "page", 24
+    return "ink", 28
+def smooth(shape, seed, cell):
+    r = np.random.default_rng(seed); n = r.random((shape[0] // cell + 2, shape[1] // cell + 2)).astype(np.float32)
+    im = Image.fromarray((n * 255).astype(np.uint8)).resize((shape[1], shape[0]), Image.BICUBIC); return np.asarray(im, np.float32) / 255
+_d = lambda ox, oy: np.sqrt(((xx / W - ox) * 1.78) ** 2 + (yy / H - oy) ** 2) / 1.6
+F1 = (_d(0.32, 0.62) + 0.35 * smooth((H, W), 11, 90) + 0.12 * smooth((H, W), 12, 24)).astype(np.float32)
+F2 = (_d(0.6, 0.42) + 0.35 * smooth((H, W), 13, 90) + 0.12 * smooth((H, W), 14, 24)).astype(np.float32)
+_r = np.random.default_rng(21); INK = (np.array([12, 18, 32], np.float32)[None, None, :] * (0.8 + 0.4 * smooth((H, W), 15, 60)[..., None])).astype(np.float32)
+SPK = np.zeros((H, W), np.float32); _ys, _xs = _r.integers(0, H, 2600), _r.integers(0, W, 2600); SPK[_ys, _xs] = _r.random(2600) * 180
+SPK = np.asarray(Image.fromarray(np.clip(SPK, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.2)), np.float32)[..., None] * 1.8
+CREAM = np.array([244, 236, 220], np.float32)[None, None, :]
+ease = lambda u: u * u * (3 - 2 * u)
+def zoomed(img, s, cx=0.5, cy=0.5):
+    cw, ch = W / s, H / s; x0 = min(max(0, cx * W - cw / 2), W - cw); y0 = min(max(0, cy * H - ch / 2), H - ch)
+    return np.asarray(Image.fromarray(np.clip(img, 0, 255).astype(np.uint8)).resize((W, H), Image.BICUBIC, box=(x0, y0, x0 + cw, y0 + ch)), np.float32)
+def transition(k, p, out, inc, f):
+    if k == "fade": return inc * p + out * (1 - p)
+    if k == "flash":
+        return out * (1 - p * 2) + CREAM * (p * 2) if p < 0.5 else CREAM * (2 - p * 2) + inc * (p * 2 - 1)
+    if k == "page":
+        e = ease(p); off = int(W * (1 - e)); img = out * (1 - 0.3 * e); img[:, off:] = inc[:, :W - off] if off < W else img[:, off:]
+        if 0 < off < W: sh = np.linspace(0.55, 1, min(70, off))[None, :, None]; img[:, off - sh.shape[1]:off] *= sh
+        return img
+    if k == "zoom":
+        if p < 0.5: u = ease(p / 0.5); a = zoomed(out, 1 + 1.6 * u, 0.6, 0.3); w = u ** 2 * 0.9; return a * (1 - w) + np.array([255, 246, 230], np.float32) * w
+        u = ease((p - 0.5) / 0.5); a = zoomed(inc, 1.45 - 0.45 * u); w = (1 - u) ** 2 * 0.9; return a * (1 - w) + np.array([255, 246, 230], np.float32) * w
+    # ink: a dark ink blot spreads over the outgoing frame (wet rim), holds a breath with glints, then opens on the incoming
+    r1 = p / 0.6 * 1.35; m1 = np.clip((r1 - F1) / 0.05, 0, 1)[..., None]
+    r2 = max(0.0, (p - 0.5) / 0.5) * 1.35; m2 = np.clip((r2 - F2) / 0.07, 0, 1)[..., None]
+    rim = (m1 * (1 - m1) * 4) * 38
+    glint = SPK * (0.6 + 0.4 * np.sin(f * 0.9)) * (1 - abs(p - 0.5) * 2)
+    base = out * (1 - m1) + (INK + glint) * m1 + rim
+    return base * (1 - m2) + inc * m2
 ff = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-",
                        "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p", f"{D}/video_noaudio.mp4"], stdin=subprocess.PIPE)
 total_frames = round(TOTAL * FPS)
@@ -76,8 +125,9 @@ bounds = [round(s0 * FPS) for _, s0, _ in slots] + [total_frames]
 for i in (range(len(slots)) if not os.environ.get('AUDIO_ONLY') else []):
     for f in range(bounds[i + 1] - bounds[i]):
         a = frame_of(i, f)
-        if i > 0 and f < XF:   # crossfade from the previous shot continuing its move
-            prev_len = bounds[i] - bounds[i - 1]; b = frame_of(i - 1, prev_len + f); w = (f + 1) / (XF + 1); a = a * w + b * (1 - w)
+        if i > 0:
+            k, TL = kind(i)
+            if f < TL: prev_len = bounds[i] - bounds[i - 1]; b = frame_of(i - 1, prev_len + f); a = transition(k, (f + 1) / (TL + 1), b, a, f)
         fr = bounds[i] + f; tsec = fr / FPS
         a = a * VIG + GR[fr % 6]
         k = min(1.0, tsec / FADE_IN, (TOTAL - tsec) / FADE_OUT); a = a * max(0.0, k)
@@ -150,6 +200,11 @@ for sg in segs:
         ass.append(f"Dialogue: 1,{ts(sg['start'] + 0.2)},{ts(sg['start'] + INTRO - 0.3)},Title,,0,0,0,,{{\\fad(400,400)}}Đêm Bức tường Berlin mở cửa")
         ass.append(f"Dialogue: 1,{ts(sg['start'] + 0.6)},{ts(sg['start'] + INTRO - 0.3)},Date,,0,0,0,,{{\\fad(400,400)\\pos({W//2},{H//2+90})}}9 . 11 . 1989")
     if sg["id"] in TAGS: ass.append(f"Dialogue: 2,{ts(sg['start'])},{ts(sg['start'] + sg['dur'])},Tag,,0,0,0,,{TAGS[sg['id']]}")
+cr = ["Đêm Bức tường Berlin mở cửa · bản nháp papercraft", "Lời dẫn: VieNeu-TTS (giọng Thiện Minh) · Hình: dựng bằng papercraft (MIT) trên three.js",
+      "Ảnh tư liệu: Gerd Danigel, 10.11.1989 (CC BY 3.0, Wikimedia Commons)", "Bundesarchiv, Bild 183-1989-1109-030 / Thomas Lehmann (CC BY-SA 3.0 de)",
+      "Nguồn sự kiện: Wikipedia tiếng Đức (Bösebrücke, Grenzübergang Bornholmer Straße)"]
+ass.append(f"Dialogue: 3,{ts(CREDITS_AT + 0.4)},{ts(TOTAL - 0.3)},Credit,,0,0,0,,{{\\fad(500,500)}}" + "\\N".join(cr))
+ass.insert(ass.index("[Events]") - 1, "Style: Credit,DejaVu Sans,34,&H00E6EAEE,&H00FFFFFF,&H00000000,&H00000000,0,0,0,0,100,100,0.5,0,1,0,0,5,120,120,60,1")
 open(f"{D}/subs.ass", "w", encoding="utf-8").write("\n".join(ass) + "\n")
 
 if os.environ.get("AUDIO_ONLY"): raise SystemExit("AUDIO_DONE")

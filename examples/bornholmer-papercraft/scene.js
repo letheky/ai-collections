@@ -190,16 +190,19 @@ function barrier(x, raised) {
   const z0 = roadZ(x) - 3.0, g = new H.THREE.Group();
   const post = makeCard(...(([pts, paint]) => [pts, { paint, paper: H.paper, thickness: 0.08, edgeWidth: 0.06, pxPerUnit: 48, seed: 601, folds: ['bottom'] }])(K.barrierPost()));
   post.scale.setScalar(1.3); g.add(post);
-  const len = 6.2, [pp, ppaint] = piece((gg, ink) => { gg.fillStyle = ink(C.cream); D.rect(gg, 0, -0.26, len, 0.52, 0.18); gg.fillStyle = ink(C.red, 'print'); for (let t = 0.5; t < len - 0.5; t += 1.2) D.rect(gg, t, -0.26, 0.6, 0.52); }, len + 0.2, 0.7, 'barrier plank');
-  const plank = makeCard(pp.map(([px, py]) => [px, py + 0.35]), { paint: ppaint, paper: H.paper, thickness: 0.08, edgeWidth: 0.06, pxPerUnit: 48, seed: 603, folds: [] });
+  const len = 6.2, [pp, ppaint] = piece((gg, ink) => { gg.fillStyle = ink(C.cream); D.rect(gg, 0, -0.34, len, 0.68, 0.2); gg.fillStyle = ink(C.red, 'print'); for (let t = 0.5; t < len - 0.5; t += 1.2) D.rect(gg, t, -0.34, 0.6, 0.68); }, len + 0.2, 0.8, 'barrier plank');
+  const plank = makeCard(pp.map(([px, py]) => [px, py + 0.35]), { paint: ppaint, paper: H.paper, thickness: 0.08, edgeWidth: 0.06, pxPerUnit: 48, seed: 603, folds: [], back: 'mirror' });
   const pivot = new H.THREE.Group(); pivot.position.set(0, 2.0, 0.2); g.add(pivot);
   const lay = new H.THREE.Group(); lay.rotation.set(-Math.PI / 2, 0, -Math.PI / 2); lay.add(plank); plank.position.y = -0.35;   // the plank's length runs along +z (across the road), its face up
-  const tip = new H.THREE.Group(); tip.add(lay); tip.rotation.x = raised ? -1.15 : 0; pivot.add(tip);
+  const tip = new H.THREE.Group(); tip.add(lay); tip.rotation.x = raised ? -1.15 : 0; pivot.add(tip); TIPS.push([x, tip]);
   H.popup(null, null, { node: g, height: 2.6, x, z: z0, yaw: 0 }); mark(x, z0, 2);
+  // the rest fork on the near kerb that the lowered beam lies in: reads 'across the road' from this camera
+  H.popup(...piece((gg, ink) => { gg.fillStyle = ink('#3c3f3a'); D.rect(gg, -0.12, 0, 0.24, 1.75); gg.fillStyle = ink(C.cream); D.rect(gg, -0.32, 1.7, 0.64, 0.22, 0.05); gg.fillStyle = ink(C.red, 'print'); D.rect(gg, -0.12, 0.5, 0.24, 0.3); D.rect(gg, -0.12, 1.1, 0.24, 0.3); }, 0.8, 2.0, 'barrier rest'), { x, z: z0 + 3.4, yaw: 0, scale: 1.1 });
 }
 
 // ---- the world ------------------------------------------------------------------------------------------------------
-const LIFE = { breath: [] }, MOVERS = [];
+const RAISE = Number(new URLSearchParams(location.search).get('raise') || 0);   // 1: the outer barrier lifts at t 4.2-6 s
+const LIFE = { breath: [] }, MOVERS = [], TIPS = [];
 {
   // 1. the bridge: deck (platform) over the rail cut, two riveted arch girders with their panels cut out
   const L = BR.x1 - BR.x0, cx = (BR.x0 + BR.x1) / 2, cz = roadZ(cx), W = 8.4, DH = 1.4;
@@ -233,26 +236,35 @@ const LIFE = { breath: [] }, MOVERS = [];
   // few: as closed, plus a handful let through walking west on the bridge. open: the crowd streams through the booths
   // and over the bridge. morning: thinner, people walking back east over the bridge.
   rnd = P2.rng(77);
-  const onDeck = (n, dir) => { for (let k = 0; k < n; k++) { const u = between(-L / 2 + 1.5, L / 2 - 1.5), v = between(1.2, W - 1.2);
-      const hd = H.popup(...person(), { parent: deck.userData.deck, x: u, z: v - W, order: deckH.order + 0.5 + k * 0.01, res: 0.7, yaw: 0, scale: between(0.95, 1.08) }); MOVERS.push({ h: hd, deck: true, x0: -L / 2 + 1, x1: L / 2 - 1, ph: rnd() * 6, sp: between(0.9, 1.3) }); } };
-  const street = (n, x0, x1, spread = 2.7) => { for (let k = 0; k < n; k++) { const x = between(x0, x1), z = roadZ(x) + between(-spread, spread);
-      if (booths.some(([bx, sg]) => Math.hypot(x - bx, z - (roadZ(bx) + sg * 4.6)) < 3)) continue;
-      const hd = H.popup(...person(), { x, z, res: 0.7, scale: between(0.95, 1.08) }); MOVERS.push({ h: hd, off: z - roadZ(x), x0, x1, ph: rnd() * 6, sp: between(0.9, 1.3) }); if (k % 7 === 0) LIFE.breath.push([x, 2.8, z]); } };
+  const CARS = [[31, 2.2, 0], [37, -2.2, 1], [44, 1.8, 2], [50, -1.6, 3]].map(([x, dz, i]) => [x, roadZ(x) + dz, i]);
+  const taken = [];   // every standing figure: no two closer than 0.95, none in a car, a booth, a post or a guard
+  const room = (x, z, r = 0.95) => taken.every(([a, b, q]) => Math.hypot(x - a, z - b) > Math.max(r, q)) && CARS.every(([a, b]) => Math.hypot((x - a) * 0.75, z - b) > 1.6)
+    && booths.every(([bx, sg]) => Math.hypot(x - bx, z - (roadZ(bx) + sg * 4.6)) > 3.0) && [2.0, 22.5].every((bx) => Math.hypot(x - bx, z - (roadZ(bx) - 3.0)) > 1.0);
+  const guardAt = (x, dz) => { const z = roadZ(x) + dz; taken.push([x, z, 1.3]); H.popup(...guard(), { x, z, res: 0.8 }); };
+  const onDeck = (n) => { for (let k = 0, tries = 0; k < n && tries < 400; tries++) { const u = between(-L / 2 + 1.5, L / 2 - 1.5), v = between(1.4, W - 1.4), wx = cx + u, wz = cz + W / 2 + (v - W);
+      if (!room(wx, wz)) continue; taken.push([wx, wz, 0.95]); k++;
+      H.popup(...person(), { parent: deck.userData.deck, x: u, z: v - W, order: deckH.order + 0.5 + k * 0.01, res: 0.7, yaw: 0, scale: between(0.95, 1.08) }); } };
+  // street(n, x0, x1, spread): standing crowd; with ?flow the same figures walk and cross the bridge at deck height
+  const street = (n, x0, x1, spread = 2.4) => { for (let k = 0, tries = 0; k < n && tries < 600; tries++) { const x = between(x0, x1), off = between(-spread, spread), z = roadZ(x) + off;
+      if (!room(x, z) || (x > BR.x0 - 0.5 && x < BR.x1 + 0.5 && !FLOW)) continue; taken.push([x, z, 0.95]); k++;
+      const onBr = x > BR.x0 && x < BR.x1, hd = H.popup(...person(), { x, z, res: 0.7, scale: between(0.95, 1.08) });
+      MOVERS.push({ h: hd, off, ph: rnd() * 6, sp: between(0.85, 1.2) }); } };
   if (STATE === 'closed' || STATE === 'few') {
-    street(54, 24.2, 40, 3.0);
-    for (const [x, dz] of [[21, -1.6], [21.6, 1.8], [6, -2.0], [2.8, 1.4]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
-    if (STATE === 'few') onDeck(5, -1);
+    for (const [x, dz] of [[21, -1.6], [21.6, 1.8], [6, -2.0], [2.8, 1.4]]) guardAt(x, dz);
+    street(56, 24.2, 40, 3.0);
+    if (STATE === 'few') onDeck(5);
   } else if (STATE === 'open') {
-    street(40, 3, 40, 2.8); onDeck(26, -1);
-    for (const [x, dz] of [[1.0, -3.0], [23.5, -3.4]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
+    for (const [x, dz] of [[1.0, -4.3], [23.5, -4.4]]) guardAt(x, dz);
+    if (FLOW) street(90, -40, 46); else { street(40, 3, 40); onDeck(26); }
   } else {
-    street(10, 3, 30, 2.6); onDeck(14, 1);
-    for (const [x, dz] of [[1.0, -3.0]]) H.popup(...guard(), { x, z: roadZ(x) + dz, res: 0.8 });
+    guardAt(1.0, -4.3);
+    if (FLOW) street(36, -40, 46); else { street(10, 3, 30); onDeck(14); }
   }
-  // the officer (the hero): inside, by the outer barrier he will open
-  { const doll = officer(), x = 19.5, z = roadZ(x) - 0.6; H.setHero(H.popup(null, null, { node: doll, height: 3.1, x, z, sway: 0.15, scale: 1.2 }), { stride: doll.userData.stride }); mark(x, z, 1.5); }
+  // the officer (the hero): inside by the outer barrier; once the gates are open he stands aside on the pavement
+  { const doll = officer(), x = 19.5, z = roadZ(x) + (STATE === 'closed' || STATE === 'few' ? -0.6 : -4.0); taken.push([x, z, 1.4]);
+    H.setHero(H.popup(null, null, { node: doll, height: 3.1, x, z, sway: 0.15, scale: 1.2 }), { stride: doll.userData.stride }); mark(x, z, 1.5); }
   // Trabants among the crowd on the east approach
-  for (const [x, dz, i] of [[31, 2.2, 0], [37, -2.2, 1], [44, 1.8, 2], [50, -1.6, 3]]) H.popup(...K.trabant(C.trab[i]), { x, z: roadZ(x) + dz, yaw: -Math.atan(0.0105 * 2 * (x + 2)), scale: 1.15 });
+  for (const [x, z, i] of CARS) H.popup(...K.trabant(C.trab[i]), { x, z, yaw: -Math.atan(0.0105 * 2 * (x + 2)), scale: 1.15 });
 
   // 4. the far edge: tenement blocks (layered flats cut by the top edge), hedges and bare trees
   rnd = P2.rng(303);
@@ -284,12 +296,15 @@ const LIFE = { breath: [] }, MOVERS = [];
 
 // ---- ?flow=-1 (west, the night of the opening) / 1 (east, the morning after): the crowd walks along the road and the deck
 if (FLOW) {
-  const base = new Map();
-  H.onStep((t, dt) => { if (t < 3.2) return; const tt = t - 3.2;
-    for (const m of MOVERS) { const g = m.h.group; if (!base.has(m)) base.set(m, g.position.clone()); const b = base.get(m);
-      const span = m.x1 - m.x0; let x = b.x + FLOW * m.sp * 1.4 * tt; x = m.x0 + (((x - m.x0) % span) + span) % span;
-      g.position.x = x; if (!m.deck) g.position.z = roadZ(x) + m.off; g.position.y = b.y + Math.abs(Math.sin(tt * 5.5 * m.sp + m.ph)) * 0.07; g.rotation.z = Math.sin(tt * 5.5 * m.sp + m.ph) * 0.03; } });
+  const X0 = -48, X1 = 54, SPAN = X1 - X0, DECK = 1.4;
+  H.onStep((t) => { if (t < 3.2) return; const tt = t - 3.2;
+    for (const m of MOVERS) { const g = m.h.group; if (m.x === undefined) { m.x = g.position.x; m.y = g.position.y; }
+      let x = m.x + FLOW * m.sp * 2.4 * tt; x = X0 + (((x - X0) % SPAN) + SPAN) % SPAN;
+      const step = tt * 4.2 * m.sp + m.ph, onBr = x > BR.x0 + 0.3 && x < BR.x1 - 0.3;
+      g.position.x = x; g.position.z = roadZ(x) + m.off; g.position.y = m.y + (onBr ? DECK : 0) + Math.abs(Math.sin(step)) * 0.16;
+      g.rotation.z = Math.sin(step) * 0.09; } });
 }
+if (RAISE) H.onStep((t) => { for (const [x, tip] of TIPS) if (x > 10) { const u = Math.min(1, Math.max(0, (t - 4.2) / 1.8)), e = u < 1 ? 1 - Math.pow(1 - u, 3) : 1; tip.rotation.x = -1.15 * e + Math.sin(Math.min(1, Math.max(0, (t - 6) / 0.6)) * Math.PI) * 0.06; } });
 
 // ---- life: breath and lamp haze over the crowd, a few dry leaves ---------------------------------------------------
 const life = createLife({ scene: H.scene, camera: H.camera, heroHeight: H.heroHeight, seed: 9, wind: [0.9, 0.3] });

@@ -71,3 +71,17 @@ Chưa có: nhạc nền, tiếng giấy, người đi bộ (cảnh đám đông 
 - Hình: tối viền khung, hạt phim nhẹ, mở từ đen và kết thúc về đen.
 
 ![Contact sheet v3](film/contact_v3.jpg)
+
+### Bản v4 (2026-11-26)
+
+- **Ảnh tư liệu thật** (Wikimedia Commons, ghi nguồn dưới ảnh và trong phần ghi công cuối phim): N10b dùng ảnh Bundesarchiv, Bild 183-1989-1109-030, Thomas Lehmann, 9.11.1989 (CC BY-SA 3.0 de); N23b dùng ảnh của Gerd Danigel, 10.11.1989, "Ostberliner kehren nach Hause zurück" (CC BY 3.0). `film/photos.py` đặt ảnh như tấm ảnh in trên giấy. Ảnh không lưu trong repo; tải lại từ Commons theo tên file.
+- **Sửa lỗi phi thực tế:**
+  - đám biểu tình không đứng trên sông hay lọt vào nhà;
+  - văn bản in phẳng trên mặt bàn, không đứng xuyên qua người;
+  - bàn và góc ti vi không chồng lên hàng phóng viên;
+  - không ai đứng trong xe Trabant;
+  - người cách nhau tối thiểu;
+  - khi mở cửa, lính gác và viên trung tá lên vỉa hè, người đi bộ lên mặt cầu đúng độ cao.
+- **Chuyển động:** đi bộ nhanh gấp đôi, có nhịp bước; barie nâng thật ở N21a (`?raise=1`), có chân đỡ để đọc được là thanh nằm chắn ngang đường.
+- **Chuyển cảnh** theo họ bối cảnh: mực loang (đổi bối cảnh), lao vào màn hình (ti vi sang cửa khẩu), lật trang (bản đồ Berlin ↔ Trung Âu), lóe sáng giấy (sang ảnh tư liệu); cùng bối cảnh thì mờ dần.
+- Ghi công 6 giây cuối phim.
